@@ -1,0 +1,34 @@
+<import src="../../wxParse/wxParse.wxml" />
+<scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="" bindscroll="">
+	<view class="lession-content-1" hover-class="none" hover-stop-propagation="false">
+
+		<view class="audio-box" hover-class="none" hover-stop-propagation="false">
+			<image class="play-pause" wx:if="{{audioAction.method=='play'}}" bindtap="audioPlay" src="../../image/play_icon@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+			</image>
+			<image class="play-pause" wx:if="{{audioAction.method=='pause'}}" bindtap="audioPause" src="../../image/pause_icon@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+			</image>
+			<view class="cur-time" style="color:black" hover-class="none" hover-stop-propagation="false">
+				{{currentTime}} / {{totalTime}}
+			</view>
+			<view class="slider-box" hover-class="none" hover-stop-propagation="false">
+				<slider block-size="12" activeColor="#00BFFF" bindchange="timeSliderChanged" value="{{audioValue}}" left-icon="cancel" right-icon="success_no_circle" />
+
+			</view>
+
+		</view>
+
+	</view>
+	<view wx:if="{{courseClass == 0}}" class="lession-content-2" hover-class="none" hover-stop-propagation="false">
+		<view class="lession-tab-1" hover-class="none" hover-stop-propagation="false">
+			<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+		</view>
+	</view>
+	<modal hidden="{{notifyHidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindconfirm="ok" bindcancel="cancel" no-cancel="false">
+	<block wx:if="{{courseClass == 1}}">
+		您已完成训练!
+		</block>
+		<block wx:if="{{courseClass == 0}}">
+		您已完成本课时!
+		</block>
+	</modal>
+</scroll-view>

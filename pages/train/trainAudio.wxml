@@ -1,0 +1,25 @@
+<view class="content">
+  <image src="../../images/test-train.png"></image>
+  <view class="title">冥想引导音频3分钟</view>
+  <view class="des">PLAN A-CBT PLUS优眠计划  2020/10/22</view>
+  <audio></audio>
+</view>
+<view class="btn canfinish nofinish">完成任务</view>
+<view class="btn leave">我想请假</view>
+<!-- 推荐阅读 -->
+<view class="course">
+  <view class="title">推荐阅读</view>
+  <view class="master_item">
+      <view class="item_left">
+        <view class="item_title">解锁CBT-PLUS攻略！</view>
+        <view class="item_time_author">
+          <text>本周内完成18篇</text>
+          <text class="end">已完成</text>
+        </view>
+      </view>
+      <view class="item_right">
+        <image class="qianzhang" src="../../images/qianzhang.png"></image>
+        <image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
+      </view>
+    </view>
+</view>

@@ -1,0 +1,81 @@
+<import src="../../wxParse/wxParse.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter"></wxs>
+<!--index.wxml-->
+<!-- 顶部banner(最多展示5个) -->
+<view class="banner">
+  <view class="banner_swiper">
+    <swiper autoplay="true" interval="3000" duration="500" circular="true" indicator-dots="true" indicator-color="#fff"
+      indicator-active-color="#36BC96">
+      <block wx:for="{{imgUrls}}" wx:key="index">
+        <swiper-item class="swiper-item" bindtap="gotoArticleDetail" data-id='{{item.id}}'>
+          <image class="swiper_item_image" src="{{imgBaseUrl+item.image}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+
+<!-- 内容 -->
+<view class="container">
+  <!-- 快速入口导航(最多展示6个) -->
+  <view class="quick_enter_module" wx:if="{{quickList.length > 0}}">
+    <block wx:for="{{quickList}}" wx:key="index">
+      <view class="quick_enter_item" bindtap="goToTest">
+        <image class="quick_enter_image" src="{{imgBaseUrl+item.image}}"></image>
+      </view>
+    </block>
+  </view>
+
+  <!-- 测试评估 -->
+  <view class="test_module">
+    <view class="module_title">
+      <view class="left_title">测试估评</view>
+      <view class="more">
+        <!-- <text class="more_text">更多</text>
+        <image class="more_arrow" src="../../images/black_arrow.png"></image> -->
+      </view>
+    </view>
+    <!-- <view class="test_content"
+      style="background: url('https://imgchr.com/i/BszoB6') no-repeat 100% 100%">
+    </view> -->
+    <view class="test_content" bindtap="goToTest">
+      <image class="test_banner" src="../../images/test_banner.png"></image>
+    </view>
+  </view>
+
+  <!-- 大咖说 -->
+  <view class="master_module">
+    <view class="module_title">
+      <view class="left_title">大咖说</view>
+      <view class="more" bindtap="gotoArticleList">
+        <text class="more_text">更多</text>
+        <image class="more_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="master_content">
+      <block wx:for="{{articles}}" wx:key="index">
+        <view class="master_item" bindtap="gotoArticleDetail" data-id='{{item.id}}'>
+          <view class="item_left">
+            <view class="item_title">{{item.title}}</view>
+            <view class="item_time_author">
+              <text class="item_date">{{filter.splitDate(item.updateDate)}}</text>
+              <text>作者：喜知悦行</text>
+            </view>
+          </view>
+          <view class="item_right">
+            <image class="item_image" src="{{imgBaseUrl+item.image}}"></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<modal hidden="{{notifyHidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindconfirm="ok" no-cancel="true">
+  <scroll-view scroll-y class='main-content'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </scroll-view>
+</modal>
+<dialog id='dialog' title='登录提示' content='小程序需要您的授权才能提供更好的服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent'
+  bind:bindGetUserInfo='bindGetUserInfo'>
+</dialog>

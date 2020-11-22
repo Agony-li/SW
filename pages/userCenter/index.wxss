@@ -1,0 +1,197 @@
+/* pages/mine/mine.wxss */
+.header {
+  height: 210rpx;
+  background-color: #36BC96;
+}
+
+.header_info {
+  display: flex;
+  height: 210rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 56rpx;
+  padding-right: 49rpx;
+}
+
+.header_left {
+  display: flex;
+  align-items: center;
+}
+
+.header_icon {
+  width: 137rpx;
+  height: 137rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_img {
+  width: 117rpx;
+  height: 117rpx;
+  border-radius: 50%;
+}
+
+.header_name {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #fff;
+  padding-left: 33rpx;
+}
+
+.header_right_arrow {
+  width: 13rpx;
+  height: 22rpx;
+}
+
+/* 内容 */
+.containers {
+  padding: 36rpx 25rpx 27rpx;
+}
+
+.module {
+  background-color: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+
+.list_item {
+  height: 90rpx;
+  margin: 0 24rpx;
+  border-bottom: 1rpx solid #E7E7E7;
+}
+
+.item {
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list_item:last-of-type {
+  border-bottom: 0rpx;
+}
+
+.item_left {
+  
+}
+
+.item_icon {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  padding-right: 18rpx;
+}
+
+.item_text {
+  font-size: 30rpx;
+  color: #333;
+  white-space: nowrap; 
+}
+
+.item_right_arrow {
+  width: 13rpx;
+  height: 22rpx;
+}
+
+.task {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+/* 绑定按钮弹窗 */
+.bindPhone {
+  background-color: #fff;
+  margin: 25rpx;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bind_title {
+  display: flex;
+  justify-content: space-between;
+  height: 122rpx;
+  align-items: center;
+}
+.icon {
+  width: 158rpx;
+  height: 49rpx;
+  padding-right: 25rpx;
+  vertical-align: middle;
+}
+.title_text {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.zhuyi {
+  width: 30rpx;
+  height: 30rpx;
+}
+.yourphone {
+  font-size: 30rpx;
+  font-weight: 700;
+  padding-bottom: 36rpx;
+}
+.my_phone {
+  display: flex;
+  justify-content: space-between;
+  height: 90rpx;
+  align-items: center;
+  border-top: 1rpx solid #E7E7E7;
+  border-bottom: 1rpx solid #E7E7E7;
+}
+.right_img {
+  width: 27rpx;
+  height: 19rpx;
+  vertical-align: middle;
+}
+.phone_mum {
+  font-size: 25rpx;
+  font-weight: 700;
+  padding-right: 24rpx;
+}
+.phone_des {
+  font-size: 25rpx;
+  color: #999999;
+}
+.user_otherphone {
+  font-size: 25rpx;
+  color: #36BC96;
+  padding: 24rpx 0 153rpx;
+}
+.bottom_but {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  width: 315rpx;
+  height: 74rpx;
+  margin-bottom: 39rpx;
+  border:none;
+  background:none;
+  font-size: 30rpx;
+  line-height: 74rpx;
+}
+button::after{
+  border:none;
+}
+.but_left {
+  background-color: #F2F2F2;
+  color: #03C360;
+}
+.but_right {
+  background-color: #03C360;
+  color: #fff;
+}

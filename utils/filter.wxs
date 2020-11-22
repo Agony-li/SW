@@ -1,0 +1,22 @@
+
+// 计算多少小时前  多少天前
+var articleDate = function(updateDate){
+  var diffDate = (getDate().getTime() - getDate(updateDate).getTime())/1000/60/60
+  if(diffDate.toFixed(0) < 24){
+    return diffDate.toFixed(0) + "小时前"
+  }else {
+    return (diffDate/24).toFixed(0) + "天前"
+  }
+}
+
+// 切割时间 '2020-01-02 12:23:30' 切成 '2020-01-02'
+var splitDate = function(date){
+  if (date) {
+    return date.split(' ', 1)
+  }
+}
+
+module.exports = {
+  articleDate: articleDate,
+  splitDate: splitDate
+}

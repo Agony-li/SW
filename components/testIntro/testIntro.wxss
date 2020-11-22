@@ -1,0 +1,72 @@
+page{
+  background: linear-gradient(180deg, #36BC96, #36BC96, #F2F4F5, #F2F4F5);
+  /* width: 100%; */
+}
+.banner {
+  height: 449rpx;
+}
+.banner image {
+  width: 100%;
+}
+.container {
+  position: fixed;
+  top: 266rpx;
+  width: 100%;
+  padding: 0 24rpx;
+}
+.content {
+  background-color: #fff;
+  border-radius: 12rpx;
+}
+.header {
+  padding: 45rpx 0 43rpx;
+  margin: 0 24rpx;
+  border-bottom: 1rpx solid #C1C1C1;
+}
+.content .title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.content .des {
+  font-size: 22rpx;
+  color: #999999;
+  padding-top: 16rpx;
+}
+.testlist {
+  font-size: 25rpx;
+  padding: 42rpx 24rpx;
+  line-height: 25rpx;
+}
+.test_title {
+  display: flex;
+  align-items: center;
+  padding-top: 22rpx;
+}
+.test_title .icon{
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: #36BC96;
+}
+.test_title .title {
+  font-size: 25rpx;
+  padding-left: 16rpx;
+  font-weight: normal;
+}
+.bottom {
+  padding: 0 24rpx 60rpx 24rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+.btn {
+  width: 100%;
+  margin: 25rpx 0;
+  background-color: #36BC96;
+  text-align: center;
+  height: 73rpx;
+  line-height: 73rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 12rpx;
+}

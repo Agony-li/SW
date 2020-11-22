@@ -1,0 +1,12 @@
+<view class="itemlist">
+  <view class="item">
+    <view class="left_img">
+      <image src="../../images/item.png"></image>
+    </view>
+    <view class="right_info">
+      <view class="item_title">Cling voc智能手环</view>
+      <view class="item_des">推荐理由：性价比高</view>
+      <view class="item_price">市场参考价：460.00元</view>
+    </view>
+  </view>
+</view>

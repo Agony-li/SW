@@ -1,0 +1,71 @@
+page {
+  background-color: #36BC96;
+}
+/* banner头部 */
+.banner {
+  width: 100%;
+}
+.banner_swiper {
+  margin: 0 24rpx;
+}
+.swiper-item {
+  height: 325rpx;
+  border-radius: 12rpx;
+}
+.swiper_item_image {
+  width: 100%;
+  height: 325rpx;
+  background-size: 100%;
+  border-radius: 12rpx;
+}
+/* 内容部分 */
+.container {
+  margin-top: 40rpx;
+  position: relative;
+}
+.content {
+  position: absolute;
+  top: 307rpx;
+  margin-bottom: 90rpx;
+}
+.container_bgImg {
+  width: 100%;
+  height: 918rpx;
+}
+.des {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 68rpx;
+  padding-right: 115rpx;
+  box-sizing: border-box;
+  margin-bottom: 35rpx;
+}
+.des_num {
+  font-size: 30rpx;
+  color: #fff;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #36BC96;
+  text-align: center;
+  line-height: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.des_text {
+  font-size: 25rpx;
+  color: #333;
+}
+.qrcode {
+  margin-top: 5rpx;
+  text-align: center;
+}
+.qrcode_img {
+  width: 182rpx;
+  height: 182rpx;
+}
+.qrcode_text {
+  font-size: 25rpx;
+  color: #333;
+}

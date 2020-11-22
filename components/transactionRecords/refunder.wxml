@@ -1,0 +1,46 @@
+<view class="containers" hover-class="none" hover-stop-propagation="false">
+        <view class="page__bd">
+            <view class="weui-tab">
+                <view class="weui-tab__panel">
+                    <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                            <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+                            <block wx:if="{{ !endDone }}">
+                                   <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+                                         <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+                                                 <image class="f-2-m"  src="../../image/cbti.png"  mode="widthFix" lazy-load="false" binderror="" bindload="">
+                                                 </image>
+                                                 <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+                                                   {{items.programName}}
+                                                 </view>
+                                         </view>
+                                        
+                                         <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+                                        <text wx:if="{{items.bonus == false&& items.weelDown != 2}}"> 未完成训练 </text>
+                                            <text wx:if="{{items.bonus == false && items.weelDown == 2}}"> 待申请 </text>
+                                            <text wx:if="{{items.back == true &&items.refundStatus == 0}}"> 待审核 </text>
+                                            <text wx:if="{{items.back == true &&items.refundStatus == 1}}"> 已发送 </text>
+                                            <text wx:if="{{endDone}}"> 训练已达标,不能领取 </text>
+                                         </view>
+                                   </view>
+                                    <view class="order-f-3" hover-class="none" hover-stop-propagation="false">
+                                            <text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.refundAmount}}</text>
+                                          
+                                   </view>
+                                   <view class="order-f-4" hover-class="none" hover-stop-propagation="false">
+                                             <view wx:if="{{week == currentWeek && !endDone && items.back == false  && items.weelDown == 2}}" class="f-4-3" hover-class="none" hover-stop-propagation="false" bindtap="refundMoney" data-info="{{items}}">
+                                                    申请退款
+                                            </view>
+                                   </view>
+</block>
+                            </view>
+                            <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+                                            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+                            </view>
+                    </view>
+           
+                    </view>
+            </view>
+        </view>
+        <view class="loading" hidden="{{!searchLoading}}">{{loadMoreData}}</view>
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+</view>

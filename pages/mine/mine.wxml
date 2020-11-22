@@ -1,0 +1,145 @@
+<!--pages/mine/mine.wxml-->
+<!-- 头部 -->
+<view class="header">
+  <view class="header_left">
+    <view class="header_icon">
+      <image class="header_img" src="../../images/test-icon.jpg"></image>
+    </view>
+    <view class="header_name">特斯拉</view>
+  </view>
+  <view>
+    <image class="header_right_arrow" src="../../images/mine_right_arrow.png"></image>
+  </view>
+</view>
+
+<!-- 内容 -->
+<view class="containers">
+  <!-- 第一部分 -->
+  <view class="module">
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-report.png"></image>
+        <text class="item_text">我的健康报告</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-phone.png"></image>
+        <text class="item_text">绑定手机</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-price.png"></image>
+        <text class="item_text">我的奖金</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-order.png"></image>
+        <text class="item_text">我的订单</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-coupon.png"></image>
+        <text class="item_text">我的代金券</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-returnprice.png"></image>
+        <text class="item_text">申请退款</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 第二部分 -->
+  <view class="module">
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-kefu.png"></image>
+        <text class="item_text">客服中心</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-help.png"></image>
+        <text class="item_text">帮助中心</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 第三部分 -->
+  <view class="module">
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-upload.png"></image>
+        <text class="item_text">手机报告上传</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-banben.png"></image>
+        <text class="item_text">版本</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+    <view class="list_item">
+      <view class="item_left">
+        <image class="item_icon" src="../../images/icon-aboutus.png"></image>
+        <text class="item_text">关于我们</text>
+      </view>
+      <view class="item_right">
+        <image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <view wx:if="{{loginState}}" class="content-up" hover-class="none" hover-stop-propagation="false">
+    <van-button type="primary" block size="small" wx:if="{{canIUse}}" open-type="getUserInfo"
+      bindgetuserinfo="bindGetUserInfo">登录获取更多体验</van-button>
+  </view>
+</view>
+<dialog id='dialog' title='登录提示' content='小程序需要您的授权才能提供更好的服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent'
+  bind:bindGetUserInfo='bindGetUserInfo'>
+</dialog>

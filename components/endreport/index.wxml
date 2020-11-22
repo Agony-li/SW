@@ -1,0 +1,52 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <!-- <van-button type="primary">按钮</van-button> -->
+    <view class="test-content">
+<block wx:if="{{!b}}">
+    <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">最终睡眠报告</van-divider>
+        <view class="question-name">  
+          您第一周睡眠质量平均分为：{{start}}
+                  <van-button type="primary" size="mini" bind:click="onClickShow">查看报告</van-button>
+        </view>
+                <view class="question-name">  
+          您最终的睡眠报告评分为: {{end}}
+                  <van-button type="primary" size="mini" bind:click="onClickShowEnd">查看报告</van-button>
+        </view>
+                <view class="question-name">   
+          提升了: {{score}}%
+        </view>
+        <view class="question-name">  
+        <block wx:if="{{done}}">
+        恭喜你, 完成既定目标, 本次计划学习完毕!
+        </block>
+        <block wx:else>
+         很抱歉, 暂未达成既定目标, 本次计划学习完毕!
+         </block>
+        </view>
+        </block>
+
+        <block wx:else>
+    <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">最终体脂报告</van-divider>
+        <view class="question-name">  
+          您第一周平均体脂率为：{{start}}
+                  <van-button type="primary" size="mini" bind:click="onClickShow">查看报告</van-button>
+        </view>
+                <view class="question-name">  
+          
+        您最终平均体脂率为: {{end}}
+                  <van-button type="primary" size="mini" bind:click="onClickShowEnd">查看报告</van-button>
+        </view>
+                <view class="question-name">  
+          提升了: {{(end - start)}}
+        </view>
+        <view class="question-name">  
+        <block wx:if="{{done}}">
+        恭喜你, 完成既定目标, 本次计划学习完毕!
+        </block>
+        <block wx:else>
+         很抱歉, 暂未达成既定目标, 本次计划学习完毕!
+         </block>
+        </view>
+        </block>
+  </view>
+</view>

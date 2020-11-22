@@ -1,0 +1,14 @@
+<import src="../../wxParse/wxParse.wxml" />
+<scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0"
+      scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper=""
+      bindscrolltolower="" bindscroll="">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</scroll-view>
+<view class="buy-btn-content" hover-class="none" hover-stop-propagation="false">
+      <view class="pay-btn" hover-class="none" bindtap="buyNow" hover-stop-propagation="false">
+            确认 <block wx:if="{{form == 5 && djs > 0}}">({{djs}})</block>
+      </view>
+</view>
+<modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
+  您已成功开通服务， 请于下周一参加CBTI学习训练。
+</modal>

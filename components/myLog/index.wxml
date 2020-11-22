@@ -1,0 +1,173 @@
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <!-- <van-button type="primary">按钮</van-button> -->
+    <view class="tab-content" hover-class="none" hover-stop-propagation="false" bindtap="goToLog">
+          <view class="tab-content-1">
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="../../image/cbti_icon_4@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name" hover-class="none" hover-stop-propagation="false" >
+              日志管理规定
+          </view>
+               
+        </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;"></view>
+
+     </view>
+    <view class="test-content">
+        <block wx:for="{{lbList}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+  
+          <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.id" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+  
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
+            </view>
+          </view>
+        </block>
+        <view class="weui-cells__title">主观睡眠开始时间</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                 <picker mode="time" value="{{subjective_start_time}}"  bindchange="bindTimeChange" data-type="subjective_start_time" >
+                    <input class="weui-input" value="{{subjective_start_time}}" bindinput="onChange" placeholder="请选择" data-type="subjective_start_time"/>
+                 </picker>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">主观睡眠结束时间</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                 <picker mode="time" value="{{subjective_end_time}}"  bindchange="bindTimeChange" data-type="subjective_end_time" >
+                    <input class="weui-input" value="{{subjective_end_time}}" bindinput="onChange" placeholder="请选择" data-type="subjective_start_time"/>
+                 </picker>
+                </view>
+            </view>
+        </view>
+
+         <view class="weui-cells__title">今天的喜悦</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="today_joy" value="{{today_joy}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">今天的喜悦</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="today_sad" value="{{today_sad}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+         <view class="weui-cells__title">今天的担心</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="today_worry" value="{{today_worry}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+       
+
+       <view class="weui-cells__title">今天的感恩</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="today_thanksgiving" value="{{today_thanksgiving}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+         <view class="weui-cells__title">今天的训练感受</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="today_training_feel" value="{{today_training_feel}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">运动时间</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="motion_time" value="{{motion_time}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+
+        <view class="weui-cells__title">睡眠时间</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="sleep_time" value="{{sleep_time}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">冥想时间</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="meditation_time" value="{{meditation_time}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+         <view class="weui-cells__title">明日计划</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" data-type="tomorrow_plan" value="{{tomorrow_plan}}" bindinput="onChange" placeholder="请输入" />
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">每日箴言</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                <view class="weui-article__p">
+                        {{daily_motto}}
+                    </view>
+                </view>
+            </view>
+        </view>
+       
+          <van-button type="primary" size="large" block custom-class="buttom" bindtap="doSubmit">上传报告</van-button>
+      </view>
+      <van-popup
+      show="{{ bottom }}"
+      position="bottom"
+      custom-style="height: 20%"
+      bind:close="hideBottom"
+    >
+    <van-datetime-picker
+    type="time"
+    data-type="time"
+    value="{{ currentDate4 }}"
+    min-hour="{{ minHour }}"
+    max-hour="{{ maxHour }}"
+    bind:input="onInput"
+  />
+    </van-popup>
+
+  <modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindconfirm="ok" no-cancel="true">
+    <!--HTML--><p style=";text-align: center;font-family: Calibri;font-size: 14px;white-space: normal"><strong><span style="font-family: 宋体;font-size: 19px"><span style="font-family:宋体">日志管理规定</span></span></strong></p><p style="font-family: Calibri; font-size: 14px; white-space: normal;"><strong><span style="font-family: 宋体;font-size: 19px">&nbsp;</span></strong></p><p style=";font-family: Calibri;font-size: 14px;white-space: normal"><strong><span style="font-family: 宋体;font-size: 19px"><span style="font-family:宋体">日志的主要功能和要求如下：</span></span></strong></p><p style=";text-align: justify;font-family: Calibri;font-size: 14px;white-space: normal;text-indent: 37px"><span style="font-family: 宋体;font-size: 19px">1、睡眠是一种意识状态，除了客观的测量，主观感受也非常重要。由于普通手环仅采用体动和脉搏两个指标作为睡眠监测依据，而专业的睡眠监测还有呼吸、心电、脑电、肌电等指标，故手环测量存在一定的测量偏差。另一方面，由于心理因素的存在，睡眠的主观感受与实际状况也存在一定偏差，因此我们需要将客观和主观两个因素结合起来，使用户对睡眠状态有一个更加准确的判断。</span></p><p style=";text-align: justify;font-family: Calibri;font-size: 14px;white-space: normal;text-indent: 37px"><span style="font-family: 宋体;font-size: 19px">2、列明计划是一种心理疗愈手段，可以固化飘逸的思绪，有助于消除焦虑状态，也有助于合理安排生活日程和工作事项，减少由于计划拖延带来的压力。</span></p><p style=";text-align: justify;font-family: Calibri;font-size: 14px;white-space: normal;text-indent: 37px"><span style="font-family: 宋体;font-size: 19px">3、常怀喜悦和感恩之心也是一种很好的疗愈方式。医学和心理学证明，正面情绪可以从生理和心理两方面促进身心健康，在人体体验正面情绪的同时，身体会分泌一系列有益的神经递质和有益物质，修复身心，并建立积极的心理模式。</span></p><p style=";text-align: justify;font-family: Calibri;font-size: 14px;white-space: normal;text-indent: 37px"><span style="font-family: 宋体;font-size: 19px">4、记录自己的担心、难过等负面情绪也是一种的心理疗愈，可以有效的舒缓精神压力。</span></p><p style=";text-align: justify;font-family: Calibri;font-size: 14px;white-space: normal;text-indent: 37px"><span style="font-family: 宋体;font-size: 19px">&nbsp;5、日志的填写没有严格要求，客户只需根据自身情况填写内容即可。</span></p><p><br/></p>
+  </modal>
+</view>

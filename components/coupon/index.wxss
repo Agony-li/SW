@@ -1,0 +1,117 @@
+.app {
+  /* padding: 20rpx 40rpx; */
+  padding: 20rpx;
+  margin: 20px auto;
+  background: #eee;
+}
+.wrapper {
+  margin: 20px auto;
+  width: 100%;
+  display: flex;
+  background:linear-gradient(-90deg,rgba(250,173,82,1),rgba(254,50,103,1));
+  /*实现颜色渐变 */
+}
+/*前半部分样式*/
+.content {
+  position: relative;
+  flex: 1;
+  padding: 20rpx 30rpx;
+  text-align: center;
+}
+/*后半部分样式*/
+.tip {
+  position: relative;
+  padding:  50rpx 30rpx;
+  flex: 0 0 200rpx;
+  text-align: center;
+}
+/*中间竖直虚线样式*/
+.split-line {
+    position: relative;
+    flex: 0 0 0;
+    margin: 0 10rpx 0 6rpx;
+    border-left: 4rpx dashed #eee;
+}
+/*给虚线加两个伪类，基本样式如下*/
+.split-line:before, .split-line:after {
+    content: '';
+    position: absolute;
+    width: 32rpx;
+    height: 16rpx;
+    background: #eee;
+    left: -18rpx;
+    z-index: 1;
+}
+/*给前半部分加两个伪类，基本样式如下*/.content:before, .content:after{
+    content: '';
+    position: absolute;
+    width: 32rpx;
+    height: 16rpx;
+    background: #eee;
+    left: -16rpx;
+    z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+.tip:before, .tip:after{
+    content: '';
+    position: absolute;
+    width: 32rpx;
+    height: 16rpx;
+    background:#eee;
+    right: -16rpx;
+    z-index: 1;
+}
+/*几个伪类化成的圆弧的样式以及位置（置于顶部）我把它放在一起了*/
+.content:before, .tip:before, .split-line:before{
+    border-radius: 0 0 16rpx 16rpx;
+    top: 0;
+}
+
+/*几个伪类化成的圆弧的样式以及位置（置于底部）我把它放在一起了*/
+.content:after, .tip:after, .split-line:after{
+    border-radius: 16rpx 16rpx 0 0;
+    bottom: 0;
+}
+
+.money {
+  font-size: 110rpx;
+  color: #eee;
+}
+.money text {
+  font-size: 50rpx;
+  padding-right: 20rpx;
+}
+.title {
+  color: #eee;
+  font-size: 30rpx;
+}
+.conditions {
+  color: #eee;
+  font-size: 30rpx;
+  padding:15rpx;
+}
+.useNow {
+  color: rgba(254,50,103,1);
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  border-style: none;
+}
+.co {
+  padding-top:10rpx;
+}
+.co .co_w {
+  width: 64rpx;
+  height: 1rpx;
+  background: #fff;
+  margin-left: 60rpx;
+  margin-bottom: -20rpx;
+}
+
+.co .co_l {
+  width: 64rpx;
+  height: 1rpx;
+  background: #fff;
+  margin-left: 260rpx;
+  margin-top: -15rpx;
+}

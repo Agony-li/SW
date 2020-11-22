@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+      "van-dropdown-menu": "/miniprogram_npm/@vant/weapp/dropdown-menu/index",
+      "van-dropdown-item": "/miniprogram_npm/@vant/weapp/dropdown-item/index",
+      "van-button": "/miniprogram_npm/@vant/weapp/button/index", 
+      "van-row": "/miniprogram_npm/@vant/weapp/row/index",
+      "van-col": "/miniprogram_npm/@vant/weapp/col/index",
+      "dialog": "/components/getUser/index"
+
+    }
+  }

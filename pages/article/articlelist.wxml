@@ -1,0 +1,43 @@
+<!--pages/mastersaidlist/mastersaidlist.wxml-->
+<wxs src="../../utils/filter.wxs"  module="filter"></wxs>
+<view class="mastersaid_list">
+  <view class="list_tab">
+    <view bindtap="currentTab" data-type="0007003" class="tab_title {{articleType=='0007003'? 'active':''}}">亚健康</view>
+    <view bindtap="currentTab" data-type="0007002" class="tab_title {{articleType=='0007002'? 'active':''}}">睡眠</view>
+    <view bindtap="currentTab" data-type="0007001" class="tab_title {{articleType=='0007001'? 'active':''}}">减脂</view>
+  </view>
+  <view class="article_list" wx:if="{{articleList.length > 0}}">
+    <block wx:for="{{articleList}}" wx:key="index">
+      <view class="master_item"  bindtap="gotoArticleDetail" data-id='{{item.id}}'>
+        <view class="item_left">
+          <view class="item_title">{{item.title}}</view>
+          <view class="item_time_author">
+            <text class="item_date">{{filter.splitDate(item.updateDate)}}</text>
+            <text>作者：喜知悦行</text>
+          </view>
+        </view>
+        <view class="item_right">
+          <image class="item_image" src="{{imgBaseUrl+item.image}}"></image>
+        </view>
+      </view>
+    </block>
+      
+    
+    <!-- <view class="master_item">
+      <view class="item_left">
+        <view class="item_title">解锁CBT-PLUS攻略！</view>
+        <view class="item_time_author">
+          <text>23小时前   </text>
+          <text>作者：王医生</text>
+        </view>
+      </view>
+      <view class="item_right">
+        <image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
+      </view>
+    </view> -->
+  </view>
+  <view wx:else class="nodata">
+    <image class="nodata_img" src="../../images/nodata.jpg"></image>
+    <view class="nodata_des">暂无数据</view>
+  </view>
+</view>

@@ -1,0 +1,114 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/userCenter/login",
+    "pages/plan/plan",
+    "pages/plan/planRisk",
+    "pages/plan/planExplain",
+    "pages/community/community",
+    "pages/community/gooditemlist",
+    "pages/mine/mine",
+    "pages/userCenter/index",
+    "pages/article/articlelist",
+    "pages/article/articledetail",
+    "pages/course/courselist",
+    "pages/course/coursedetail",
+    "pages/train/trainAudio",
+    "pages/train/trainUploadPic",
+    "components/myBonus/index",
+    "components/myBonusRules/index",
+    "components/myRefund/myRefund",
+    "components/myRefund/myRefundRules",
+    "components/myOrders/myOrders",
+    "components/myOrders/pay",
+    "components/myCoupons/index",
+    "components/helpCenter/helpCenter",
+    "components/testIntro/testIntro",
+
+    "pages/CBTI/index",
+    "pages/strategy/strategy",
+    "pages/logs/logs",
+    "components/sleepTest/index",
+    "components/sleepResult/index",
+    "components/planList/index",
+    "components/articles/index",
+    "components/xinli/index",
+    "components/sleepingAcknowledge/index",
+    "components/lessonContent/index",
+    "components/userInfo/index",
+    "components/payMoney/index",
+    "components/cbtiLessonList/index",
+    "components/transactionRecords/index",
+    "components/CBTIDetail/index",
+    "components/QandA/index",
+    "components/testPullDown/index",
+    "components/applyBonus/index",
+    "components/shopCart/index",
+    "components/confirmNotic/index",
+    "components/serviceOpen/index",
+    "components/myLog/index",
+    "pages/CBTI/list",
+    "components/xinli/list",
+    "components/sleepOtherResult/index",
+    "components/testLog/index",
+    "components/scheduleConfig/index",
+    "components/myLog/regulations",
+    "components/healthreport/index",
+    "components/sleep/index",
+    "components/endreport/index",
+    "components/transactionRecords/refunder",
+    "components/coupon/index",
+    "components/coupon/my",
+    "components/fz/index",
+    "components/fz/detail",
+    "components/getUser/index"
+  ],
+  "requiredBackgroundModes": [
+    "audio",
+    "backgroundAudioManager"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#36BC96",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "backgroundColor": "#FFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/index-icon.png",
+        "selectedIconPath": "./images/index-icon-select.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/CBTI/index",
+        "iconPath": "./images/plan-icon.png",
+        "selectedIconPath": "./images/plan-icon-select.png",
+        "text": "计划"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "iconPath": "./images/community-icon.png",
+        "selectedIconPath": "./images/community-icon-select.png",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/userCenter/index",
+        "iconPath": "./images/mine-icon.png",
+        "selectedIconPath": "./images/mine-icon-select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "plugins": {
+    "tencentvideo": {
+      "version": "1.3.14",
+      "provider": "wxa75efa648b60994b"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

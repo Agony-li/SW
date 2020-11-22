@@ -1,0 +1,27 @@
+<!-- <view class="containers">
+    
+</view> -->
+<view  style="height: 100%;">
+    
+    <view class="weui-panel__bd">
+        <block wx:for="{{articleList}}" wx:for-item="item">
+            
+       
+            <navigator  open-type="navigate" url="../../components/articles/index?id={{item.id}}&from=1" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="{{gonglv}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.title}}</view>
+                    <view class="weui-media-box__desc">{{item.createDate}}</view>
+                </view>
+            </navigator>
+        </block>
+        </view>
+        <view class="loading" hidden="{{!searchLoading}}">{{loadMoreData}}</view>
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+</view>
+<!-- <view class="no_data" wx:if="{{noData == true}}">
+        <image src="../../image/icon_no_data.png"></image>
+        <text class="do_data_word">没有数据</text>
+      </view> -->

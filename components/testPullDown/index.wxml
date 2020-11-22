@@ -1,0 +1,24 @@
+<view class="refresh-block" style="height:{{refreshHeight}}rpx"> 
+        <image  class="{{loading?'roate':(pull?'':'pull')}}" src="{{loading?'../../image/icon_loading.png':'../../image/icon_arrow.png'}}"></image>
+        <text  class="refreshing_text" >{{refreshing_text}}</text> 
+</view>  
+<scroll-view class="scroll_container" scroll-y="true" style="top:{{refreshHeight}}rpx;bottom:{{loadMoreHeight}}rpx;"  bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper" bindtouchstart="start" bindtouchend="end" >  
+    <view class="content" bindtouchmove="move">
+        <block wx:for="{{words}}" wx:for-item="item">  
+               
+            <navigator  open-type="navigate" url="../../components/articles/index?id={{item.id}}&from=1" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="https://sp.caiyuantech.com/{{item.image}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.title}}</view>
+                    <view class="weui-media-box__desc">{{item.createDate}}</view>
+                </view>
+            </navigator>
+        </block>  
+    </view>
+</scroll-view> 
+<view class="loadMore-block" style="height:{{loadMoreHeight}}rpx"> 
+        <image  class="{{loading?'roate':(pull?'pull':'')}}" src="{{loading?'../../image/icon_loading.png':'../../image/icon_arrow.png'}}"></image>
+        <text  class="loading-text" >{{loading_text}}</text> 
+</view>  

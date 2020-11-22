@@ -1,0 +1,37 @@
+<view class="pay_container">
+  <!-- 订单详情 -->
+  <view class="order_info">
+    <view class="order_top">
+      <view class="info_left">
+        <image src="../../images/order.jpg"></image>
+      </view>
+      <view class="info_right">
+        <view class="info_des">
+          <view class="info_title">优眠塑身计划</view>
+          <view class="info_price">￥498</view>
+        </view>
+      </view>
+    </view>
+    <view class="order_bottom">
+      <view class="paynum">购买数量</view>
+      <view class="num">1</view>
+    </view>
+  </view>
+  <!-- 代金券详情 -->
+  <view class="coupons">
+    <view class="title">代金券</view>
+    <view class="right">
+      <text>-700</text>
+      <image src="../../images/black_arrow.png"></image>
+    </view>
+  </view>
+  <!-- 支付金额 -->
+  <view class="pay_cash">
+    <view class="title">代金券</view>
+    <view class="cash">￥498</view>
+  </view>
+  <!-- 支付按钮 -->
+  <view class="pay_btn">
+    支付
+  </view>
+</view>

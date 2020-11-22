@@ -1,0 +1,56 @@
+.containers{
+    height: 100%;
+    box-sizing: border-box;
+    /* padding: 10rpx 30rpx; */
+}
+.weui-panel__bd{
+    border-top: 1rpx solid #dddddd;
+}
+.weui-media-box{
+    padding: 30rpx 30rpx 40rpx 30rpx;
+    border-bottom: none;
+}
+.weui-media-box__hd_in-appmsg{
+width: 200rpx;
+height: 150rpx;
+margin-right: 20rpx;
+}
+.weui-media-box__title{
+    font-size:32rpx;
+font-family:PingFangSC-Regular;
+font-weight:400;
+color:rgba(77,77,77,1);
+}
+.weui-media-box__desc{
+    font-size:26rpx;
+font-family:PingFangSC-Regular;
+font-weight:400;
+color:rgba(153,153,153,1);
+text-align: right;
+}
+.weui-media-box__bd{
+    display: flex;
+    flex-flow: column;
+    height: 150rpx;
+    justify-content: space-between;
+}
+.loading{
+    padding: 10rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #ddd
+  }
+  .loading:before{
+    display: inline-block;
+    margin-right: 5rpx;
+    vertical-align: middle;
+    content: '';
+    width: 40rpx;
+    height: 40rpx;
+    /* background: url(../../images/icon-loading.png) no-repeat; */
+    background-size: contain;
+    animation: rotate 1s linear infinite;
+  }
+  .loading.complete:before{
+    display: none;
+  }

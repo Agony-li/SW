@@ -1,0 +1,47 @@
+<view class="containers">
+	<view class="title">上传运动照片</view>
+	<view class="des">PLAN A-CBT PLUS优眠计划 2020/10/22</view>
+	<view class="content">
+		<view class="exampleImg">
+			<image src="../../image/cbti_icon_4@2x.png"></image>
+			<image src="../../image/cbti_icon_4@2x.png"></image>
+		</view>
+		<view class="describe">
+			<view class="des_item">
+				<view class="point"></view>
+				<view class="item_text">在小米运动中截取“运动”界面；</view>
+			</view>
+			<view class="des_item">
+				<view class="point"></view>
+				<view class="item_text">将截取的“运动”界面在下方上传至系统。</view>
+			</view>
+		</view>
+		<view class="uploadImg">
+			<view class="upload_item">
+				<image src="../../images/uploadImg.png"></image>
+			</view>
+			<view class="upload_item">
+				<image src="../../images/uploadImg.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class="btn canfinish nofinish">上传照片</view>
+	<view class="btn leave">我想请假</view>
+</view>
+<!-- 推荐阅读 -->
+<view class="course">
+	<view class="title">推荐阅读</view>
+	<view class="master_item">
+		<view class="item_left">
+			<view class="item_title">解锁CBT-PLUS攻略！</view>
+			<view class="item_time_author">
+				<text>本周内完成18篇</text>
+				<text class="end">已完成</text>
+			</view>
+		</view>
+		<view class="item_right">
+			<image class="qianzhang" src="../../images/qianzhang.png"></image>
+			<image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
+		</view>
+	</view>
+</view>

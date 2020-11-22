@@ -1,0 +1,44 @@
+<view>
+  <view class="banner">
+    <image src="../../images/testintro.png"></image>
+  </view>
+  <view class="container">
+    <view>
+    <view class="content">
+      <view class="header">
+        <view class="title">测一侧你现在的睡眠质量高吗？</view>
+        <view class="des">共64题，预计完成时间10分钟</view>
+      </view>
+      <view class="testlist">
+        <view>本测试包含：</view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">失眠严重程度指数量表（ISI）</view>
+        </view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">不宁腿综合征自测量表（RLS）</view>
+        </view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">周期性腿动自测量表（PLMD）</view>
+        </view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">堵塞性睡眠呼吸暂停低通气综合征量表（OSAHS）</view>
+        </view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">抑郁量表（SDS）</view>
+        </view>
+        <view class="test_title">
+          <view class="icon"></view>
+          <view class="title">焦虑量表（SAS）</view>
+        </view>
+      </view>
+      <view class="bottom">完成测试，可以为您找到失眠原因，并提供专业的改善建议与方案</view>
+    </view>
+    <view class="btn" bindtap="ok">开始测试</view>
+  </view>
+  </view>
+</view>

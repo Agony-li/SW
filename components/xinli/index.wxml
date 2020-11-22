@@ -1,0 +1,16 @@
+<view class="containers" hover-class="none" hover-stop-propagation="false">
+     <view class="tab-content" hover-class="none" hover-stop-propagation="false" wx:for="{{contentList}}" wx:item="{{item}}" bindtap="goToList" data-type="{{item.code}}">
+          <view class="tab-content-1">
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="{{item.icon}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name" hover-class="none" hover-stop-propagation="false" >
+              {{item.name}}
+          </view>
+               
+        </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;"></view>
+
+     </view>
+</view>

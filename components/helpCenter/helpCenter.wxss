@@ -1,0 +1,12 @@
+.help_center {
+  margin: 36rpx 0;
+  background-color: #fff;
+}
+.help_header {
+  padding: 36rpx 0;
+  margin:  0 24rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  font-weight: 700;
+  border-bottom: 1rpx solid #E7E7E7;
+}

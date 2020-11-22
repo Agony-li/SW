@@ -1,0 +1,77 @@
+<!--pages/mastersaidlist/mastersaidlist.wxml-->
+<wxs src="../../utils/filter.wxs"  module="filter"></wxs>
+<view class="order_list">
+  <view class="list_tab">
+    <view bindtap="currentTab" data-type="0007" class="tab_title {{orderType=='0007'? 'active':''}}">全部</view>
+    <view bindtap="currentTab" data-type="0007002" class="tab_title {{orderType=='0007002'? 'active':''}}">待支付</view>
+    <view bindtap="currentTab" data-type="0007001" class="tab_title {{orderType=='0007001'? 'active':''}}">已支付</view>
+    <view bindtap="currentTab" data-type="0007001" class="tab_title {{orderType=='0007001'? 'active':''}}">已退款</view>
+  </view>
+  <!-- 订单列表 -->
+  <view class="order_item">
+    <view class="order_top">
+      <view class="status_des">等待买家付款</view>
+      <view class="order_time">2020/10/10  09:18:20</view>
+    </view>
+    <view class="order_info">
+      <view class="info_left">
+        <image src="../../images/order.jpg"></image>
+      </view>
+      <view class="info_right">
+        <view class="info_des">
+          <view class="info_title">优眠塑身计划</view>
+          <view class="info_price">￥498</view>
+        </view>
+        <view class="order_total_count">合计：498</view>
+      </view>
+    </view>
+    <view class="btn">
+      <view class="cancel">取消订单</view>
+      <view class="pay">立即付款</view>
+    </view>
+  </view>
+  <view class="order_item">
+    <view class="order_top">
+      <view class="status_des">买家已成功支付</view>
+      <view class="order_time">2020/10/10  09:18:20</view>
+    </view>
+    <view class="order_info">
+      <view class="info_left">
+        <image src="../../images/order.jpg"></image>
+      </view>
+      <view class="info_right">
+        <view class="info_des">
+          <view class="info_title">优眠塑身计划</view>
+          <view class="info_price">￥498</view>
+        </view>
+        <view class="order_total_count">合计：498</view>
+      </view>
+    </view>
+    <view class="btn">
+      <view class="pay">申请退款</view>
+    </view>
+  </view>
+  <view class="order_item">
+    <view class="order_top">
+      <view class="status_des">买家已成功支付</view>
+      <view class="order_time">2020/10/10  09:18:20</view>
+    </view>
+    <view class="order_info">
+      <view class="info_left">
+        <image src="../../images/order.jpg"></image>
+      </view>
+      <view class="info_right">
+        <view class="info_des">
+          <view class="info_title">优眠塑身计划</view>
+          <view class="info_price">￥498</view>
+        </view>
+        <view class="order_total_count">合计：498</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view wx:else class="nodata">
+    <image class="nodata_img" src="../../images/nodata.jpg"></image>
+    <view class="nodata_des">暂无数据</view>
+  </view> -->
+</view>

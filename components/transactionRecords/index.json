@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+    "usingComponents": {
+      "van-submit-bar": "/miniprogram_npm/@vant/weapp/submit-bar/index"
+    },
+    "navigationBarTitleText": "交易记录"
+  }

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText":"大咖说",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColorTop": "dark",
+  "onReachBottomDistance": 50
+}

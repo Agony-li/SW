@@ -1,0 +1,133 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <!-- <van-button type="primary">按钮</van-button> -->
+    <view class="test-content">
+
+      <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">失眠程度测试</van-divider>
+      <block wx:for="{{slepping_test}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">生理测试</van-divider>
+      <block wx:for="{{restless_legs}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <block wx:for="{{spiritual}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <view class="question-name">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <block wx:for="{{plm}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <block wx:for="{{apnea}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">心理测试</van-divider>
+      <block wx:for="{{phq}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+        <block wx:if="{{itemIndex == 0}}">
+        在过去的2周里,你生活中以下症状出现的频率有多少?
+        </block>
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <block wx:for="{{sas}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+      <block wx:if="{{itemIndex == 0}}">
+             评定的时间范围是自评者过去两周的实际感觉
+      </block>
+        <view class="question-name">
+            {{item.dictLabel}}
+          </view>
+          <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
+            wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
+            <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+              mode="widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+            <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
+              binderror="" bindload=""></image>
+            <view class="word-box">
+              <text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
+            </view>
+          </view>
+      </block>
+      <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">测试结果</van-divider>
+          <view class="question-name">  
+            {{text}}
+          </view>
+          
+    </view>
+</view>

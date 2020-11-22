@@ -1,0 +1,17 @@
+<view class="containers" hover-class="none" hover-stop-propagation="false">
+    <view class="weui-panel__bd">
+        <block wx:for="{{contentList}}" wx:for-item="item">
+            
+       
+            <navigator  open-type="navigate" url="../../components/articles/index?id={{item.id}}&from=1" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="https://sp.caiyuantech.com/{{item.image}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.title}}</view>
+                    <view class="weui-media-box__desc">{{item.createDate}}</view>
+                </view>
+            </navigator>
+        </block>
+        </view>
+</view>

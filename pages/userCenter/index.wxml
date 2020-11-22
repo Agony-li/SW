@@ -1,0 +1,206 @@
+<view class="mine">
+	<!-- <view wx:if="{{loginState}}" class="content-up" hover-class="none" hover-stop-propagation="false">
+		<van-button type="primary" block size="small" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录获取更多体验</van-button>
+	</view> -->
+
+	<!-- 头部 -->
+	<view class="header">
+		<!-- <navigator wx:if="{{loginState}}" url="../../userCenter/login" open-type="navigate"> -->
+		<!-- <navigator wx:else url="../../components/userInfo/index" open-type="navigate"> -->
+			<view class="header_info" bindtap="gotoUserInfoPage">
+				<view class="header_left">
+					<view class="header_icon">
+						<image wx:if="{{loginState}}" class="header_img" src="../../images/logo.png"></image>
+						<image wx:else class="header_img" src="{{userInfo.avatar}}"></image>
+					</view>
+					<view wx:if="{{loginState}}" class="header_name">登录</view>
+					<view wx:else  class="header_name">{{userInfo.userName}}</view>
+				</view>
+				<view>
+					<image class="header_right_arrow" src="../../images/mine_right_arrow.png"></image>
+				</view>
+			</view>
+	</view>
+	<!-- 内容 -->
+	<view class="containers">
+		<!-- 第一部分 -->
+		<view class="module">
+			<view class="list_item">
+				<navigator url="../../components/healthreport/index?week={{currentWeek}}">
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-report.png"></image>
+							<text class="item_text">我的健康报告</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				</navigator>
+			</view>
+			<view class="list_item">
+				<!-- <navigator bindtap="showBindPhone"> -->
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-phone.png"></image>
+							<text class="item_text">绑定手机 {{userInfo.mobile}}</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				<!-- </navigator> -->
+			</view>
+			<view class="list_item">
+				<navigator url="../../components/applyBonus/index?done={{done}}&week={{currentWeek}}">
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-price.png"></image>
+							<text class="item_text">我的奖金</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				</navigator>
+			</view>
+			<view class="list_item">
+				<navigator url="../../components/transactionRecords/index" open-type="navigate">
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-order.png"></image>
+							<text class="item_text">我的订单</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				</navigator>
+			</view>
+
+			<view class="list_item">
+				<navigator url="../../components/coupon/my" open-type="navigate">
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-coupon.png"></image>
+							<text class="item_text">我的代金券</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				</navigator>
+			</view>
+
+			<view class="list_item">
+				<navigator url="../../components/transactionRecords/refunder?done={{done}}&week={{currentWeek}}">
+					<view class="item">
+						<view class="item_left">
+							<image class="item_icon" src="../../images/icon-returnprice.png"></image>
+							<text class="item_text">申请退款</text>
+						</view>
+						<view class="item_right">
+							<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+						</view>
+					</view>
+				</navigator>
+			</view>
+		</view>
+		<!-- 第二部分 -->
+		<view class="module">
+			<view class="list_item">
+				<view class="item">
+					<view class="item_left">
+						<image class="item_icon" src="../../images/icon-kefu.png"></image>
+						<text class="item_text">客服中心</text>
+					</view>
+					<view class="item_right">
+						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+			<view class="list_item">
+				<view class="item">
+					<view class="item_left">
+						<image class="item_icon" src="../../images/icon-help.png"></image>
+						<text class="item_text">帮助中心</text>
+					</view>
+					<view class="item_right">
+						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 第三部分 -->
+		<view class="module">
+			<view class="list_item">
+				<view class="item">
+					<view class="item_left">
+						<image class="item_icon" src="../../images/icon-upload.png"></image>
+						<text class="item_text">手机报告上传</text>
+					</view>
+					<view class="item_right">
+						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+			<view class="list_item">
+				<view class="item">
+					<view class="item_left">
+						<image class="item_icon" src="../../images/icon-banben.png"></image>
+						<text class="item_text">版本</text>
+					</view>
+					<view class="item_right">
+						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+			<view class="list_item">
+				<view class="item">
+					<view class="item_left">
+						<image class="item_icon" src="../../images/icon-aboutus.png"></image>
+						<text class="item_text">关于我们</text>
+					</view>
+					<view class="item_right">
+						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+<!-- 遮罩 -->
+<view class="task" hidden="{{dialogphone}}" bindtap="hiddenBindPhone">
+
+</view>
+<!-- 绑定手机弹窗 -->
+<view class="bindPhone" hidden="{{dialogphone}}">
+	<view class="bind_title">
+		<view>
+			<image class="icon" src="../../images/bindphone_icon.png"></image>
+			<text class="title_text">申请使用</text>
+		</view>
+		<view>
+			<image class="zhuyi" src="../../images/zhuyi.png"></image>
+		</view>
+	</view>
+	<view class="yourphone">您的手机号码</view>
+	<view class="my_phone">
+		<view class="my_left">
+			<text class="phone_mum">19612408809</text>
+			<text class="phone_des">微信绑定号码</text>
+		</view>
+		<view class="my_right">
+			<image class="right_img" src="../../images/phone_right.png"></image>
+		</view>
+	</view>
+	<view class="user_otherphone">使用其他手机号码</view>
+	<view class="bottom_but">
+		<button class="but_left">拒绝</button>
+		<button class="but_right">允许</button>
+	</view>
+</view>
+<dialog id='dialog' title='登录提示' content='小程序需要您的授权才能提供更好的服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent' bind:bindGetUserInfo='bindGetUserInfo'>
+</dialog>

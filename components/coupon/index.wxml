@@ -1,0 +1,41 @@
+
+<view class="app">
+<block wx:for="{{list}}">
+<view class="wrapper">
+    <view class="content">
+        <view class="money">
+          <text>¥</text>{{item.usedAmount}}
+        </view>
+      <view class='co'>
+        <view class='co_w'></view>
+        <view class="title">
+          <text wx:if="{{item.used == 10}}">店铺优惠券</text>
+          <text wx:elif="{{item.used == 11}}">店铺优惠券</text>
+          <text wx:elif="{{item.used == 20}}">店铺优惠券</text>
+          <text wx:elif="{{item.used == 30}}">店铺优惠券</text>
+          <text wx:elif="{{item.used == 60}}">店铺优惠券</text>
+          <text wx:elif="{{item.used == 61}}">店铺优惠券</text>
+        </view>
+        <view class='co_l'></view>
+      </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="tip">
+      <view class="conditions">
+        满{{item.withAmount}}元使用
+      </view>
+      <block wx:if="{{item.isReceive == 0}}">
+          <button class="useNow" data-id="{{item.id}}" bindtap="receive">
+          立即领取
+          </button>
+      </block>
+      <block wx:if="{{item.isReceive == 1}}">
+          <button class="useNow" >
+          已领取
+          </button>
+      </block>
+    </view>
+  </view>
+</block>
+  
+</view>

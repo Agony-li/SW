@@ -1,0 +1,24 @@
+.header {
+  margin: 0 24rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+}
+.header::after {
+  content: " ";
+  width: 100%;
+  height: 220rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-radius: 0 0 45% 45%;
+  background-color: #36BC96;
+  box-sizing: border-box;
+}
+.content {
+  background-color: #fff;
+  padding: 36rpx 24rpx;
+  border-radius: 12rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}

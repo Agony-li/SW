@@ -1,0 +1,103 @@
+.pay_container {
+  margin: 37rpx 24rpx;
+}
+.order_info {
+  padding: 39rpx 24rpx 35rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.order_top {
+  display: flex;
+}
+.info_left image {
+  width: 300rpx;
+  height: 165rpx;
+  border-radius: 12rpx;
+  margin-right: 28rpx;
+}
+.info_right {
+  flex: 1;
+}
+.info_title {
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.info_price {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.order_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.paynum {
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.num {
+  font-size: 25rpx;
+  font-weight: 700;
+  background-color: #F2F4F5;
+  padding: 14rpx 39rpx;
+  border-radius: 6rpx;
+}
+
+/* 代金券 */
+.coupons {
+  background-color: #fff;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12rpx;
+  padding: 0 25rpx;
+  margin-top: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.coupons .title {
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.coupons image{
+  width: 13rpx;
+  height: 22rpx;
+  padding-left: 13rpx;
+  vertical-align: middle;
+}
+.right text {
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.pay_cash {
+  background-color: #fff;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12rpx;
+  padding: 0 25rpx;
+  margin-top: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.pay_cash .title {
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.cash {
+  font-size: 25rpx;
+  font-weight: bold;
+  color: #E83030;
+}
+/* 支付按钮 */
+.pay_btn {
+  background-color: #36BC96;
+  border-radius: 12rpx;
+  padding: 21rpx 0;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  margin-top: 24rpx;
+}

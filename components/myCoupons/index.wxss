@@ -1,0 +1,80 @@
+.coupons_list {
+  padding: 36rpx 24rpx;
+}
+.list_tab {
+  width: 100%;
+  height: 85rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.tab_title {
+  /* width: 33.33%;
+  text-align: center; */
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.active {
+  color: #36BC96;
+}
+.active:after{
+  content: "";
+  display: block;
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 4rpx;
+  background: #36BC96;
+  border-radius: 2rpx;
+}
+
+/* 代金券列表 */
+.coupon {
+  position: relative;
+}
+.coupon image{
+  width: 100%;
+  height: 325rpx;
+}
+.coupon .title {
+  position: absolute;
+  top: 42rpx;
+  right: 23rpx;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 700;
+}
+.coupon_cash {
+  position: absolute;
+  top: 100rpx;
+  right: 23rpx;
+  color: #fff;
+}
+.coupon_cash .unit {
+  font-size: 30rpx;
+}
+.coupon_cash .cash {
+  font-size: 60rpx;
+  font-weight: 700;
+}
+.coupon_info {
+  width: 100%;
+  position: absolute;
+  top: 240rpx;
+  font-size: 25rpx;
+  color: #333333;
+}
+.coupon_date {
+  position: absolute;
+  left: 23rpx;
+}
+.coupon_status {
+  position: absolute;
+  right: 23rpx;
+}

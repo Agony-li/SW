@@ -1,0 +1,23 @@
+.content {
+  background-color: #fff;
+  margin: 36rpx 24rpx 167rpx;
+  border-radius: 12rpx;
+  padding: 36rpx 24rpx;
+}
+.bottom_btn {
+  background-color: #fff;
+  width: 100%;
+  height: 131rpx;
+  position: fixed;
+  bottom: 0;
+}
+.btn {
+  margin: 28rpx 24rpx;
+  background-color: #36BC96;
+  font-size: 30rpx;
+  height: 74rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  line-height: 74rpx;
+  color: #fff;
+}

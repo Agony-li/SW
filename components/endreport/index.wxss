@@ -1,0 +1,48 @@
+@import '../../weui.wxss';
+.containers{
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10rpx 30rpx;
+
+  }
+  .test-content{
+    width: 100%;
+    margin-top: 48rpx;
+    margin-bottom: 50rpx;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+}
+.question-name{
+   font-size:14px;
+   font-family:PingFangSC-Regular;
+   font-weight:400;
+   color:rgba(0,0,0,1);
+   line-height:45rpx;
+   margin-bottom: 20rpx;
+}
+.question-choice{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-bottom: 37rpx;
+}
+.choice-image{
+    width: 40rpx;
+    height: 40rpx;
+}
+.word-box{
+    height: 45rpx;
+    /* line-height: 1; */
+    width: 100%;
+    margin-left: 10rpx;
+}
+.choice-detail{
+   font-size:28rpx;
+   font-family:PingFangSC-Regular;
+   font-weight:400;
+   color:rgba(75,75,75,1);
+   padding: 0;
+}
+.van-cell{
+    padding-left: 0!important;
+}

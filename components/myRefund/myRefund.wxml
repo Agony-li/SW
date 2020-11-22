@@ -1,0 +1,29 @@
+
+<view wx:if="{{list.length > 0}}">
+	<view class="header">
+		<view class="header_content">
+			<view class="header_title">可退款总金额（元）</view>
+			<view class="total_money">220.00</view>
+		</view>
+		<navigator url="../../components/myRefund/myRefundRules">
+			<view class="rules">
+				<view class="rules_left">退款规则</view>
+				<view>
+					<image class="arrow" src="../../images/black_arrow.png"></image>
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<!-- 奖励明细 -->
+	<view class="list">
+		
+	</view>
+	<!-- 申请将近按钮 -->
+	<view class="btn">申请退款</view>
+</view>
+
+<!-- 暂无数据 -->
+<view wx:else class="nodata">
+	<image class="nodata_img" src="../../images/nodata.jpg"></image>
+	<view class="nodata_des">暂无数据</view>
+</view>

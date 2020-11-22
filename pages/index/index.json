@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "dialog": "/components/getUser/index"
+  },
+  "navigationBarTitleText":"首页",
+  "disableScroll": false
+}

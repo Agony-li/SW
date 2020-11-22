@@ -1,0 +1,64 @@
+<view class="containers" hover-class="none" hover-stop-propagation="false" style="background:{{payEnd?'#f2f2f2;':'#fff;'}}">
+   <block wx:if="{{payEnd}}">
+    <view class="goods-content" hover-class="none" hover-stop-propagation="false">
+        <view class="goods-info">
+            <view class="goods-img" hover-class="none" hover-stop-propagation="false">
+                    <image  src="{{icon60}}"></image>
+            </view>
+            <view class="goods-detail" hover-class="none" hover-stop-propagation="false">
+                <view class="d-1" hover-class="none" hover-stop-propagation="false">
+                        {{title}}
+                </view>
+                <view class="d-2" hover-class="none" hover-stop-propagation="false">
+                        {{description}}
+                </view>
+            </view>
+        </view>
+        <view class="goods-num" hover-class="none" hover-stop-propagation="false">
+            <view class="n-1" hover-class="none" hover-stop-propagation="false">
+                购买数量
+            </view>
+            <view class="n-2" hover-class="none" hover-stop-propagation="false">
+                <view class="nums" hover-class="none" hover-stop-propagation="false">
+                    {{nums}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="discount" hover-class="none" hover-stop-propagation="false" bindtap="selectcoupon">
+        <view class="discount-code">优惠券</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{coupon}}</view>
+    </view>
+    <view wx:if="{{coupon == null || coupon == ''}}" class="discount-card" hover-class="none" hover-stop-propagation="false">
+         暂未使用优惠券
+    </view>
+    <view class="discount" hover-class="none" hover-stop-propagation="false">
+            <view class="discount-code">支付金额</view>
+            <view class="total" hover-class="none" hover-stop-propagation="false">
+                ￥{{total}}
+            </view>
+        </view>
+    <view class="pay" bindtap="payNow" hover-class="none" hover-stop-propagation="false">
+        支付
+    </view>  
+   </block>
+   <block wx:else>
+       <view class="pay-finish" hover-class="none" hover-stop-propagation="false">
+           <view class="pay-icon" hover-class="none" hover-stop-propagation="false">
+               <image class="" src="../../image/pay_success@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+               <view class="pay-word" hover-class="none" hover-stop-propagation="false">
+                   支付成功
+               </view>
+               <view class="pay-num" hover-class="none" hover-stop-propagation="false">
+                ￥{{total}}
+               </view>
+            </view>
+            <view class="pay-1" bindtap="payFinish" hover-class="none" hover-stop-propagation="false">
+                完成
+            </view>  
+            <view class="pay-2" bindtap="goToOrder" hover-class="none" hover-stop-propagation="false">
+                查看订单
+            </view>  
+       </view>
+   </block>
+</view>

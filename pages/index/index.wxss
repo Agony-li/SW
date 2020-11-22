@@ -1,0 +1,150 @@
+/**index.wxss**/
+.container {
+  margin: 0 24rpx;
+}
+/* banner部分 */
+.banner {
+  width: 100%;
+}
+.banner_swiper {
+  margin: 0 24rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.banner_swiper::after {
+  content: " ";
+  width: 100%;
+  height: 220rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-radius: 0 0 45% 45%;
+  background-color: #36BC96;
+  box-sizing: border-box;
+}
+.swiper-item {
+  height: 295rpx;
+  border-radius: 12rpx;
+}
+.swiper_item_image {
+  width: 100%;
+  height: 295rpx;
+  background-size: 100%;
+  border-radius: 12rpx;
+}
+
+/* 快速入口 */
+.quick_enter_module {
+  width: 100%;
+  height: 149rpx;
+  margin-top: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-x: scroll;
+  display: flex;
+}
+.quick_enter_item {
+  width: 303rpx;
+  height: 149rpx;
+  border-radius: 12rpx;
+  display: block;
+  margin: 0 12rpx;
+}
+.quick_enter_image {
+  width: 303rpx;
+  height: 149rpx;
+  border-radius: 12rpx;
+  display: block;
+}
+.quick_enter_item:first-child {
+  margin-left: 0rpx !important;
+}
+
+
+/* 测试评估部分 */
+.test_module {
+  margin-top: 24rpx;
+  width: 100%;
+}
+.module_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24rpx 0;
+}
+.left_title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.more {
+}
+.more_text {
+  font-size: 22rpx;
+  vertical-align: middle;
+}
+.more_arrow {
+  width: 7rpx;
+  height: 12rpx;
+  vertical-align: middle;
+  padding-left: 7rpx;
+}
+.test_content {
+  height: 221rpx;
+  border-radius: 12rpx;
+}
+.test_banner {
+  height: 221rpx;
+  width: 100%;
+}
+
+/* 大咖说 */
+.master_module {
+  margin-top: 24rpx;
+  width: 100%;
+}
+.master_item {
+  width: 100%;
+  height: 189rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.item_left {
+  padding: 24rpx 88rpx 24rpx 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item_title {
+  font-size: 25rpx;
+  color: #333;
+  font-weight: 700;
+  align-self: flex-start;
+}
+.item_time_author {
+  font-size: 22rpx;
+  color: #999999;
+  display: flex;
+  justify-content: flex-start;
+}
+.item_date {
+  padding-right: 20rpx;
+}
+.item_right {
+  padding: 12rpx;
+}
+.item_image {
+  width: 248rpx;
+  height: 164rpx;
+  border-radius: 12rpx;
+}
+.main-content {
+  height: 300rpx;
+}
+

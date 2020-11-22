@@ -1,0 +1,190 @@
+<view  style="height: 100%;">
+<van-tabs bind:click="goToByClick">
+  <van-tab title="学习">
+          <view class="weui-panel__bd">
+            <block wx:for="{{articleList}}" wx:for-item="item">
+                <navigator wx:if="{{item.course.courseClass == 0}}"  open-type="navigate" url="../../components/CBTIDetail/index?id={{item.courseId}}&week={{week}}&type={{type}}&uploadRes={{uploadRes}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                      <image wx:if="{{item.courseType == 1}}" class="weui-media-box__thumb" src="{{cbti}}" />  
+                      <image wx:if="{{item.courseType == 2}}" class="weui-media-box__thumb" src="{{xinli}}" />  
+                      <image wx:if="{{item.courseType == 3}}"  class="weui-media-box__thumb" src="{{sport}}" />  
+                      <image wx:if="{{item.courseType == 4}}" class="weui-media-box__thumb" src="{{yinshi}}" />  
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.course.title}}</view>
+                        <block wx:if="{{item.course.week == 1}}">
+                        <view wx:if="{{item.course.isFree == 1}}" style="color:red">必修</view>
+                        <view wx:if="{{item.course.isFree == 0}}" style="color:blue">选修</view>
+                        <view class="weui-media-box__desc"><block wx:if="{{item.isLearn == 0}}"> 未学习 </block><block wx:if="{{item.isLearn == 1}}"> 已学习 </block></view>
+                        </block>
+                    </view>
+                </navigator>
+            </block>
+            </view>
+            <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+          <view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+            <van-button wx:if="{{uploadRes==0&&isLearn == 0&&type!=3&&type!=4&&week==1}}" type="info" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="uploadReport">上传报告</van-button>
+            <van-button wx:elif="{{uploadRes==0&&isLearn == 1&&type==3&&week==1}}" type="info" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="uploadReport">上传报告</van-button>
+            <van-button wx:elif="{{uploadRes==0&&isLearn == 1&&programId=='1205171263843270656'&&week==1}}" type="info" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="uploadReport">上传报告</van-button>
+            
+            
+            <van-button wx:if="{{isLearn == 1 && uploadRes == 1 && redBags == 0&&type==3&&week==1}}" type="danger" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="getRedBag">领取红包</van-button>
+            <van-button wx:elif="{{isLearn == 1 && uploadRes == 1 && redBags == 0&&programId=='1205171263843270656'&&week==1}}" type="danger" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="getRedBag">领取红包</van-button>
+            <van-button wx:elif="{{isLearn == 1 && uploadRes == 0 && redBags == 0&&programId!='1205171263843270656'&&type==4&&week==1}}" type="danger" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="getRedBag">领取红包</van-button>
+            <van-button wx:elif="{{isLearn == 1 && uploadRes == 1 && redBags == 0&&type!=3&&programId!='1205171263843270656'&&week==1}}" type="danger" size="large" block custom-class="demo-margin-bottom" data-type="1" bindtap="getRedBag">领取红包</van-button>
+  </van-tab>
+<block wx:if="{{week > 1}}">
+  <van-tab title="训练">
+<view class="weui-panel__bd">
+            <block wx:for="{{articleList}}" wx:for-item="item">
+                <navigator wx:if="{{item.course.courseClass == 1}}"  open-type="navigate" url="../../components/CBTIDetail/index?id={{item.courseId}}&week={{week}}&type={{type}}&logStartTime={{config.logStartTime}}&logEndTime={{config.logEndTime}}&sleepStartTime={{config.sleepStartTime}}&sleepEndTime={{config.sleepEndTime}}&sportStartTime={{config.sportStartTime}}&sportEndTime={{config.sportEndTime}}&courseClass={{item.course.courseClass}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                      <image wx:if="{{item.courseType == 1}}" class="weui-media-box__thumb" src="{{cbti}}" />  
+                      <image wx:if="{{item.courseType == 2}}" class="weui-media-box__thumb" src="{{xinli}}" />  
+                      <image wx:if="{{item.courseType == 3}}"  class="weui-media-box__thumb" src="{{sport}}" />  
+                      <image wx:if="{{item.courseType == 4}}" class="weui-media-box__thumb" src="{{yinshi}}" />  
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.course.title}}</view>
+                        <!-- <view wx:if="{{item.course.isFree == 1}}" style="color:red">必修</view>
+                        <view wx:if="{{item.course.isFree == 0}}" style="color:blue">选修</view> -->
+                        <view class="weui-media-box__desc"><block wx:if="{{item.isLearn == 0}}"> 未完成 </block><block wx:if="{{item.isLearn == 1}}"> 已完成 </block></view>
+                    </view>
+                </navigator>
+            </block>
+            </view>
+            <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+          <view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+          <block wx:for="{{uploadResult}}" wx:for-index='key'>
+            <block wx:if="{{type == key && !item}}">
+                <van-button  type="info" size="large" block custom-class="demo-margin-bottom" data-type="2" bindtap="uploadReport">上传{{title}}报告</van-button>
+               
+               <van-row>
+
+  <van-col wx:if="{{isLeave <= 0}}" offset="10" span="12">
+      <van-button type="primary" size="mini" data-type="{{type}}" bindtap="qingjia">{{title}}请假</van-button>
+  </van-col>
+</van-row>
+                
+            </block>
+            <block wx:elif="{{type == key && item}}">
+              <view class="loading complete" style="font-size:14px">{{title}}报告已上传</view>
+            </block>
+          </block>
+          <block wx:if="{{allUp&&!recive&&learnDone>0}}">
+            <button style="background: var(--button-danger-background-color,#ee0a24); border: var(--button-border-width,1px) solid var(--button-danger-border-color,#ee0a24); font-size: var(--button-default-font-size,16px);color: var(--button-danger-color,#fff);" bindtap="getRedBag">领取红包</button>
+          </block>
+  </van-tab>
+  </block>
+</van-tabs>
+        
+</view>
+
+<van-dialog
+  use-slot
+  title="上传{{title}}报告"
+  show="{{ show }}"
+  showCancelButton="true"
+  bind:confirm="confirmUpload"
+  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;"
+>
+
+<block wx:if="{{week == 1}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+<van-uploader
+  file-list="{{ fileList }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterRead"
+  bind:delete="delete"
+/>
+报告1
+</view>
+<block wx:if="{{type != 3 && type != 4 && programId != '1205171263843270656'}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-one
+  file-list="{{ fileListOne }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadOne"
+  bind:delete="deleteone"
+/>
+报告2
+</view>
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-two
+  file-list="{{ fileListTwo }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadTwo"
+  bind:delete="deletetwo"
+/>
+报告3
+</view>
+</block>
+<block wx:if="{{ programId == '1205171263843270656'}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-one
+  file-list="{{ fileListOne }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadOne"
+  bind:delete="deleteone"
+/>
+报告2
+</view>
+<view wx:if="{{type != 3}}" style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-two
+  file-list="{{ fileListTwo }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadTwo"
+  bind:delete="deletetwo"
+/>
+报告3
+</view>
+</block>
+</block>
+<block wx:if="{{week > 1}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+<van-uploader
+  file-list="{{ fileList }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterRead"
+  bind:delete="delete"
+/>
+<block wx:if="{{type == 1}}">
+睡眠报告
+</block>
+<block wx:else>
+报告1
+</block>
+</view>
+<block wx:if="{{type != 4}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-one
+  file-list="{{ fileListOne }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadOne"
+  bind:delete="deleteone"
+/>
+<block wx:if="{{type == 1}}">
+截图
+</block>
+<block wx:else>
+报告2
+</block>
+</view>
+</block>
+
+<block wx:if="{{programId == '1205170953645129728' && type == 3}}">
+<view  style="display: flex;flex-direction: column;justify-content: center;align-items: center;flex-wrap: wrap;">
+  <van-uploader-two
+  file-list="{{ fileListTwo }}"
+  max-count="{{maxCount}}"
+  bind:after-read="afterReadTwo"
+  bind:delete="deletetwo"
+/>
+报告3
+</view>
+</block>
+
+
+</block>
+</van-dialog>
+

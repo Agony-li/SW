@@ -1,0 +1,39 @@
+<!-- <view class="containers">
+    
+</view> -->
+<scroll-view class=""  scroll-y="true" upper-threshold="50" lower-threshold="50" 
+    scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="true" 
+    bindscrolltoupper="" bindscrolltolower="" bindscroll="">
+            <block wx:for="{{articleList}}" wx:for-item="item">
+
+    <navigator  open-type="navigate" wx:if="{{item.isOpen == 0}}" url="../../components/confirmNotic/index?id={{item.id}}&price={{item.price}}&title={{item.programName}}&createDate={{item.createDate}}&from=4" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="https://sp.caiyuantech.com/{{item.image}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.programName}}</view>
+                    <view class="weui-media-box__desc">
+                    <text class="f-4-2" wx:if="{{item.isOpen == 0}}" selectable="false" space="false" decode="false">开通服务</text>
+                    <text class="f-4-2" wx:if="{{item.isOpen == 1}}" selectable="false" space="false" decode="false">已开通</text>
+                    </view>
+                </view>
+            </navigator>
+            <navigator  open-type="navigate" wx:if="{{item.isOpen == 1}}" url="../../components/lessonContent/index?id={{item.programId}}&from=3&isOrder=false" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="https://sp.caiyuantech.com/{{item.image}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.programName}}</view>
+                    <view class="weui-media-box__desc">
+                    <text class="f-4-2" wx:if="{{item.isOpen == 0}}" selectable="false" space="false" decode="false">开通服务</text>
+                    <text class="f-4-2" wx:if="{{item.isOpen == 1}}" selectable="false" space="false" decode="false">已开通</text>
+                    </view>
+                </view>
+            </navigator>
+            </block>
+</scroll-view>
+<view class="loading" hidden="{{!searchLoading}}">{{loadMoreData}}</view>
+<view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+<modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
+  请先完成测试后再来开通服务！点击确认进行测试。
+</modal>

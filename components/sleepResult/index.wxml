@@ -1,0 +1,62 @@
+<view class="containers">
+    <block wx:if="{{!isShowResult}}">
+    <view class="title">
+        <text>您的测评结果</text>
+    </view>
+    <view class="test-result" hover-class="none" hover-stop-propagation="false">
+        <image  src="{{imgUrl}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+            
+        </image>
+        <view class="r-1" hover-class="none" hover-stop-propagation="false">
+        <block wx:if="{{score <= 7}}" >
+                恭喜恭喜,经测评您目前 {{level}} 。欢迎您选择提升睡眠质量或优眠减脂塑身训练课程。
+        </block>
+        <block wx:else>
+                经测评, 您有<text class="r-t" selectable="false" space="false" decode="false">{{level}}</text>，下面进行生理原因分析。
+        </block>
+        </view>
+        
+    </view>
+    <view  class="pre-next-content" hover-class="none" hover-stop-propagation="false">
+            <!-- <view wx:if="{{!isOrder}}" class="pre-next-btn" bindtap="goToTest">
+                重新测试
+            </view>
+            <view wx:else class="pre-next-btn" hover-class="none" hover-stop-propagation="false" bindtap="goToLession">
+                查看课程
+            </view> -->
+             <view  class="pre-next-btn" bindtap="endTest">
+                终止测试
+            </view>
+            <view wx:if="{{score<=7}}" class="pre-next-btn" bindtap="goToOther" data-type="1">
+                提高睡眠质量
+            </view>
+            <view wx:if="{{score<=7}}" class="pre-next-btn" bindtap="goToOther" data-type="2">
+                我想减肥塑身
+            </view>
+            <view wx:if="{{score>7}}" class="pre-next-btn" bindtap="goToLession" data-type="0">
+             下一步
+            </view>
+            <!-- <view wx:if="{{score>=8}}" class="pre-next-btn" bindtap="goToTest">
+                    重新测试
+                </view> -->
+               
+        </view>  
+    </block> 
+        <block wx:else>
+            <view class="weui-panel__bd">
+                    <block wx:for="{{resultList}}" wx:for-item="item">
+                        
+                   
+                        <navigator  open-type="navigate" url="../../components/lessonContent/index?id={{item.id}}&from=2" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                                <image class="weui-media-box__thumb" src="http://sp.caiyuantech.com/{{item.image}}" />
+                            </view>
+                            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                <view class="weui-media-box__title">{{item.title}}</view>
+                                <view class="weui-media-box__desc">{{item.createDate}}</view>
+                            </view>
+                        </navigator>
+                    </block>
+                    </view>
+    </block>  
+</view>

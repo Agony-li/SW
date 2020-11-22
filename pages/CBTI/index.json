@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+    "usingComponents": {
+      "dialog": "/components/getUser/index"
+    },
+    "navigationBarTitleText": "计划"
+  }

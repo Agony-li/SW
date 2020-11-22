@@ -1,0 +1,90 @@
+/* pages/mastersaidlist/mastersaidlist.wxss */
+.mastersaid_list {
+  padding: 36rpx 24rpx;
+}
+.list_tab {
+  width: 100%;
+  height: 85rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 24rpx;
+}
+.tab_title {
+  /* width: 33.33%;
+  text-align: center; */
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.active {
+  color: #36BC96;
+}
+.active:after{
+  content: "";
+  display: block;
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 4rpx;
+  background: #36BC96;
+  border-radius: 2rpx;
+}
+
+/* 文章列表 */
+.master_item {
+  width: 100%;
+  height: 189rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+}
+.item_left {
+  padding: 24rpx 88rpx 24rpx 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item_title {
+  font-size: 25rpx;
+  color: #333;
+  font-weight: 700;
+  align-self: flex-start;
+}
+.item_time_author {
+  font-size: 22rpx;
+  color: #999999;
+  display: flex;
+  justify-content: flex-start;
+}
+.item_date {
+  padding-right: 20rpx;
+}
+.item_right {
+  padding: 12rpx;
+}
+.item_image {
+  width: 248rpx;
+  height: 164rpx;
+  border-radius: 12rpx;
+}
+.nodata {
+  text-align: center;
+}
+.nodata_img {
+  margin-top: 80rpx;
+  width: 655rpx;
+  height: 383rpx;
+}
+.nodata_des {
+  font-size: 25rpx;
+  color: #333333;
+}

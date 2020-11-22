@@ -1,0 +1,47 @@
+<!-- 头部 -->
+<view class="header">
+  <view class="banner">
+    <view class="banner_swiper">
+      <swiper autoplay="true" interval="3000" duration="500" circular="true" indicator-dots="true"
+        indicator-color="#fff" indicator-active-color="#36BC96">
+        <block wx:for="{{imgUrls}}" wx:key="index">
+          <swiper-item class="swiper-item" bindtap="gotoArticleDetail">
+            <image class="swiper_item_image" src="{{imgBaseUrl+item.image}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>
+<!-- 内容部分 -->
+<view class="container">
+  <image class="container_bgImg" src="../../images/shequ_bg.png"></image>
+  <view class="content">
+    <view>
+      <view class="des">
+        <view class="des_num">
+          <text>1</text>
+        </view>
+        <text class="des_text">加入社群，您可以与其他用户互相鼓励，互相督促共同完成训练计划。</text>
+      </view>
+      <view class="des">
+        <view class="des_num">
+          <text>2</text>
+        </view>
+        <text class="des_text">加入社群，您可以直接与健康管理师一对一沟通，获得更好的指导。 </text>
+      </view>
+      <view class="des">
+        <view class="des_num">
+          <text>3</text>
+        </view>
+        <text class="des_text">加入社群，您可以优先获得活动第一手资讯。</text>
+      </view>
+    </view>
+    <view class="qrcode">
+      <view>
+        <image class="qrcode_img" src="{{imgBaseUrl + qrcodeImg}}"></image>
+      </view>
+      <view class="qrcode_text">扫码添加喜知悦行客服</view>
+    </view>
+  </view>
+</view>

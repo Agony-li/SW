@@ -1,0 +1,20 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <!-- <van-button type="primary">按钮</van-button> -->
+    <view class="test-content">
+<block wx:if="{{!b}}">
+    <van-divider  contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">初始睡眠质量评分</van-divider>
+        <view class="question-name">  
+          您第一周睡眠质量平均分为：{{text}}
+                  <van-button type="primary" size="mini" bind:click="onClickShow">查看报告</van-button>
+        </view>
+        </block>
+        <block wx:else>
+<van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">初始体脂率</van-divider>
+        <view class="question-name">  
+          您第一周平均体脂率为：{{tz}} %
+                  <van-button type="primary" size="mini" bind:click="onClickShowTz">查看报告</van-button>
+        </view>
+</block>
+  </view>
+</view>

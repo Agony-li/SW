@@ -1,0 +1,46 @@
+@import "../../wxParse/wxParse.wxss";
+.articledetail {
+  margin: 30rpx 24rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+  padding: 30rpx 24rpx;
+}
+.article_header {
+  padding-bottom: 40rpx;
+}
+.article_title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333;
+}
+.article_des {
+  font-size: 25rpx;
+  color: #999999;
+}
+.article_author {
+  padding-right: 20rpx;
+}
+.article_audio {
+  width: 100%;
+  text-align: center;
+}
+.article_video {
+  width: 100%;
+  text-align: center;
+}
+.myAudio {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+}
+.btn {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  padding: 21rpx 0;
+  background-color: #36BC96;
+  margin: 0 24rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 12rpx;
+}

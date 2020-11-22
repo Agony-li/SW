@@ -1,0 +1,14 @@
+<van-tabs active="{{ active }}" color="blue">
+<block wx:for="{{list}}" wx:for-item="item" wx:for-index="index">
+  <van-tab title="{{item.title}} ">
+  <block wx:if="{{item.sixFiveStatus == 1}}">
+    <van-cell title="此方案推荐65岁以上用户选择" size="large"  />
+  </block>
+  <van-cell title="放松训练、日志" size="large" label="{{item.logStartTime}} ~ {{item.logEndTime}}" />
+  <van-cell title="睡眠" size="large" label="{{item.sleepStartTime}} ~ {{item.sleepEndTime}}" />
+  <van-cell title="运动" size="large" label="{{item.sportStartTime}} ~ {{item.sportEndTime}}" />
+  <van-button wx:if="{{id != ''}}" data-id="{{item.id}}" size="large">{{id}}</van-button>
+  <van-button wx:else data-id="{{item.id}}" color="linear-gradient(to right, #4bb0ff, #6149f6)" size="large" bindtap="save">选择</van-button>
+  </van-tab>
+  </block>
+</van-tabs>

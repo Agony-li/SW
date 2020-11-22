@@ -1,0 +1,73 @@
+<view class="containers" hover-class="none" hover-stop-propagation="false">
+<block wx:for="{{contentList}}" wx:item="{{item}}" > 
+     <view class="tab-content" hover-class="none" hover-stop-propagation="false" bindtap="checkType" data-type="{{item.courseType}}" >
+          <view class="tab-content-1" >
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="{{item.icon}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name"  hover-class="none" hover-stop-propagation="false" >
+              {{item.name}}
+          </view>
+               
+        </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;" ></view>
+
+     </view>
+     </block>
+     <block wx:if="{{week > 1}}">
+     <view class="tab-content" hover-class="none" hover-stop-propagation="false" bindtap="goToXinli">
+          <view class="tab-content-1">
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="../../image/cbti_icon_2@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name" hover-class="none" hover-stop-propagation="false" >
+              心理健康
+          </view>
+               
+        </view>
+           <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;"></view>
+
+     </view>
+     </block>
+     <view class="tab-content" hover-class="none" hover-stop-propagation="false" bindtap="goToLog">
+          <view class="tab-content-1">
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="../../image/cbti_icon_4@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name" hover-class="none" hover-stop-propagation="false" >
+              我的日志
+          </view>
+               
+        </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;"></view>
+
+     </view>
+     <!-- <view class="tab-content" hover-class="none" hover-stop-propagation="false" data-week="{{week}}" bindtap="goToFz">
+          <view class="tab-content-1">
+         
+        <image class="" style="width:99rpx;height: 96rpx;margin-left: 31rpx;" src="../../image/video.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              
+          </image>
+          <view class="tab-name" hover-class="none" hover-stop-propagation="false" >
+              课程辅助视频
+          </view>
+               
+        </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:30rpx;"></view>
+
+     </view> -->
+<modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm"
+    no-cancel="{{nocancel}}">
+    您上周未按时完成学习任务， 需补缴66元继续学习！
+</modal> 
+  <dialog id='dialog'
+title='登录提示'
+content='小程序需要您的授权才能提供更好的服务哦'
+confirmText='知道了'
+bind:confirmEvent='confirmEvent'
+bind:bindGetUserInfo='bindGetUserInfo'>
+</dialog>
+</view>

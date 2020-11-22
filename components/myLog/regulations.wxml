@@ -1,0 +1,7 @@
+<import src="../../wxParse/wxParse.wxml" />
+<scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0"
+      scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper=""
+      bindscrolltolower="" bindscroll="">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</scroll-view>
+

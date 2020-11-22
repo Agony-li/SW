@@ -1,0 +1,31 @@
+<view class="containers">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">年龄</view>
+            <view class="weui-cell__ft"> <input type="number" placeholder="请输入年龄" bindinput="changeAge" value="{{extend_s3}}" /></view>
+        </view>
+        <view class="weui-cell">
+                <view class="weui-cell__bd">性别</view>
+                <view class="weui-cell__ft"> 
+                        <picker bindchange="bindSexChange" value="{{sex}}" range="{{array}}">
+                                <view class="picker">
+                                  {{array[sex]}}
+                                </view>
+                              </picker>
+                </view>
+            </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">身高</view>
+            <view class="weui-cell__ft"> <input type="number" placeholder="请输入身高(cm)" bindinput="changeTall" value="{{extend_s1}}" /></view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">体重</view>
+            <view class="weui-cell__ft"> <input type="number" placeholder="请输入体重（kg）" bindinput="changeWeight" value="{{extend_s2}}" /></view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">手机号</view>
+            <view class="weui-cell__ft"> <input type="number" placeholder="请输入手机号" bindinput="changePhone" value="{{phone}}" /></view>
+        </view>
+    </view>
+    <button class="save" bindtap="saveUserInfo">保存</button>
+</view>

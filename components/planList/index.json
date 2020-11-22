@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+    "usingComponents": {},
+    "navigationBarTitleText": "使用攻略",
+    "backgroundTextStyle": "dark"
+  }
