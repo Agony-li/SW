@@ -1,5 +1,4 @@
 .DS_Store
-node_modules
 
 # Windows
 [Dd]esktop.ini
@@ -14,4 +13,3 @@ $RECYCLE.BIN/
 .Trashes
 
 # Node.js
-node_modules/
