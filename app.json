@@ -85,7 +85,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/CBTI/index",
+        "pagePath": "pages/plan/plan",
         "iconPath": "./images/plan-icon.png",
         "selectedIconPath": "./images/plan-icon-select.png",
         "text": "计划"

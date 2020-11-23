@@ -1,88 +1,117 @@
 <!-- 头部 -->
 <view class="header">
-  <view class="header_info" bindtap="gotoUserInfoPage">
-    <view class="header_left">
-      <view class="header_icon">
-        <image wx:if="{{loginState}}" class="header_img" src="../../images/logo.png"></image>
-        <image wx:else class="header_img" src="{{userInfo.avatar}}"></image>
-      </view>
-      <view wx:if="{{loginState}}" class="header_name">登录</view>
-      <view wx:else>
-        <view class="header_name">{{userInfo.userName}}</view>
-        <view class="plan_name">PLAN A-CBT PLUS优眠计划</view>
-        <view class="plan_date">2020/10/12-2020/12/18</view>
-      </view>
-    </view>
-    <view class="header_right_i" bindtap="gotoPlanExplain">
-      <image src="../../images/i.png"></image>
-    </view>
-  </view>
+	<view class="header_info" bindtap="gotoUserInfoPage">
+		<view class="header_left">
+			<view class="header_icon">
+				<image wx:if="{{loginState}}" class="header_img" src="../../images/logo.png"></image>
+				<image wx:else class="header_img" src="{{userInfo.avatar}}"></image>
+			</view>
+			<view wx:if="{{loginState}}" class="header_name">登录</view>
+			<view wx:else>
+				<view class="header_name">{{userInfo.userName}}</view>
+				<view class="plan_name">PLAN A-CBT PLUS优眠计划</view>
+				<view class="plan_date">2020/10/12-2020/12/18</view>
+			</view>
+		</view>
+		<view class="header_right_i" bindtap="gotoPlanExplain">
+			<image src="../../images/i.png"></image>
+		</view>
+	</view>
 </view>
 <!-- 背景 -->
 <view class="bg">
-  <!-- 内容 -->
-  <view class="content">
-    <view class="plan_type_title">
-      <view>课程</view>
-      <view>任务</view>
-      <view>月历</view>
-    </view>
-    <!-- 准备阶段 -->
-    <view class="plan_ready">
-      <view class="des">
-        <view>尊敬的用户：</view>
-        <view>欢迎您开启了CBTI PLUS健康之旅，在您即将启程以前请完成以下准备清单：</view>
+	<!-- 内容 -->
+	<view class="content">
+		<view class="plan_type_title">
+			<view>课程</view>
+			<view>任务</view>
+			<view>月历</view>
+		</view>
+		<!-- 准备阶段 -->
+		<view hidden="{{plan_ready}}">
+			<view class="plan_ready">
+				<view class="des">
+					<view>尊敬的用户：</view>
+					<view>欢迎您开启了CBTI PLUS健康之旅，在您即将启程以前请完成以下准备清单：</view>
+				</view>
+				<view class="plan_ready_options">
+					<view class="option {{options[0].status? 'options_active':''}}" bindtap="chooseOption" data-index='0'>
+						<view class="option_xuanxaing">
+							<view class="number">1</view>
+							<view>装备：小米手环4或小米手环5</view>
+						</view>
+						<image wx:if="{{options[0].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+					<view class="option {{options[1].status? 'options_active':''}}" bindtap="chooseOption" data-index='1'>
+						<view class="option_xuanxaing">
+							<view class="number">2</view>
+							<view>安装小米运动APP</view>
+						</view>
+						<image wx:if="{{options[1].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+					<view class="option {{options[2].status? 'options_active':''}}" bindtap="chooseOption" data-index='2'>
+						<view class="option_xuanxaing">
+							<view class="number">3</view>
+							<view>进行小米手环使用设置</view>
+						</view>
+						<image wx:if="{{options[2].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+					<view class="option {{options[3].status? 'options_active':''}}" bindtap="chooseOption" data-index='3'>
+						<view class="option_xuanxaing">
+							<view class="number">4</view>
+							<view>进行小米体脂秤使用设计</view>
+						</view>
+						<image wx:if="{{options[3].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+					<view class="option {{options[4].status? 'options_active':''}}" bindtap="chooseOption" data-index='4'>
+						<view class="option_xuanxaing">
+							<view class="number">5</view>
+							<view class="option_des">准备适合自己的运动器材和运动装备，可选运动有快走 慢跑 骑单车 健身操。</view>
+						</view>
+						<image wx:if="{{options[4].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+					<view class="option {{options[5].status? 'options_active':''}}" bindtap="chooseOption" data-index='5'>
+						<view class="option_xuanxaing">
+							<view class="number">6</view>
+							<view>
+								<text>我已阅读</text>
+								<text bindtap="gotoPlanRisk" class="risk">《风险提醒客户确认书》</text>
+							</view>
+						</view>
+						<image wx:if="{{options[5].status}}" src="../../images/duihao.png"></image>
+						<image wx:else src="../../images/kuang.png"></image>
+					</view>
+				</view>
+			</view>
+			<!-- 按钮 -->
+			<view class="btn" bindtap="finishPrepare">准备完成（将于下周一正式开启计划）</view>
+		</view>
+    
+    <!-- 准备好之后显示的内容 -->
+    <view hidden="{{!plan_ready}}">
+      <!-- 课程 -->
+      <view class="course">
+        <view class="course_icon">
+          <image src="../../images/1.png"></image>
+          <image src="../../images/2.png"></image>
+          <image src="../../images/3.png"></image>
+          <image src="../../images/4.png"></image>
+          <image src="../../images/5.png"></image>
+        </view>
+        <view class="course_des">
+        [动] 是喜知悦行CBTI体系中最重要的一环，它的特点在于根据用户的自身健康状况，为用户出具健康建议，指导用户如何动，动什么，动多少。用户可以在 [动] 中学习并实践。
+        </view>
       </view>
-      <view class="plan_ready_options">
-        <view class="option options_active">
-          <view class="option_xuanxaing">
-            <view class="number">1</view>
-            <view>装备：小米手环4或小米手环5</view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
-        <view class="option">
-          <view class="option_xuanxaing">
-            <view class="number">2</view>
-            <view>安装小米运动APP</view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
-        <view class="option">
-          <view class="option_xuanxaing">
-            <view class="number">3</view>
-            <view>进行小米手环使用设置</view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
-        <view class="option">
-          <view class="option_xuanxaing">
-            <view class="number">4</view>
-            <view>进行小米体脂秤使用设计</view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
-        <view class="option">
-          <view class="option_xuanxaing">
-            <view class="number">5</view>
-            <view class="option_des">准备适合自己的运动器材和运动装备，可选运动有快走 慢跑 骑单车 健身操。</view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
-        <view class="option">
-          <view class="option_xuanxaing">
-            <view class="number">6</view>
-            <view>
-              <text>我已阅读</text>
-                <text bindtap="gotoPlanRisk" class="risk">《风险提醒客户确认书》</text>
-            </view>
-          </view>
-          <image src="../../images/kuang.png"></image>
-        </view>
+      <view class="btn course_btn" bindtap="gotoCourseList">
+        <text>进入课程</text>
+        <text class="course_num">3</text>
       </view>
     </view>
-    <!-- 按钮 -->
-    <view class="btn">准备完成（将于下周一正式开启计划）</view>
-  </view>
+	</view>
 
 </view>

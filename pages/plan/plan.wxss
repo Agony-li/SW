@@ -72,8 +72,11 @@
   margin: 0 24rpx;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
 }
 .plan_type_title {
+  
   height: 136rpx;
   font-size: 30rpx;
   font-weight: bold;
@@ -129,6 +132,7 @@
   color: #333;
   margin-bottom: 24rpx;
   align-items: center;
+  box-sizing: border-box;
 }
 .option_xuanxaing {
   display: flex;
@@ -147,6 +151,7 @@
 .options_active {
   border: 1rpx solid #36BC96;
   background: rgba(54, 188, 150, 0.2);
+  box-sizing: border-box;
 }
 .option_xuanxaing .risk{
   font-size: 25rpx;
@@ -163,4 +168,42 @@
   border-radius: 12rpx;
   color: #fff;
   font-weight: 700;
+}
+
+/* 课程 */
+.course {
+  background-color: #fff;
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
+}
+.course_icon {
+  display: flex;
+  height: 200rpx;
+}
+.course_icon image {
+  height: 150rpx;
+}
+.course_des {
+  font-size: 25rpx;
+  line-height: 36rpx;
+  padding: 0 25rpx 260rpx;
+}
+.course_btn {
+  line-height: 73rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.course_btn .course_num{
+  display: inline-block;
+  width: 28rpx;
+  height: 28rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  color: #36BC96;
+  text-align: center;
+  line-height: 28rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  margin-left: 11rpx;
 }
