@@ -7,8 +7,9 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     dialogphone: true,
-    plan_ready: false, // 是否做好计划前准备
+    plan_ready: true, // 是否做好计划前准备
     userInfo: '',
+    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历
     options: [
       {
         status: false
@@ -82,6 +83,14 @@ Page({
   gotoCourseList(){
     wx.navigateTo({
       url: '../course/courselist',
+    })
+  },
+
+  // 切换计划tab
+  cutPlanType(e){
+    let type = e.currentTarget.dataset.type
+    this.setData({
+      active_plan: type
     })
   },
 

@@ -23,9 +23,9 @@
 	<!-- 内容 -->
 	<view class="content">
 		<view class="plan_type_title">
-			<view>课程</view>
-			<view>任务</view>
-			<view>月历</view>
+			<view class="{{active_plan == 0?'active_plan':''}}" bindtap="cutPlanType" data-type='0'>课程</view>
+			<view class="{{active_plan == 1?'active_plan':''}}" bindtap="cutPlanType" data-type='1'>任务</view>
+			<view class="{{active_plan == 2?'active_plan':''}}" bindtap="cutPlanType" data-type='2'>月历</view>
 		</view>
 		<!-- 准备阶段 -->
 		<view hidden="{{plan_ready}}">
@@ -93,7 +93,8 @@
 		</view>
     
     <!-- 准备好之后显示的内容 -->
-    <view hidden="{{!plan_ready}}">
+		<!-- 课程 -->
+    <view wx:if="{{plan_ready&&active_plan==0}}">
       <!-- 课程 -->
       <view class="course">
         <view class="course_icon">
@@ -112,6 +113,12 @@
         <text class="course_num">3</text>
       </view>
     </view>
+		<!-- 任务 -->
+		<view wx:if="{{plan_ready&&active_plan==1}}">
+			<view class="task">
+				
+			</view>
+		</view>
 	</view>
 
 </view>

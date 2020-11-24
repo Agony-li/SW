@@ -108,6 +108,21 @@
   right: -16rpx;
   top: 120rpx;
 }
+.active_plan {
+  color: #36BC96;
+}
+.active_plan:after{
+  content: "";
+  display: block;
+  position: relative;
+  top: 8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 4rpx;
+  background: #36BC96;
+  border-radius: 2rpx;
+}
 /* 准备阶段 */
 .plan_ready {
   background-color: #fff;
@@ -206,4 +221,11 @@
   font-size: 22rpx;
   font-weight: 700;
   margin-left: 11rpx;
+}
+
+/* 任务 */
+.task {
+  background-color: #fff;
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
 }
