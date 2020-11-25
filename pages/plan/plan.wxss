@@ -229,3 +229,50 @@
   border-bottom-left-radius: 16rpx;
   border-bottom-right-radius: 16rpx;
 }
+.task_table {
+  margin: 0 24rpx;
+  background-color: #ECF6F3;
+  border-radius: 12rpx;
+}
+.task_table .ul_week{
+  display: flex;
+  height: 119rpx;
+  border-bottom: 1rpx solid #E7E7E7;
+  box-sizing: border-box;
+}
+.task_table .ul_week .li_week {
+  width: 80rpx;
+  font-size: 25rpx;
+  line-height: 25rpx;
+  font-weight: 700;
+  text-align: center;
+  padding: 26rpx 0 24rpx;
+}
+.li_week view:first-child{
+  margin-bottom: 24rpx;
+}
+.ul_content {
+  display: flex;
+}
+.ul_content .left {
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.ul_content .li {
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.li .duihao {
+  width: 27rpx;
+  height: 22rpx;
+}
+.li .kong, .shi {
+  width: 25rpx;
+  height: 25rpx;
+}
+.li .jia, .dai {
+  width: 36rpx;
+  height: 36rpx;
+}

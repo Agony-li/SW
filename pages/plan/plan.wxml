@@ -116,7 +116,65 @@
 		<!-- 任务 -->
 		<view wx:if="{{plan_ready&&active_plan==1}}">
 			<view class="task">
-				
+
+				<!-- 日期表格 -->
+				<view class="task_table">
+					<view class="ul_week">
+						<view class="li_week"></view>
+						<view class="li_week">
+							<view>一</view>
+							<view>14</view>
+						</view>
+						<view class="li_week">
+							<view>二</view>
+							<view>15</view>
+						</view>
+						<view class="li_week">
+							<view>三</view>
+							<view>16</view>
+						</view>
+						<view class="li_week">
+							<view>四</view>
+							<view>17</view>
+						</view>
+						<view class="li_week">
+							<view>五</view>
+							<view>18</view>
+						</view>
+						<view class="li_week">
+							<view>六</view>
+							<view>19</view>
+						</view>
+						<view class="li_week">
+							<view>日</view>
+							<view>20</view>
+						</view>
+					</view>
+					<view class="ul_content">
+						<view class="li left">动</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="shi" src="../../images/shi.png"></image>
+						</view>
+						<view class="li">
+							<image class="jia" src="../../images/jia.png"></image>
+						</view>
+						<view class="li">
+							<image class="dai" src="../../images/dai.png"></image>
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
