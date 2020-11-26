@@ -7,9 +7,9 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     dialogphone: true,
-    plan_ready: true, // 是否做好计划前准备
+    plan_ready: false, // 是否做好计划前准备
     userInfo: '',
-    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历
+    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历
     options: [
       {
         status: false
@@ -29,7 +29,9 @@ Page({
       {
         status: false
       },
-    ]
+    ],
+    // 课程
+    course_active: '1',  // 1: 动, 2: 眠, 3: 静, 4: 纳, 5: 悟
    },
    onReady: function (e) {
      this.setData({
@@ -77,6 +79,14 @@ Page({
     }else{
       console.log('验证不通过')
     }
+  },
+
+  // 切换课程
+  currentCourse(e){
+    let type = e.currentTarget.dataset.type
+    this.setData({
+      course_active: type
+    })
   },
 
   // 跳转到课程页

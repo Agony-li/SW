@@ -2,14 +2,14 @@
 <wxs src="../../utils/filter.wxs"  module="filter"></wxs>
 <view class="mastersaid_list">
   <view class="list_tab">
-    <view bindtap="currentTab" data-type="0007003" class="tab_title {{courseType=='1'? 'active':''}}">动</view>
-    <view bindtap="currentTab" data-type="0007002" class="tab_title {{courseType=='0007002'? 'active':''}}">眠</view>
-    <view bindtap="currentTab" data-type="0007001" class="tab_title {{courseType=='0007001'? 'active':''}}">静</view>
-    <view bindtap="currentTab" data-type="0007001" class="tab_title {{courseType=='0007001'? 'active':''}}">纳</view>
+    <view bindtap="currentTab" data-type="0007005" class="tab_title {{courseType=='0007005'? 'active':''}}">动</view>
+    <view bindtap="currentTab" data-type="0007004" class="tab_title {{courseType=='0007004'? 'active':''}}">眠</view>
+    <view bindtap="currentTab" data-type="0007003" class="tab_title {{courseType=='0007003'? 'active':''}}">静</view>
+    <view bindtap="currentTab" data-type="0007002" class="tab_title {{courseType=='0007002'? 'active':''}}">纳</view>
     <view bindtap="currentTab" data-type="0007001" class="tab_title {{courseType=='0007001'? 'active':''}}">悟</view>
   </view>
   <view class="article_list" wx:if="{{courseList.length > 0}}">
-    <block wx:for="{{articleList}}" wx:key="index">
+    <!-- <block wx:for="{{articleList}}" wx:key="index">
       <view class="master_item"  bindtap="gotoArticleDetail" data-id='{{item.id}}'>
         <view class="item_left">
           <view class="item_title">{{item.title}}</view>
@@ -22,10 +22,10 @@
           <image class="item_image" src="{{imgBaseUrl+item.image}}"></image>
         </view>
       </view>
-    </block>
+    </block> -->
       
     
-    <view class="master_item">
+    <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
       <view class="item_left">
         <view class="item_title">解锁CBT-PLUS攻略！</view>
         <view class="item_time_author">

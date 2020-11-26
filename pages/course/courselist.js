@@ -6,7 +6,23 @@ Page({
    */
   data: {
     courseList: ['1'],
-    courseType: 1
+    courseType: '0007005'
+  },
+
+  // 切换tab
+  currentTab(e){
+    let type = e.currentTarget.dataset.type
+    this.setData({
+      courseType: type
+    })
+  },
+  
+  // 跳转到课程详情
+  gotoCourseDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../../pages/course/coursedetail?id='+id,
+    })
   },
 
   /**

@@ -193,11 +193,29 @@
 }
 .course_icon {
   display: flex;
-  height: 200rpx;
+  padding: 24rpx 24rpx 17rpx;
 }
+.course_item {
+  position: relative;
+  width: 130rpx;
+}
+.course_item view {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  width: 50rpx;
+  height: 50rpx;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .course_icon image {
-  height: 150rpx;
+  height: 141rpx;
 }
+
 .course_des {
   font-size: 25rpx;
   line-height: 36rpx;
@@ -228,7 +246,40 @@
   background-color: #fff;
   border-bottom-left-radius: 16rpx;
   border-bottom-right-radius: 16rpx;
+  padding-bottom: 50rpx;
 }
+/* 任务头部 */
+.task_header {
+  height: 158rpx;
+  padding: 0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task_header image {
+  width: 11rpx;
+  height: 18rpx;
+}
+.left_week, .right_week{
+  display: flex;
+  align-items: center;
+  font-size: 25rpx;
+}
+.left_week view, .right_week view {
+  padding: 0 13rpx;
+}
+.center_week view {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: 700;
+  text-align: center;
+}
+.center_week text {
+  font-size: 22rpx;
+  line-height: 22rpx;
+}
+
+/* 日期表格 */
 .task_table {
   margin: 0 24rpx;
   background-color: #ECF6F3;
@@ -257,12 +308,18 @@
 .ul_content .left {
   font-size: 25rpx;
   font-weight: 700;
+  background-color: #ECF6F3 !important;
+}
+.ul_content .left image{ 
+  width: 24rpx;
+  height: 25rpx;
 }
 .ul_content .li {
-  width: 80rpx;
+  width: 100%;
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
+  background-color: #F8F8F8;
 }
 .li .duihao {
   width: 27rpx;
@@ -275,4 +332,22 @@
 .li .jia, .dai {
   width: 36rpx;
   height: 36rpx;
+}
+.tip {
+  margin-top: 24rpx;
+  height: 79rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 39rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  font-size: 25rpx;
+  color: #333;
+}
+.tip image{
+  width: 25rpx;
+  height: 25rpx;
+  padding-right: 11rpx;
 }

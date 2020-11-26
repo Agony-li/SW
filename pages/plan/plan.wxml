@@ -98,11 +98,31 @@
       <!-- 课程 -->
       <view class="course">
         <view class="course_icon">
-          <image src="../../images/1.png"></image>
-          <image src="../../images/2.png"></image>
-          <image src="../../images/3.png"></image>
-          <image src="../../images/4.png"></image>
-          <image src="../../images/5.png"></image>
+          <view class="course_item" bindtap="currentCourse" data-type="1">
+						<view>动</view>
+						<image mode="heightFix" hidden="{{course_active!=1}}" src="../../images/dong_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active==1}}" src="../../images/dong.png"></image>
+					</view>
+					<view class="course_item" bindtap="currentCourse" data-type="2">
+						<view>眠</view>
+						<image mode="heightFix" hidden="{{course_active!=2}}" src="../../images/mian_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active==2}}" src="../../images/mian.png"></image>
+					</view>
+					<view class="course_item" bindtap="currentCourse" data-type="3">
+						<view>静</view>
+						<image mode="heightFix" hidden="{{course_active!=3}}" src="../../images/jing_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active==3}}" src="../../images/jing.png"></image>
+					</view>
+					<view class="course_item" bindtap="currentCourse" data-type="4">
+						<view>纳</view>
+						<image mode="heightFix" hidden="{{course_active!=4}}" src="../../images/na_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active==4}}" src="../../images/na.png"></image>
+					</view>
+					<view class="course_item" bindtap="currentCourse" data-type="5">
+						<view>悟</view>
+						<image mode="heightFix" hidden="{{course_active!=5}}" src="../../images/wu_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active==5}}" src="../../images/wu.png"></image>
+					</view>
         </view>
         <view class="course_des">
         [动] 是喜知悦行CBTI体系中最重要的一环，它的特点在于根据用户的自身健康状况，为用户出具健康建议，指导用户如何动，动什么，动多少。用户可以在 [动] 中学习并实践。
@@ -116,7 +136,20 @@
 		<!-- 任务 -->
 		<view wx:if="{{plan_ready&&active_plan==1}}">
 			<view class="task">
-
+				<view class="task_header">
+					<view class="left_week">
+						<image src="../../images/left_arrow.png"></image>
+						<view>上一周</view>
+					</view>
+					<view class="center_week">
+						<view>第二周</view>
+						<text>10/12-10/18</text>
+					</view>
+					<view class="right_week">
+						<view>下一周</view>
+						<image src="../../images/right_arrow.png"></image>
+					</view>
+				</view>
 				<!-- 日期表格 -->
 				<view class="task_table">
 					<view class="ul_week">
@@ -174,7 +207,85 @@
 							<image class="dai" src="../../images/dai.png"></image>
 						</view>
 					</view>
+					<view class="ul_content">
+						<view class="li left">眠</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="shi" src="../../images/shi.png"></image>
+						</view>
+						<view class="li">
+							<image class="jia" src="../../images/jia.png"></image>
+						</view>
+						<view class="li">
+							<image class="dai" src="../../images/dai.png"></image>
+						</view>
+					</view>
+					<view class="ul_content">
+						<view class="li left">静</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="shi" src="../../images/shi.png"></image>
+						</view>
+						<view class="li">
+							<image class="jia" src="../../images/jia.png"></image>
+						</view>
+						<view class="li">
+							<image class="dai" src="../../images/dai.png"></image>
+						</view>
+					</view>
+					<view class="ul_content hong">
+						<view class="li left">
+							<image src="../../images/hong.png"></image>
+						</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="duihao" src="../../images/dui.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="kong" src="../../images/kong.png"></image>
+						</view>
+						<view class="li">
+							<image class="shi" src="../../images/shi.png"></image>
+						</view>
+						<view class="li">
+							<image class="jia" src="../../images/jia.png"></image>
+						</view>
+						<view class="li">
+							<image class="dai" src="../../images/dai.png"></image>
+						</view>
+					</view>
 				</view>
+			</view>
+			<view class="tip">
+				<image src="../../images/tip_tan.png"></image>
+				<view>本周需至少完成3天任务，点击查看图例详情</view>
 			</view>
 		</view>
 	</view>

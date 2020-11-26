@@ -1,97 +1,104 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "useCompilerModule": false,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "enableEngineNative": false,
-    "useIsolateContext": true,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.10.3",
-  "appid": "wx2f4af9802d72f78a",
-  "projectname": "SW",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "大咖说列表",
-          "pathName": "pages/article/articlelist",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "计划",
-          "pathName": "pages/plan/plan",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "音频训练",
-          "pathName": "pages/train/trainAudio",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "图片训练任务",
-          "pathName": "pages/train/trainUploadPic",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"enableEngineNative": false,
+		"useIsolateContext": true,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.3",
+	"appid": "wx2f4af9802d72f78a",
+	"projectname": "SW",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"list": []
+		},
+		"conversation": {
+			"list": []
+		},
+		"plugin": {
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"list": []
+		},
+		"miniprogram": {
+			"list": [
+				{
+					"id": -1,
+					"name": "大咖说列表",
+					"pathName": "pages/article/articlelist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "计划",
+					"pathName": "pages/plan/plan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "音频训练",
+					"pathName": "pages/train/trainAudio",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图片训练任务",
+					"pathName": "pages/train/trainUploadPic",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程列表",
+					"pathName": "pages/course/courselist",
+					"scene": null
+				}
+			]
+		}
+	}
 }
