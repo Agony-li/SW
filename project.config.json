@@ -32,8 +32,13 @@
 		"useApiHook": true,
 		"enableEngineNative": false,
 		"useIsolateContext": true,
-		"packNpmManually": false,
-		"packNpmRelationList": [],
+		"packNpmManually": true,
+		"packNpmRelationList": [
+			{
+				"packageJsonPath": "./package.json",
+				"miniprogramNpmDistDir": "./miniprogram/"
+			}
+		],
 		"minifyWXSS": true
 	},
 	"compileType": "miniprogram",

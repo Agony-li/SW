@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-calendar": "@vant/weapp/calendar/index"
+  },
   "navigationBarTitleText":"计划"
 }

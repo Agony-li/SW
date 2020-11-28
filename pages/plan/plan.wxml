@@ -91,14 +91,13 @@
 			<!-- 按钮 -->
 			<view class="btn" bindtap="finishPrepare">准备完成（将于下周一正式开启计划）</view>
 		</view>
-    
-    <!-- 准备好之后显示的内容 -->
+
+		<!-- 准备好之后显示的内容 -->
 		<!-- 课程 -->
-    <view wx:if="{{plan_ready&&active_plan==0}}">
-      <!-- 课程 -->
-      <view class="course">
-        <view class="course_icon">
-          <view class="course_item" bindtap="currentCourse" data-type="1">
+		<view wx:if="{{plan_ready&&active_plan==0}}">
+			<view class="course">
+				<view class="course_icon">
+					<view class="course_item" bindtap="currentCourse" data-type="1">
 						<view>动</view>
 						<image mode="heightFix" hidden="{{course_active!=1}}" src="../../images/dong_active.png"></image>
 						<image mode="heightFix" hidden="{{course_active==1}}" src="../../images/dong.png"></image>
@@ -123,16 +122,16 @@
 						<image mode="heightFix" hidden="{{course_active!=5}}" src="../../images/wu_active.png"></image>
 						<image mode="heightFix" hidden="{{course_active==5}}" src="../../images/wu.png"></image>
 					</view>
-        </view>
-        <view class="course_des">
-        [动] 是喜知悦行CBTI体系中最重要的一环，它的特点在于根据用户的自身健康状况，为用户出具健康建议，指导用户如何动，动什么，动多少。用户可以在 [动] 中学习并实践。
-        </view>
-      </view>
-      <view class="btn course_btn" bindtap="gotoCourseList">
-        <text>进入课程</text>
-        <text class="course_num">3</text>
-      </view>
-    </view>
+				</view>
+				<view class="course_des">
+					[动] 是喜知悦行CBTI体系中最重要的一环，它的特点在于根据用户的自身健康状况，为用户出具健康建议，指导用户如何动，动什么，动多少。用户可以在 [动] 中学习并实践。
+				</view>
+			</view>
+			<view class="btn course_btn" bindtap="gotoCourseList">
+				<text>进入课程</text>
+				<text class="course_num">3</text>
+			</view>
+		</view>
 		<!-- 任务 -->
 		<view wx:if="{{plan_ready&&active_plan==1}}">
 			<view class="task">
@@ -200,7 +199,7 @@
 						<view class="li">
 							<image class="shi" src="../../images/shi.png"></image>
 						</view>
-						<view class="li">
+						<view class="li" bindtap="showDialog" data-type="3">
 							<image class="jia" src="../../images/jia.png"></image>
 						</view>
 						<view class="li">
@@ -283,11 +282,71 @@
 					</view>
 				</view>
 			</view>
-			<view class="tip">
+			<view class="tip" bindtap="showDialog" data-type="1">
 				<image src="../../images/tip_tan.png"></image>
 				<view>本周需至少完成3天任务，点击查看图例详情</view>
 			</view>
 		</view>
-	</view>
+		<!-- 月历 -->
+		<view class="yueli" wx:if="{{plan_ready&&active_plan==2}}">
+			<!-- <van-calendar  
+			type="multiple" 
+			color="#36BC96" 
+			poppable="{{ false }}" 
+			show-confirm="{{ false }}" 
+			class="calendar"
+			min-date="{{ minDate }}"
+  		max-date="{{ maxDate }}"
+			/> -->
+			<van-calendar title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
+		</view>
 
+	</view>
 </view>
+<!-- 弹窗 -->
+<view class="shadowBg" wx:if="{{isShowDialog}}" bindtap="cancelDialog"></view>
+<block wx:if="{{isShowDialog}}">
+	<!-- 周任务提示 -->
+	<view class="dialog" wx:if="{{dialogType==1}}">
+		<view class="title">周任务提示</view>
+		<view class="dialog_content">
+			<view class="content_item">
+				<image src="../../images/tip_tan.png"></image>
+				<view>本周需至少完成3天任务</view>
+			</view>
+			<view class="content_item">
+				<image src="../../images/duihao_dialog.png"></image>
+				<view>已完成任务</view>
+			</view>
+			<view class="content_item">
+				<image src="../../images/jia.png"></image>
+				<view>请假的任务</view>
+			</view>
+			<view class="content_item">
+				<image src="../../images/dai.png"></image>
+				<view>待领取红包</view>
+			</view>
+			<view class="content_item">
+				<image src="../../images/kong.png"></image>
+				<view>建议日期需完成的任务</view>
+			</view>
+			<view class="content_item">
+				<image src="../../images/shi.png"></image>
+				<view>可选日期需完成的任务</view>
+			</view>
+		</view>
+		<view class="dialog_btn" bindtap="cancelDialog">知道了</view>
+	</view>
+	<!-- 通用弹窗 -->
+	<view class="dialog" wx:else>
+		<view class="title">{{dialog.title}}</view>
+		<view class="dialog_content_image">
+			<image src="{{dialog.img}}"></image>
+		</view>
+		<view class="dialog_des">{{dialog.des}}</view>
+		<view class="dialog_double_btn">
+			<view bindtap="cancelDialog">{{dialog.btn[0]}}</view>
+			<view>{{dialog.btn[1]}}</view>
+		</view>
+	</view>
+</block>
