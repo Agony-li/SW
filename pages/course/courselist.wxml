@@ -2,11 +2,11 @@
 <wxs src="../../utils/filter.wxs"  module="filter"></wxs>
 <view class="mastersaid_list">
   <view class="list_tab">
-    <view bindtap="currentTab" data-type="1" class="tab_title {{courseType=='1'? 'active':''}}">动</view>
-    <view bindtap="currentTab" data-type="2" class="tab_title {{courseType=='2'? 'active':''}}">眠</view>
-    <view bindtap="currentTab" data-type="3" class="tab_title {{courseType=='3'? 'active':''}}">静</view>
+    <view bindtap="currentTab" data-type="3" class="tab_title {{courseType=='3'? 'active':''}}">动</view>
+    <view bindtap="currentTab" data-type="1" class="tab_title {{courseType=='1'? 'active':''}}">眠</view>
+    <view bindtap="currentTab" data-type="5" class="tab_title {{courseType=='5'? 'active':''}}">静</view>
     <view bindtap="currentTab" data-type="4" class="tab_title {{courseType=='4'? 'active':''}}">纳</view>
-    <view bindtap="currentTab" data-type="5" class="tab_title {{courseType=='5'? 'active':''}}">悟</view>
+    <view bindtap="currentTab" data-type="2" class="tab_title {{courseType=='2'? 'active':''}}">悟</view>
   </view>
   <view class="article_list" wx:if="{{courseList.length > 0}}">
     <!-- <block wx:for="{{articleList}}" wx:key="index">

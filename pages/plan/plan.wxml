@@ -71,7 +71,7 @@
 				<view class="course_icon">
 					<view class="course_item" bindtap="currentCourse" data-type="1">
 						<view>动</view>
-						<image mode="heightFix" hidden="{{course_active!=1}}" src="../../images/dong_active.png"></image>
+						<image mode="heightFix" hidden="{{course_active!=1}}" src="../../images/dong{{imgActive}}.png"></image>
 						<image mode="heightFix" hidden="{{course_active==1}}" src="../../images/dong.png"></image>
 					</view>
 					<view class="course_item" bindtap="currentCourse" data-type="2">
@@ -101,7 +101,7 @@
 			</view>
 			<view class="btn course_btn" bindtap="gotoCourseList">
 				<text>进入课程</text>
-				<text class="course_num">3</text>
+				<text class="course_num">{{course_num}}</text>
 			</view>
 		</view>
 		<!-- 任务 -->

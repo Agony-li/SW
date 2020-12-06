@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgActive: '_active',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     dialogphone: true,
     plan_ready: false, // 是否做好计划前准备
@@ -24,7 +25,8 @@ Page({
     ],
     // 课程
     contentList: [], // 课程
-    course_active: '1',  // 1: 动, 2: 眠, 3: 静, 4: 纳, 5: 悟
+    course_active: '1',  // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
+    course_num: '',
     // 月历
     show: false,
     minDate: new Date(2010, 8, 1).getTime(),
@@ -63,6 +65,8 @@ Page({
     this.checkTest();
     // 是否需要补救
     this.confirmClass();
+    // 获取课程数量
+    this.getCourseNum()
   },
 
   // 查询计划
@@ -83,7 +87,7 @@ Page({
       for(let i = 0; i<data.data.list.length+1; i++){
         options.push({status: false})
       }
-      console.log(options)
+      // console.log(options)
       this.setData({
         options: options
       })
@@ -117,6 +121,7 @@ Page({
   async checkTest(){
     let that = this;
     let data = await util.httpRequestWithPromise('/rest/cbti/mine','GET','', wx.getStorageSync('key'));
+    console.log('是否开启课程', data);
     if(data.data.message == '200'){
       if(data.data.maps.length === 0){
         // wx.navigateTo({
@@ -159,6 +164,17 @@ Page({
             })
           }
         }
+      })
+    }
+  },
+
+  // 获取课程数量
+  async getCourseNum(course_type) {
+    let data = await util.httpRequestWithPromise(`/rest/cbti/course/${course_type}?op=2`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取课程数量', data)
+    if (data.statusCode === 200) {
+      this.setData({
+        course_num: data.total
       })
     }
   },
@@ -212,7 +228,7 @@ Page({
   async confirmClass() {
     let that = this;
     let data = await util.httpRequestWithPromise('/rest/user/selectClass','GET','', wx.getStorageSync('key'));
-    console.info(data.data.message)
+    console.info('是否需要补救', data.data.message)
     if(data.data.data == 0 && data.data.message == '601') {
       wx.showModal({
         title: '提示',
@@ -277,7 +293,7 @@ Page({
      })
     } else if(data.data.message == 600) {
       console.info("1111")
-      this.showDialog();
+      // this.showDialog();
     } 
   },
 
@@ -365,62 +381,66 @@ Page({
     })
   },
 
-  // 展示周任务提示弹窗
-  showDialog(e){
-    let type = e.currentTarget.dataset.type
-    console.log('弹窗类型'+ type)
-    this.setData({
-      isShowDialog: true,
-      dialogType: type,
-    })
-    switch(type){
-      case '2': 
-        this.setData({
-          dialogType: 2,
-          dialog: {
-            title: '课程暂停通知',
-            img: '../../images/dialog_img.png',
-            des: '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。',
-            btn: ['稍后','支付（50.00元）']
-          }
-        })
-      break;
-      case '3':
-        this.setData({
-          dialogType: 3,
-          dialog: {
-            title: '请假',
-            img: '../../images/dialog_img.png',
-            des: '您每周每种任务只能请假一次，本次使用类别 [悟]，确定使用吗？',
-            btn: ['取消','支付（1.00元）']
-          }
-        })
-      break;
-      case '4':
-        this.setData({
-          dialogType: 4,
-          dialog: {
-            title: '领取红包',
-            img: '../../images/dialog_img.png',
-            des: '恭喜您本日全部完成，快来领取红包吧！！！',
-            btn: ['稍后','领取']
-          }
-        })
-      break;
-      case '5':
-        this.setData({
-          dialogType: 5,
-          dialog: {
-            title: '任务失败',
-            img: '../../images/dialog_img.png',
-            des: '经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。',
-            btn: ['取消','重新上传']
-          }
-        })
-      break;
-    }
-    
+  showDialog: function(){
+    this.dialog.showDialog();
   },
+
+  // 展示周任务提示弹窗
+  // showDialog(e){
+  //   let type = e.currentTarget.dataset.type
+  //   console.log('弹窗类型'+ type)
+  //   this.setData({
+  //     isShowDialog: true,
+  //     dialogType: type,
+  //   })
+  //   switch(type){
+  //     case '2': 
+  //       this.setData({
+  //         dialogType: 2,
+  //         dialog: {
+  //           title: '课程暂停通知',
+  //           img: '../../images/dialog_img.png',
+  //           des: '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。',
+  //           btn: ['稍后','支付（50.00元）']
+  //         }
+  //       })
+  //     break;
+  //     case '3':
+  //       this.setData({
+  //         dialogType: 3,
+  //         dialog: {
+  //           title: '请假',
+  //           img: '../../images/dialog_img.png',
+  //           des: '您每周每种任务只能请假一次，本次使用类别 [悟]，确定使用吗？',
+  //           btn: ['取消','支付（1.00元）']
+  //         }
+  //       })
+  //     break;
+  //     case '4':
+  //       this.setData({
+  //         dialogType: 4,
+  //         dialog: {
+  //           title: '领取红包',
+  //           img: '../../images/dialog_img.png',
+  //           des: '恭喜您本日全部完成，快来领取红包吧！！！',
+  //           btn: ['稍后','领取']
+  //         }
+  //       })
+  //     break;
+  //     case '5':
+  //       this.setData({
+  //         dialogType: 5,
+  //         dialog: {
+  //           title: '任务失败',
+  //           img: '../../images/dialog_img.png',
+  //           des: '经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。',
+  //           btn: ['取消','重新上传']
+  //         }
+  //       })
+  //     break;
+  //   }
+    
+  // },
 
   // 取消弹窗
   cancelDialog(){

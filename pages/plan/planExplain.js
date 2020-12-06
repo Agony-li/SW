@@ -1,20 +1,29 @@
 // pages/plan/planExplain.js
+import util from '../../utils/util.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getPlanExplan(options.id)
   },
 
+  // 计划说明
+  async getPlanExplan(id) {
+    let data = await util.httpRequestWithPromise(`/rest/cms/article?id=${id}`, 'get', '', wx.getStorageSync('key'));
+    console.log('计划说明', data)
+    if (data.statusCode === 200) {
+      
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
