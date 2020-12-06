@@ -120,7 +120,7 @@ Page({
 								gender: userInfo.gender
 							},
 							success: function (suc) {
-								//console.log(suc)
+								console.log(suc)
 								if(suc.statusCode === 200){
 									//console.log(suc.data)
 									try {

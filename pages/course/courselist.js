@@ -1,4 +1,6 @@
 // pages/course/course.js
+import util from '../../utils/util.js';
+import config from '../../utils/dev.config.js';
 Page({
 
   /**
@@ -6,7 +8,14 @@ Page({
    */
   data: {
     courseList: ['1'],
-    courseType: '0007005'
+    courseType: '1'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getCourseList(this.data.courseType)
   },
 
   // 切换tab
@@ -15,6 +24,16 @@ Page({
     this.setData({
       courseType: type
     })
+    this.getCourseList(type)
+  },
+
+  // 获取课程列表
+  async getCourseList(type) {
+    let data = await util.httpRequestWithPromise(`/rest/cbti/course/${type}`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取课程列表', data)
+    if (data.statusCode === 200) {
+      
+    }
   },
   
   // 跳转到课程详情
@@ -23,13 +42,6 @@ Page({
     wx.navigateTo({
       url: '../../pages/course/coursedetail?id='+id,
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
   },
 
   /**

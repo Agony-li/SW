@@ -1,4 +1,5 @@
 // pages/course/courselist.js
+import util from '../../utils/util.js';
 Page({
 
   /**
@@ -12,7 +13,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCourseDetail(options.id)
+  },
 
+  // 获取课程详情
+  async getCourseDetail(id) {
+    let data = await util.httpRequestWithPromise(`/rest/cbti/course?id=${id}`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取课程详情', data)
+    if (data.statusCode === 200) {
+      
+    }
   },
 
   /**
