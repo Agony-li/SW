@@ -7,24 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    courseList: ['1'],
-    courseType: '1'
+    contentList: [], // 课程分类
+    courseList: [],
+    course_active: '' // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCourseList(this.data.courseType)
+    this.checkTest()
   },
 
   // 切换tab
   currentTab(e){
     let type = e.currentTarget.dataset.type
     this.setData({
-      courseType: type
+      course_active: type
     })
     this.getCourseList(type)
+  },
+
+  // 获取课程信息
+  async checkTest(){
+    let that = this;
+    let data = await util.httpRequestWithPromise('/rest/cbti/mine','GET','', wx.getStorageSync('key'));
+    console.log('获取课程信息', data);
+    if(data.data.message == '200'){
+      if(data.data.maps.length === 0){
+        
+      }else{
+        let arr = [];
+        (data.data.maps).map(item =>{
+           arr.push({
+             name:item.dict_label,
+             courseType:item.course_type,
+             icon:item.description.split('|')[0],
+             icon_active:item.description.split('|')[1],
+           })
+        })
+        that.setData({
+          contentList:arr,
+          course_active: data.data.maps[0].course_type
+        })
+        this.getCourseList(data.data.maps[0].course_type)
+      }
+    }
   },
 
   // 获取课程列表

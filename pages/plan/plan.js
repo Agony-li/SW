@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    planInfo: {}, // 计划信息
     imgActive: '_active',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     dialogphone: true,
@@ -25,8 +26,8 @@ Page({
     ],
     // 课程
     contentList: [], // 课程
-    course_active: '1',  // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
-    course_num: '',
+    course_active: '',  // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
+    course_num: 0,
     // 月历
     show: false,
     minDate: new Date(2010, 8, 1).getTime(),
@@ -65,8 +66,7 @@ Page({
     this.checkTest();
     // 是否需要补救
     this.confirmClass();
-    // 获取课程数量
-    this.getCourseNum()
+    
   },
 
   // 查询计划
@@ -74,7 +74,9 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/learncycle`, 'get', '', wx.getStorageSync('key'));
     console.log('查询计划', data);
     if (data.statusCode === 200) {
-      
+      this.setData({
+        planInfo: data.data
+      })
     }
   },
 
@@ -117,11 +119,11 @@ Page({
     }
   },
 
-  // 是否开启课程
+  // 获取课程信息
   async checkTest(){
     let that = this;
     let data = await util.httpRequestWithPromise('/rest/cbti/mine','GET','', wx.getStorageSync('key'));
-    console.log('是否开启课程', data);
+    console.log('获取课程信息', data);
     if(data.data.message == '200'){
       if(data.data.maps.length === 0){
         // wx.navigateTo({
@@ -133,20 +135,24 @@ Page({
            arr.push({
              name:item.dict_label,
              courseType:item.course_type,
-             icon:item.description
+             icon:item.description.split('|')[0],
+             icon_active:item.description.split('|')[1],
            })
         })
         that.setData({
           contentList:arr,
-          week: data.data.week
+          week: data.data.week,
+          course_active: data.data.maps[0].course_type
         })
+        // 获取课程数量
+        this.getCourseNum(data.data.maps[0].course_type)
         if (data.data.week == 0) {
           this.setData({
-            // plan_start: false
+            plan_start: false
           })
         }else{
           this.setData({
-            // plan_start: true
+            plan_start: true
           })
         }
       }
@@ -174,7 +180,7 @@ Page({
     console.log('获取课程数量', data)
     if (data.statusCode === 200) {
       this.setData({
-        course_num: data.total
+        course_num: data.data.total
       })
     }
   },
@@ -309,7 +315,7 @@ Page({
   // 跳转到计划说明
   gotoPlanExplain(){
     wx.navigateTo({
-      url: '../plan/planExplain',
+      url: '../plan/planExplain?id='+this.data.planInfo.id,
     })
   },
 
@@ -350,6 +356,7 @@ Page({
     this.setData({
       course_active: type
     })
+    this.getCourseNum(type)
   },
 
   // 跳转到课程页

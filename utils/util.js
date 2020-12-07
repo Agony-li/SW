@@ -240,7 +240,7 @@ function httpRequest(url, method, data, success, fail) {
 async function httpRequestWithPromise(url,methods, params,token, message) {
 	
 	let dt = await httpRequestWithPromise2(url,methods, params,token, message);
-	console.log(dt)
+	// console.log(dt)
 	if (data && data.message == '600') {
 		
 		let url2 = '/wx/user/' + config.appid + '/uptoken';

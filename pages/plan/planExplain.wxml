@@ -1,8 +1,10 @@
+<wxs src="../../utils/filter.wxs"  module="filter"></wxs>
 <view class="plan_container">
   <view class="title">计划说明</view>
-  <view class="des">PLAN A-CBT PLUS优眠计划 2020/10/22</view>
+  <view class="des">PLAN A-CBT PLUS{{articleData.title}} {{filter.splitDate(articleData.createDate)}}</view>
   <view class="content">
-    本计划共9周，第1周及第4周布置了相关的学习课程，完成课程后可再次回顾。
+    <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
+    <rich-text nodes="{{articleData.articleData.content}}"></rich-text>
   </view>
-  <view class="btn">知道了</view>
+  <view class="btn" bindtap="back">知道了</view>
 </view>

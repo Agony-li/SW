@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    articleData: {}
   },
 
   /**
@@ -21,7 +21,9 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/cms/article?id=${id}`, 'get', '', wx.getStorageSync('key'));
     console.log('计划说明', data)
     if (data.statusCode === 200) {
-      
+      this.setData({
+        articleData: data.data.data
+      })
     }
   },
   /**

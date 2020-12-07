@@ -9,8 +9,8 @@
 			<view wx:if="{{loginState}}" class="header_name">登录</view>
 			<view wx:else>
 				<view class="header_name">{{userInfo.userName}}</view>
-				<view class="plan_name">PLAN A-CBT PLUS优眠计划</view>
-				<view class="plan_date">2020/10/12-2020/12/18</view>
+				<view class="plan_name">PLAN A-CBT PLUS{{planInfo.title}}</view>
+				<view class="plan_date">{{planInfo.startDate}}-{{planInfo.endDate}}</view>
 			</view>
 		</view>
 		<view class="header_right_i" bindtap="gotoPlanExplain">
@@ -45,7 +45,7 @@
 							<image wx:else src="../../images/kuang.png"></image>
 						</view>
 					</block>
-					
+
 					<view class="option {{options[optionList.length].status? 'options_active':''}}" bindtap="chooseOption" data-index='{{optionList.length}}'>
 						<view class="option_xuanxaing">
 							<view class="number">{{optionList.length+1}}</view>
@@ -69,12 +69,15 @@
 		<view wx:if="{{plan_start&&active_plan==0}}">
 			<view class="course">
 				<view class="course_icon">
-					<view class="course_item" bindtap="currentCourse" data-type="1">
-						<view>动</view>
-						<image mode="heightFix" hidden="{{course_active!=1}}" src="../../images/dong{{imgActive}}.png"></image>
-						<image mode="heightFix" hidden="{{course_active==1}}" src="../../images/dong.png"></image>
-					</view>
-					<view class="course_item" bindtap="currentCourse" data-type="2">
+					<block wx:for="{{contentList}}" wx:key="index">
+						<view class="course_item" bindtap="currentCourse" data-type="{{item.courseType}}">
+							<view>{{item.name}}</view>
+							<image mode="heightFix" hidden="{{course_active==item.courseType}}" src="{{item.icon}}"></image>
+							<image mode="heightFix" hidden="{{course_active!=item.courseType}}" src="{{item.icon_active}}"></image>
+						</view>
+					</block>
+
+					<!-- <view class="course_item" bindtap="currentCourse" data-type="2">
 						<view>眠</view>
 						<image mode="heightFix" hidden="{{course_active!=2}}" src="../../images/mian_active.png"></image>
 						<image mode="heightFix" hidden="{{course_active==2}}" src="../../images/mian.png"></image>
@@ -83,7 +86,7 @@
 						<view>静</view>
 						<image mode="heightFix" hidden="{{course_active!=3}}" src="../../images/jing_active.png"></image>
 						<image mode="heightFix" hidden="{{course_active==3}}" src="../../images/jing.png"></image>
-					</view>
+					</view> -->
 					<!-- <view class="course_item" bindtap="currentCourse" data-type="4">
 						<view>纳</view>
 						<image mode="heightFix" hidden="{{course_active!=4}}" src="../../images/na_active.png"></image>
