@@ -7,36 +7,22 @@
     </block>
   </view>
   <view class="article_list" wx:if="{{courseList.length > 0}}">
-    <!-- <block wx:for="{{articleList}}" wx:key="index">
-      <view class="master_item"  bindtap="gotoArticleDetail" data-id='{{item.id}}'>
+    <block wx:for="{{courseList}}" wx:key="index">
+      <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
         <view class="item_left">
           <view class="item_title">{{item.title}}</view>
           <view class="item_time_author">
-            <text class="item_date">{{filter.splitDate(item.updateDate)}}</text>
-            <text>作者：喜知悦行</text>
+            <text>本周内完成18篇</text>
+            <text class="end">已完成</text>
+            <text>必修课</text>
           </view>
         </view>
         <view class="item_right">
-          <image class="item_image" src="{{imgBaseUrl+item.image}}"></image>
+          <image class="qianzhang" src="../../images/qianzhang.png"></image>
+          <image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
         </view>
       </view>
-    </block> -->
-      
-    
-    <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
-      <view class="item_left">
-        <view class="item_title">解锁CBT-PLUS攻略！</view>
-        <view class="item_time_author">
-          <text>本周内完成18篇</text>
-          <text class="end">已完成</text>
-          <text>必修课</text>
-        </view>
-      </view>
-      <view class="item_right">
-        <image class="qianzhang" src="../../images/qianzhang.png"></image>
-        <image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
-      </view>
-    </view>
+    </block>
   </view>
   <view wx:else class="nodata">
     <image class="nodata_img" src="../../images/nodata.jpg"></image>

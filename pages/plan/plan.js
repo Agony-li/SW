@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isOrder: false, // 是否有订单
     planInfo: {}, // 计划信息
     imgActive: '_active',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -26,6 +27,7 @@ Page({
     ],
     // 课程
     contentList: [], // 课程
+    chooseContent:{}, // 选中的课程对象
     course_active: '',  // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
     course_num: 0,
     // 月历
@@ -43,9 +45,17 @@ Page({
     }
    },
    onReady: function (e) {
-     this.setData({
-       userInfo: wx.getStorageSync('info')
-     })
+    let userInfo = wx.getStorageSync('info')
+    if(!userInfo){
+      wx.navigateTo({
+        url: '../userCenter/login',
+      })
+      return
+    }else{
+      this.setData({
+        userInfo: wx.getStorageSync('info')
+      })
+    }
    },
 
    /**
@@ -58,15 +68,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     // 获取准备页的接口
     this.getPlanOptions()
     // 查询计划
     this.getPlan()
-    // 是否开启课程
-    this.checkTest();
     // 是否需要补救
     this.confirmClass();
-    
   },
 
   // 查询计划
@@ -74,9 +82,18 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/learncycle`, 'get', '', wx.getStorageSync('key'));
     console.log('查询计划', data);
     if (data.statusCode === 200) {
-      this.setData({
-        planInfo: data.data
-      })
+      if(data.data.message == 200){
+        this.setData({
+          planInfo: data.data,
+          isOrder: true
+        })
+        // 获取课程信息
+        this.checkTest();
+      }else if(data.data.message == 601){ // 未有订单
+        this.setData({
+          isOrder: false
+        })
+      }
     }
   },
 
@@ -134,6 +151,7 @@ Page({
         (data.data.maps).map(item =>{
            arr.push({
              name:item.dict_label,
+             remarks: item.remarks,
              courseType:item.course_type,
              icon:item.description.split('|')[0],
              icon_active:item.description.split('|')[1],
@@ -141,6 +159,7 @@ Page({
         })
         that.setData({
           contentList:arr,
+          chooseContent: arr[0],
           week: data.data.week,
           course_active: data.data.maps[0].course_type
         })
@@ -353,16 +372,19 @@ Page({
   // 切换课程
   currentCourse(e){
     let type = e.currentTarget.dataset.type
+    let index = e.currentTarget.dataset.index
+    let chooseContent = this.data.contentList[index]
     this.setData({
-      course_active: type
+      course_active: type,
+      chooseContent: chooseContent
     })
     this.getCourseNum(type)
   },
 
-  // 跳转到课程页
+  // 跳转到课程列表页
   gotoCourseList(){
     wx.navigateTo({
-      url: '../course/courselist',
+      url: '../course/courselist?course_active='+this.data.course_active,
     })
   },
 
@@ -454,6 +476,58 @@ Page({
     this.setData({
       isShowDialog: false
     })
+  },
+
+  async goToTest () {
+    let userInfo = wx.getStorageSync('info')
+    if(!userInfo){
+      wx.navigateTo({
+        url: '../userCenter/login',
+      })
+      return
+    }
+    let that = this;
+    let isCheck = await  util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=slepping_test&type=2', 'GET', '', wx.getStorageSync('key'));
+    try {
+      var value = wx.getStorageSync('key');
+      console.info('value' + value);
+      console.info('isCheck' + isCheck);
+      if (value && isCheck.data.message != '600') {
+        if(isCheck.data.message=='200'){
+          // that.closeTotest();
+          console.log('应该弹窗')
+          wx.navigateTo({
+            url: '../../components/testIntro/testIntro',
+          })
+        }else if(isCheck.data.message=='500'){
+          wx.navigateTo({
+            url: '../../components/serviceOpen/index?score='+isCheck.data.total+'&isOrder='+isCheck.data.isOrder+'&pId='+isCheck.data.programId
+          })
+        } else if(isCheck.data.message=='501') {
+          wx.showToast({
+            title: '请在订单中进行付款!',
+          })
+        } else if(isCheck.data.message=='601') {
+          wx.showModal({
+        title: '提示',
+        content: '请完善个人信息',
+        showCancel: false,
+        confirmText:'确定',
+        success(res){
+          if(res.confirm){
+              wx.navigateTo({
+                url: '../../components/userInfo/index',
+              })
+          }
+        }
+      })
+      } 
+      } else {
+        that.showDialog();
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
   },
 
   

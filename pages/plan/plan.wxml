@@ -9,8 +9,10 @@
 			<view wx:if="{{loginState}}" class="header_name">登录</view>
 			<view wx:else>
 				<view class="header_name">{{userInfo.userName}}</view>
-				<view class="plan_name">PLAN A-CBT PLUS{{planInfo.title}}</view>
-				<view class="plan_date">{{planInfo.startDate}}-{{planInfo.endDate}}</view>
+				<block wx:if="{{isOrder}}">
+					<view class="plan_name">PLAN A-CBT PLUS{{planInfo.title}}</view>
+					<view class="plan_date">{{planInfo.startDate}}-{{planInfo.endDate}}</view>
+				</block>
 			</view>
 		</view>
 		<view class="header_right_i" bindtap="gotoPlanExplain">
@@ -23,259 +25,260 @@
 	<!-- 内容 -->
 	<view class="content">
 		<view class="plan_type_title">
-			<view class="{{active_plan == 0?'active_plan':''}}" bindtap="cutPlanType" data-type='0'>课程</view>
-			<view class="{{active_plan == 1?'active_plan':''}}" bindtap="cutPlanType" data-type='1'>任务</view>
-			<view class="{{active_plan == 2?'active_plan':''}}" bindtap="cutPlanType" data-type='2'>月历</view>
+			<block wx:if="{{isOrder}}">
+				<view class="{{active_plan == 0?'active_plan':''}}" bindtap="cutPlanType" data-type='0'>课程</view>
+				<view class="{{active_plan == 1?'active_plan':''}}" bindtap="cutPlanType" data-type='1'>任务</view>
+				<view class="{{active_plan == 2?'active_plan':''}}" bindtap="cutPlanType" data-type='2'>月历</view>
+			</block>
+			<block wx:else>
+				<view>温馨提示</view>
+			</block>
 		</view>
-		<!-- 准备阶段 -->
-		<view hidden="{{plan_start}}">
-			<view class="plan_ready">
-				<view class="des">
-					<view>尊敬的用户：</view>
-					<view>欢迎您开启了CBTI PLUS健康之旅，在您即将启程以前请完成以下准备清单：</view>
-				</view>
-				<view class="plan_ready_options">
-					<block wx:for="{{optionList}}" wx:key="index">
-						<view class="option {{options[index].status? 'options_active':''}}" bindtap="chooseOption" data-index='{{index}}'>
-							<view class="option_xuanxaing">
-								<view class="number">{{index+1}}</view>
-								<view>{{item.description}}</view>
+		<!-- 判断是否购买订单 -->
+		<block wx:if="{{isOrder}}">
+			<!-- 准备阶段 -->
+			<view hidden="{{plan_start}}">
+				<view class="plan_ready">
+					<view class="des">
+						<view>尊敬的用户：</view>
+						<view>欢迎您开启了CBTI PLUS健康之旅，在您即将启程以前请完成以下准备清单：</view>
+					</view>
+					<view class="plan_ready_options">
+						<block wx:for="{{optionList}}" wx:key="index">
+							<view class="option {{options[index].status? 'options_active':''}}" bindtap="chooseOption" data-index='{{index}}'>
+								<view class="option_xuanxaing">
+									<view class="number">{{index+1}}</view>
+									<view>{{item.description}}</view>
+								</view>
+								<image wx:if="{{options[index].status}}" src="../../images/duihao.png"></image>
+								<image wx:else src="../../images/kuang.png"></image>
 							</view>
-							<image wx:if="{{options[index].status}}" src="../../images/duihao.png"></image>
+						</block>
+
+						<view class="option {{options[optionList.length].status? 'options_active':''}}" bindtap="chooseOption" data-index='{{optionList.length}}'>
+							<view class="option_xuanxaing">
+								<view class="number">{{optionList.length+1}}</view>
+								<view>
+									<text>我已阅读</text>
+									<text bindtap="gotoPlanRisk" class="risk">《风险提醒客户确认书》</text>
+								</view>
+							</view>
+							<image wx:if="{{options[optionList.length].status}}" src="../../images/duihao.png"></image>
 							<image wx:else src="../../images/kuang.png"></image>
 						</view>
-					</block>
-
-					<view class="option {{options[optionList.length].status? 'options_active':''}}" bindtap="chooseOption" data-index='{{optionList.length}}'>
-						<view class="option_xuanxaing">
-							<view class="number">{{optionList.length+1}}</view>
-							<view>
-								<text>我已阅读</text>
-								<text bindtap="gotoPlanRisk" class="risk">《风险提醒客户确认书》</text>
+					</view>
+				</view>
+				<!-- 按钮 -->
+				<view wx:if="{{plan_ready}}" class="btn" bindtap="finishPrepare" bindtap="">请于下周一开始课程学习</view>
+				<view wx:else class="btn" bindtap="finishPrepare">准备完成（将于下周一正式开启计划）</view>
+			</view>
+			<!-- 准备好之后显示的内容 -->
+			<!-- 课程 -->
+			<view wx:if="{{plan_start&&active_plan==0}}">
+				<view class="course">
+					<view class="course_icon">
+						<block wx:for="{{contentList}}" wx:key="index">
+							<view class="course_item" bindtap="currentCourse" data-type="{{item.courseType}}" data-index="{{index}}">
+								<view>{{item.name}}</view>
+								<image mode="heightFix" hidden="{{course_active==item.courseType}}" src="{{item.icon}}"></image>
+								<image mode="heightFix" hidden="{{course_active!=item.courseType}}" src="{{item.icon_active}}"></image>
+							</view>
+						</block>
+					</view>
+					<view class="course_des">
+						{{chooseContent.remarks}}
+					</view>
+				</view>
+				<view class="btn course_btn" bindtap="gotoCourseList">
+					<text>进入课程</text>
+					<text class="course_num">{{course_num}}</text>
+				</view>
+			</view>
+			<!-- 任务 -->
+			<view wx:if="{{plan_start&&active_plan==1}}">
+				<view class="task">
+					<view class="task_header">
+						<view class="left_week">
+							<image src="../../images/left_arrow.png"></image>
+							<view>上一周</view>
+						</view>
+						<view class="center_week">
+							<view>第二周</view>
+							<text>10/12-10/18</text>
+						</view>
+						<view class="right_week">
+							<view>下一周</view>
+							<image src="../../images/right_arrow.png"></image>
+						</view>
+					</view>
+					<!-- 日期表格 -->
+					<view class="task_table">
+						<view class="ul_week">
+							<view class="li_week"></view>
+							<view class="li_week">
+								<view>一</view>
+								<view>14</view>
+							</view>
+							<view class="li_week">
+								<view>二</view>
+								<view>15</view>
+							</view>
+							<view class="li_week">
+								<view>三</view>
+								<view>16</view>
+							</view>
+							<view class="li_week">
+								<view>四</view>
+								<view>17</view>
+							</view>
+							<view class="li_week">
+								<view>五</view>
+								<view>18</view>
+							</view>
+							<view class="li_week">
+								<view>六</view>
+								<view>19</view>
+							</view>
+							<view class="li_week">
+								<view>日</view>
+								<view>20</view>
 							</view>
 						</view>
-						<image wx:if="{{options[optionList.length].status}}" src="../../images/duihao.png"></image>
-						<image wx:else src="../../images/kuang.png"></image>
-					</view>
-				</view>
-			</view>
-			<!-- 按钮 -->
-			<view wx:if="{{plan_ready}}" class="btn" bindtap="finishPrepare" bindtap="">请于下周一开始课程学习</view>
-			<view wx:else class="btn" bindtap="finishPrepare">准备完成（将于下周一正式开启计划）</view>
-		</view>
-
-		<!-- 准备好之后显示的内容 -->
-		<!-- 课程 -->
-		<view wx:if="{{plan_start&&active_plan==0}}">
-			<view class="course">
-				<view class="course_icon">
-					<block wx:for="{{contentList}}" wx:key="index">
-						<view class="course_item" bindtap="currentCourse" data-type="{{item.courseType}}">
-							<view>{{item.name}}</view>
-							<image mode="heightFix" hidden="{{course_active==item.courseType}}" src="{{item.icon}}"></image>
-							<image mode="heightFix" hidden="{{course_active!=item.courseType}}" src="{{item.icon_active}}"></image>
+						<view class="ul_content">
+							<view class="li left">动</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="shi" src="../../images/shi.png"></image>
+							</view>
+							<view class="li" bindtap="showDialog" data-type="3">
+								<image class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li">
+								<image class="dai" src="../../images/dai.png"></image>
+							</view>
 						</view>
-					</block>
-
-					<!-- <view class="course_item" bindtap="currentCourse" data-type="2">
-						<view>眠</view>
-						<image mode="heightFix" hidden="{{course_active!=2}}" src="../../images/mian_active.png"></image>
-						<image mode="heightFix" hidden="{{course_active==2}}" src="../../images/mian.png"></image>
-					</view>
-					<view class="course_item" bindtap="currentCourse" data-type="3">
-						<view>静</view>
-						<image mode="heightFix" hidden="{{course_active!=3}}" src="../../images/jing_active.png"></image>
-						<image mode="heightFix" hidden="{{course_active==3}}" src="../../images/jing.png"></image>
-					</view> -->
-					<!-- <view class="course_item" bindtap="currentCourse" data-type="4">
-						<view>纳</view>
-						<image mode="heightFix" hidden="{{course_active!=4}}" src="../../images/na_active.png"></image>
-						<image mode="heightFix" hidden="{{course_active==4}}" src="../../images/na.png"></image>
-					</view>
-					<view class="course_item" bindtap="currentCourse" data-type="5">
-						<view>悟</view>
-						<image mode="heightFix" hidden="{{course_active!=5}}" src="../../images/wu_active.png"></image>
-						<image mode="heightFix" hidden="{{course_active==5}}" src="../../images/wu.png"></image>
-					</view> -->
-				</view>
-				<view class="course_des">
-					[动] 是喜知悦行CBTI体系中最重要的一环，它的特点在于根据用户的自身健康状况，为用户出具健康建议，指导用户如何动，动什么，动多少。用户可以在 [动] 中学习并实践。
-				</view>
-			</view>
-			<view class="btn course_btn" bindtap="gotoCourseList">
-				<text>进入课程</text>
-				<text class="course_num">{{course_num}}</text>
-			</view>
-		</view>
-		<!-- 任务 -->
-		<view wx:if="{{plan_start&&active_plan==1}}">
-			<view class="task">
-				<view class="task_header">
-					<view class="left_week">
-						<image src="../../images/left_arrow.png"></image>
-						<view>上一周</view>
-					</view>
-					<view class="center_week">
-						<view>第二周</view>
-						<text>10/12-10/18</text>
-					</view>
-					<view class="right_week">
-						<view>下一周</view>
-						<image src="../../images/right_arrow.png"></image>
-					</view>
-				</view>
-				<!-- 日期表格 -->
-				<view class="task_table">
-					<view class="ul_week">
-						<view class="li_week"></view>
-						<view class="li_week">
-							<view>一</view>
-							<view>14</view>
+						<view class="ul_content">
+							<view class="li left">眠</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="shi" src="../../images/shi.png"></image>
+							</view>
+							<view class="li">
+								<image class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li">
+								<image class="dai" src="../../images/dai.png"></image>
+							</view>
 						</view>
-						<view class="li_week">
-							<view>二</view>
-							<view>15</view>
+						<view class="ul_content">
+							<view class="li left">静</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="shi" src="../../images/shi.png"></image>
+							</view>
+							<view class="li">
+								<image class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li">
+								<image class="dai" src="../../images/dai.png"></image>
+							</view>
 						</view>
-						<view class="li_week">
-							<view>三</view>
-							<view>16</view>
-						</view>
-						<view class="li_week">
-							<view>四</view>
-							<view>17</view>
-						</view>
-						<view class="li_week">
-							<view>五</view>
-							<view>18</view>
-						</view>
-						<view class="li_week">
-							<view>六</view>
-							<view>19</view>
-						</view>
-						<view class="li_week">
-							<view>日</view>
-							<view>20</view>
-						</view>
-					</view>
-					<view class="ul_content">
-						<view class="li left">动</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="shi" src="../../images/shi.png"></image>
-						</view>
-						<view class="li" bindtap="showDialog" data-type="3">
-							<image class="jia" src="../../images/jia.png"></image>
-						</view>
-						<view class="li">
-							<image class="dai" src="../../images/dai.png"></image>
-						</view>
-					</view>
-					<view class="ul_content">
-						<view class="li left">眠</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="shi" src="../../images/shi.png"></image>
-						</view>
-						<view class="li">
-							<image class="jia" src="../../images/jia.png"></image>
-						</view>
-						<view class="li">
-							<image class="dai" src="../../images/dai.png"></image>
-						</view>
-					</view>
-					<view class="ul_content">
-						<view class="li left">静</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="shi" src="../../images/shi.png"></image>
-						</view>
-						<view class="li">
-							<image class="jia" src="../../images/jia.png"></image>
-						</view>
-						<view class="li">
-							<image class="dai" src="../../images/dai.png"></image>
-						</view>
-					</view>
-					<view class="ul_content hong">
-						<view class="li left">
-							<image src="../../images/hong.png"></image>
-						</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="duihao" src="../../images/dui.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="kong" src="../../images/kong.png"></image>
-						</view>
-						<view class="li">
-							<image class="shi" src="../../images/shi.png"></image>
-						</view>
-						<view class="li">
-							<image class="jia" src="../../images/jia.png"></image>
-						</view>
-						<view class="li">
-							<image class="dai" src="../../images/dai.png"></image>
+						<view class="ul_content hong">
+							<view class="li left">
+								<image src="../../images/hong.png"></image>
+							</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="duihao" src="../../images/dui.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="kong" src="../../images/kong.png"></image>
+							</view>
+							<view class="li">
+								<image class="shi" src="../../images/shi.png"></image>
+							</view>
+							<view class="li">
+								<image class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li">
+								<image class="dai" src="../../images/dai.png"></image>
+							</view>
 						</view>
 					</view>
 				</view>
+				<view class="tip" bindtap="showDialog" data-type="1">
+					<image src="../../images/tip_tan.png"></image>
+					<view>本周需至少完成3天任务，点击查看图例详情</view>
+				</view>
 			</view>
-			<view class="tip" bindtap="showDialog" data-type="1">
-				<image src="../../images/tip_tan.png"></image>
-				<view>本周需至少完成3天任务，点击查看图例详情</view>
+			<!-- 月历 -->
+			<view class="yueli" wx:if="{{plan_start&&active_plan==2}}">
+				<!-- <van-calendar  
+				type="multiple" 
+				color="#36BC96" 
+				poppable="{{ false }}" 
+				show-confirm="{{ false }}" 
+				class="calendar"
+				min-date="{{ minDate }}"
+				max-date="{{ maxDate }}"
+				/> -->
+				<van-calendar title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
 			</view>
-		</view>
-		<!-- 月历 -->
-		<view class="yueli" wx:if="{{plan_start&&active_plan==2}}">
-			<!-- <van-calendar  
-			type="multiple" 
-			color="#36BC96" 
-			poppable="{{ false }}" 
-			show-confirm="{{ false }}" 
-			class="calendar"
-			min-date="{{ minDate }}"
-  		max-date="{{ maxDate }}"
-			/> -->
-			<van-calendar title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
-		</view>
-
+		</block>
+		<block wx:else>
+			<view>
+				<view class="course">
+					<view class="no_order_tip">
+						<view>您还未购买任何改善计划，暂不能开启计划模块。</view>
+					</view>
+					<view class="no_order_des">
+						喜知悦行以帮助用户健康开悟，促进用户快乐践行为宗旨，为用户提供亚健康管理改善计划，您可以通过测评对自己的健康状况
+						进行评估，并帮助获得相应的改善计划。
+					</view>
+				</view>
+				<view class="btn course_btn" bindtap="goToTest">
+					<text>前往测评</text>
+				</view>
+			</view>
+		</block>
 	</view>
 </view>
 <!-- 弹窗 -->

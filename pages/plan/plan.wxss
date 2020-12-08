@@ -185,6 +185,18 @@
   font-weight: 700;
 }
 
+/* 未购买订单情况 */
+.no_order_tip {
+  font-size: 25rpx;
+  line-height: 36rpx;
+  padding: 70rpx 50rpx 50rpx;
+}
+.no_order_des{
+  font-size: 25rpx;
+  line-height: 36rpx;
+  padding: 0 50rpx 260rpx;
+}
+
 /* 课程 */
 .course {
   background-color: #fff;
