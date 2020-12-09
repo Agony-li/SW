@@ -21,10 +21,19 @@
 .article_author {
   padding-right: 20rpx;
 }
-.article_audio {
+.article_audio audio{
+  /* display: flex;
+  align-items: center; */
   width: 100%;
-  text-align: center;
 }
+.pauseBtn image {
+  width: 89rpx;
+  height: 89rpx;
+}
+.audioTitle {
+  font-size: 25rpx;
+}
+
 .article_video {
   width: 100%;
   text-align: center;

@@ -384,7 +384,7 @@ Page({
   // 跳转到课程列表页
   gotoCourseList(){
     wx.navigateTo({
-      url: '../course/courselist?course_active='+this.data.course_active,
+      url: '../course/courselist?course_active='+this.data.course_active+'&week='+this.data.week,
     })
   },
 

@@ -8,18 +8,20 @@
   </view>
   <view class="article_list" wx:if="{{courseList.length > 0}}">
     <block wx:for="{{courseList}}" wx:key="index">
-      <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
+      <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.courseid}}'>
         <view class="item_left">
           <view class="item_title">{{item.title}}</view>
           <view class="item_time_author">
-            <text>本周内完成18篇</text>
-            <text class="end">已完成</text>
-            <text>必修课</text>
+            <text>本周内完成{{item.total}}篇</text>
+            <text wx:if="{{item.isLearn==0}}">待完成</text>
+            <text wx:else class="end">已完成</text>
+            <text wx:if="{{item.needLearn}}">必修课</text>
+            <text wx:else>选修课</text>
           </view>
         </view>
         <view class="item_right">
-          <image class="qianzhang" src="../../images/qianzhang.png"></image>
-          <image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
+          <image wx:if="{{item.isLearn!=0}}" class="qianzhang" src="../../images/qianzhang.png"></image>
+          <image class="item_image" src="{{item.image}}"></image>
         </view>
       </view>
     </block>

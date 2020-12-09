@@ -68,14 +68,8 @@
 			"list": []
 		},
 		"miniprogram": {
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "大咖说列表",
-					"pathName": "pages/article/articlelist",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "计划",

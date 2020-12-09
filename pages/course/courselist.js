@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    week:0, //当前周
     contentList: [], // 课程分类
     courseList: [], // 课程列表
     course_active: '' // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
@@ -18,7 +19,8 @@ Page({
   onLoad: function (options) {
     if(options.course_active){
       this.setData({
-        course_active: options.course_active
+        course_active: options.course_active,
+        week: options.week
       })
     }
     this.checkTest()
@@ -61,11 +63,11 @@ Page({
 
   // 获取课程列表
   async getCourseList(type) {
-    let data = await util.httpRequestWithPromise(`/rest/cbti/course/${type}`, 'get', '', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise(`/rest/cbti/tasklist?coursetype=`+type, 'get', '', wx.getStorageSync('key'));
     console.log('获取课程列表', data)
     if (data.statusCode === 200) {
       this.setData({
-        courseList: data.data.course
+        courseList: data.data.data
       })
     }
   },

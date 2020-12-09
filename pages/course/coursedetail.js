@@ -2,12 +2,14 @@
 import util from '../../utils/util.js';
 import config from '../../utils/dev.config';
 var  WxParse= require('../../wxParse/wxParse.js');
+const audioContext = wx.createInnerAudioContext()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    courseId: '',
     detail:null,
     audio: {},
     imageUrlPrefix: config.imageUrlPrefix
@@ -17,6 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      courseId: options.id
+    })
     this.getCourseDetail(options.id)
   },
 
@@ -29,22 +34,56 @@ Page({
         WxParse.wxParse('article', 'html', data.data.data.content, this, 2);
       }
       let fileUpload = data.data.data.fileUploadList[0]
+      // audioContext.src = this.data.imageUrlPrefix+fileUpload.fileUrl
       let audio = {
         name: fileUpload.fileName,
         author: fileUpload.createBy, 
         poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
-        src: this.data.imageUrlPrefix+fileUpload.fileUrl
+        src: this.data.imageUrlPrefix+fileUpload.fileUrl,
       }
       this.setData({
         detail:data.data.data,
         audio: audio
       })
+      
     }
   },
+
+  // play(){
+  //   audioContext.play()
+  //   audioContext.onPlay(() => {
+  //     console.log('开始播放')
+  //     audioContext.duration;
+  //     setTimeout(()=>{
+  //       console.log('播放时长:'+audioContext.duration)
+  //     },200)
+  //   })
+  // },
 
   // 音频自动播放完
   endAutoPlay(){
     console.log('音频自动播放完')
+    this.audioEnd()
+  },
+  
+  // 完成课程任务方法
+  async audioEnd(){
+    let data = await util.httpRequestWithPromise('/rest/evaluationProgramLearn/done?courseId='+this.data.courseId,'GET','',wx.getStorageSync('key'));
+    if(data.data.result == "true") {
+      wx.showModal({
+        title: '提示',
+        content: '您已完成本课时!',
+        success (res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
   },
 
   /**
