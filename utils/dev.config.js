@@ -16,9 +16,9 @@ export default {
     //imageUrlPrefix: 'https://www.xizhiyuexing.com/',//正式服
     //imageUrlPrefix: 'http://localhost:8980/',// 测试服
 	
-	imageUrlPrefix: 'https://d.hiecm.com',// 线上测试服
+	imageUrlPrefix: 'https://d2.hiecm.com',// 线上测试服
 	appid: 'wx7eee8f596bb30850',
-	appUrl: 'https://d.hiecm.com',
+	appUrl: 'https://d2.hiecm.com',
 	
 	// imageUrlPrefix: 'http://wd.hiecm.com',// 测试服
 	// appid: 'wx7eee8f596bb30850',
