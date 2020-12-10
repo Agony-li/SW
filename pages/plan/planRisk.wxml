@@ -1,4 +1,5 @@
 <view class="content">
+  <view class="title">风险提示确认书</view>
   <rich-text nodes="{{detail}}"></rich-text>
 </view>
 <view class="bottom_btn">

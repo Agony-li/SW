@@ -1,3 +1,4 @@
+<wxs src="../../utils/filter.wxs"  module="filter"></wxs>
 <!-- 头部 -->
 <view class="header">
 	<view class="header_info" bindtap="gotoUserInfoPage">
@@ -98,15 +99,16 @@
 			<view wx:if="{{plan_start&&active_plan==1}}">
 				<view class="task">
 					<view class="task_header">
-						<view class="left_week">
+						<view class="left_week" wx:if="{{taskObj.lstweek}}">
 							<image src="../../images/left_arrow.png"></image>
 							<view>上一周</view>
 						</view>
+						<view class="left_week" wx:else></view>
 						<view class="center_week">
-							<view>第二周</view>
-							<text>10/12-10/18</text>
+							<view>第{{filter.Arabia_To_SimplifiedChinese(taskObj.curweek)}}周</view>
+							<text>{{taskObj.cursDate}}-{{taskObj.cureDate}}</text>
 						</view>
-						<view class="right_week">
+						<view class="right_week" wx:if="{{taskObj.nextweek}}">
 							<view>下一周</view>
 							<image src="../../images/right_arrow.png"></image>
 						</view>

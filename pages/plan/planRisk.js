@@ -1,6 +1,6 @@
 // pages/plan/planRisk.js
 import util from '../../utils/util.js';
-import config from '../../utils/dev.config.js';
+var  WxParse= require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -23,8 +23,9 @@ Page({
     console.log('获取风险提示确认书', data)
     if (data.statusCode === 200) {
       this.setData({
-        detail:data.data.data.articleData.content
+        detail:data.data.list[0].articleData.content
       })
+      
     }
   },
 

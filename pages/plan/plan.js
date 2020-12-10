@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历
+    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历
     week: 0,
     optionList: [
       
@@ -42,7 +42,15 @@ Page({
       img: '',
       des: '',
       btn: []
-    }
+    },
+    /**
+     * 任务数据
+     */
+    taskObj: {},
+    dong: [],
+    mian: [],
+    jing: [],
+    na: []
    },
    onReady: function (e) {
     let userInfo = wx.getStorageSync('info')
@@ -69,14 +77,56 @@ Page({
    */
   onShow: function () {
     
-    // 获取准备页的接口
-    this.getPlanOptions()
+    // // 获取准备页的接口
+    // this.getPlanOptions()
     // 查询计划
     this.getPlan()
-    // 是否需要补救
-    this.confirmClass();
+    // // 是否需要补救
+    // this.confirmClass();
+    
+    // 获取任务接口
+    this.getTask()
   },
 
+  // 切换计划tab
+  cutPlanType(e){
+    let type = e.currentTarget.dataset.type
+    this.setData({
+      active_plan: type
+    })
+    if(type==1){
+      this.getTask()
+    }
+  },
+
+  /**
+   *  任务部分
+   */
+  // 查询任务部分
+  async getTask() {
+    let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/weektask`, 'get', '', wx.getStorageSync('key'));
+    console.log('查询任务部分', data);
+    if (data.statusCode === 200) {
+      let curData = data.data.curData
+      let dong = curData.filter(item => item.courseType == 3)
+      let mian = curData.filter(item => item.courseType == 1)
+      let jing = curData.filter(item => item.courseType == 5)
+      let na = curData.filter(item => item.courseType == 4)
+      this.setData({
+        taskObj: data.data,
+        dong: dong,
+        mian: mian,
+        jing: jing,
+        na: na,
+      })
+    }
+  },
+
+
+
+  /**
+   *  计划部分
+   */
   // 查询计划
   async getPlan() {
     let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/learncycle`, 'get', '', wx.getStorageSync('key'));
@@ -322,10 +372,8 @@ Page({
     } 
   },
 
-  
-
    
-   // 跳转到风险提确认书
+  // 跳转到风险提确认书
   gotoPlanRisk(){
     wx.navigateTo({
       url: '../plan/planRisk',
@@ -402,13 +450,7 @@ Page({
     });
   },
 
-  // 切换计划tab
-  cutPlanType(e){
-    let type = e.currentTarget.dataset.type
-    this.setData({
-      active_plan: type
-    })
-  },
+  
 
   showDialog: function(){
     this.dialog.showDialog();
