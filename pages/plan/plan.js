@@ -46,6 +46,8 @@ Page({
     /**
      * 任务数据
      */
+    mustRiskNum: 0, // 本周需要完成的任务数
+    weekDay:['一', '二', '三', '四', '五', '六', '日'], // 常量周
     taskObj: {},
     dong: [],
     mian: [],
@@ -86,6 +88,8 @@ Page({
     
     // 获取任务接口
     this.getTask()
+    // 周任务提醒
+    this.getWeekTaskTips()
   },
 
   // 切换计划tab
@@ -95,32 +99,47 @@ Page({
       active_plan: type
     })
     if(type==1){
+      // 获取任务接口
       this.getTask()
+      // 周任务提醒
+    this.getWeekTaskTips()
     }
   },
 
   /**
    *  任务部分
    */
-  // 查询任务部分
+  // 查询任务信息
   async getTask() {
     let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/weektask`, 'get', '', wx.getStorageSync('key'));
-    console.log('查询任务部分', data);
+    console.log('查询任务信息', data);
     if (data.statusCode === 200) {
-      let curData = data.data.curData
-      let dong = curData.filter(item => item.courseType == 3)
-      let mian = curData.filter(item => item.courseType == 1)
-      let jing = curData.filter(item => item.courseType == 5)
-      let na = curData.filter(item => item.courseType == 4)
+      let coursetype = data.data.curData.coursetype
+      // let dong = curData.filter(item => item.courseType == 3)
+      // let mian = curData.filter(item => item.courseType == 1)
+      // let jing = curData.filter(item => item.courseType == 5)
+      // let na = curData.filter(item => item.courseType == 4)
       this.setData({
         taskObj: data.data,
-        dong: dong,
-        mian: mian,
-        jing: jing,
-        na: na,
+        // dong: coursetype,
+        // mian: mian.slice(0,7),
+        // jing: jing.slice(0,7),
+        // na: na.slice(0,7),
       })
     }
   },
+
+  // 周任务提醒
+  async getWeekTaskTips() {
+    let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/weektasktips`, 'get', '', wx.getStorageSync('key'));
+    console.log('周任务提醒', data);
+    if (data.statusCode === 200) {
+      this.setData({
+        mustRiskNum: data.data.data
+      })
+    }
+  },
+
 
 
 
@@ -452,66 +471,65 @@ Page({
 
   
 
-  showDialog: function(){
-    this.dialog.showDialog();
-  },
+  // showDialog: function(){
+  //   this.dialog.showDialog();
+  // },
 
   // 展示周任务提示弹窗
-  // showDialog(e){
-  //   let type = e.currentTarget.dataset.type
-  //   console.log('弹窗类型'+ type)
-  //   this.setData({
-  //     isShowDialog: true,
-  //     dialogType: type,
-  //   })
-  //   switch(type){
-  //     case '2': 
-  //       this.setData({
-  //         dialogType: 2,
-  //         dialog: {
-  //           title: '课程暂停通知',
-  //           img: '../../images/dialog_img.png',
-  //           des: '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。',
-  //           btn: ['稍后','支付（50.00元）']
-  //         }
-  //       })
-  //     break;
-  //     case '3':
-  //       this.setData({
-  //         dialogType: 3,
-  //         dialog: {
-  //           title: '请假',
-  //           img: '../../images/dialog_img.png',
-  //           des: '您每周每种任务只能请假一次，本次使用类别 [悟]，确定使用吗？',
-  //           btn: ['取消','支付（1.00元）']
-  //         }
-  //       })
-  //     break;
-  //     case '4':
-  //       this.setData({
-  //         dialogType: 4,
-  //         dialog: {
-  //           title: '领取红包',
-  //           img: '../../images/dialog_img.png',
-  //           des: '恭喜您本日全部完成，快来领取红包吧！！！',
-  //           btn: ['稍后','领取']
-  //         }
-  //       })
-  //     break;
-  //     case '5':
-  //       this.setData({
-  //         dialogType: 5,
-  //         dialog: {
-  //           title: '任务失败',
-  //           img: '../../images/dialog_img.png',
-  //           des: '经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。',
-  //           btn: ['取消','重新上传']
-  //         }
-  //       })
-  //     break;
-  //   }
-    
-  // },
+  showDialog(e){
+    let type = e.currentTarget.dataset.type
+    console.log('弹窗类型'+ type)
+    this.setData({
+      isShowDialog: true,
+      dialogType: type,
+    })
+    switch(type){
+      case '2': 
+        this.setData({
+          dialogType: 2,
+          dialog: {
+            title: '课程暂停通知',
+            img: '../../images/dialog_img.png',
+            des: '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。',
+            btn: ['稍后','支付（50.00元）']
+          }
+        })
+      break;
+      case '3':
+        this.setData({
+          dialogType: 3,
+          dialog: {
+            title: '请假',
+            img: '../../images/dialog_img.png',
+            des: '您每周每种任务只能请假一次，本次使用类别 [悟]，确定使用吗？',
+            btn: ['取消','支付（1.00元）']
+          }
+        })
+      break;
+      case '4':
+        this.setData({
+          dialogType: 4,
+          dialog: {
+            title: '领取红包',
+            img: '../../images/dialog_img.png',
+            des: '恭喜您本日全部完成，快来领取红包吧！！！',
+            btn: ['稍后','领取']
+          }
+        })
+      break;
+      case '5':
+        this.setData({
+          dialogType: 5,
+          dialog: {
+            title: '任务失败',
+            img: '../../images/dialog_img.png',
+            des: '经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。',
+            btn: ['取消','重新上传']
+          }
+        })
+      break;
+    }
+  },
 
   // 取消弹窗
   cancelDialog(){
@@ -572,6 +590,19 @@ Page({
     }
   },
 
+  // 跳转到训练上传图片
+  gotoTrainUploadPic(){
+    wx.navigateTo({
+      url: '../train/trainUploadPic',
+    })
+  },
+  
+  // 跳转到训练音频播放
+  gotoTrainAudio(){
+    wx.navigateTo({
+      url: '../train/trainAudio',
+    })
+  },
   
 
 

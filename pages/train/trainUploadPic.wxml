@@ -17,12 +17,17 @@
 			</view>
 		</view>
 		<view class="uploadImg">
-			<view class="upload_item">
+			<!-- <view class="upload_item">
 				<image src="../../images/uploadImg.png"></image>
 			</view>
 			<view class="upload_item">
 				<image src="../../images/uploadImg.png"></image>
-			</view>
+			</view> -->
+			<van-uploader
+				file-list="{{ fileList }}"
+				max-count="2"
+				bind:after-read="afterRead"
+			/>
 		</view>
 	</view>
 	<view class="btn canfinish nofinish">上传照片</view>
