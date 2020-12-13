@@ -12,7 +12,7 @@
         <view class="item_left">
           <view class="item_title">{{item.title}}</view>
           <view class="item_time_author">
-            <text>本周内完成{{item.total}}篇</text>
+            <text>本周须完成{{item.total}}篇</text>
             <text wx:if="{{item.isLearn==0}}">待完成</text>
             <text wx:else class="end">已完成</text>
             <text wx:if="{{item.needLearn}}">必修课</text>

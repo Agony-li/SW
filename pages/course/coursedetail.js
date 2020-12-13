@@ -65,6 +65,21 @@ Page({
     console.log('音频自动播放完')
     this.audioEnd()
   },
+
+  // 确认完成任务提示
+  audioEndDialog(){
+    wx.showModal({
+      title: '提示',
+      content: '是否确认完成该课程!',
+      success (res) {
+        if (res.confirm) {
+          this.audioEnd()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   
   // 完成课程任务方法
   async audioEnd(){

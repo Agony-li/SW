@@ -192,7 +192,7 @@
 				min-date="{{ minDate }}"
 				max-date="{{ maxDate }}"
 				/> -->
-				<van-calendar title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
+				<van-calendar show-title="{{false}}" title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
 			</view>
 		</block>
 		<block wx:else>

@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历
+    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历
     week: 0,
     optionList: [
       
@@ -32,8 +32,8 @@ Page({
     course_num: 0,
     // 月历
     show: false,
-    minDate: new Date(2010, 8, 1).getTime(),
-    maxDate: new Date(2010, 11, 31).getTime(),
+    minDate: new Date(2010, 12, 7).getTime(),
+    maxDate: new Date(2011, 2, 7).getTime(),
     // 弹窗
     isShowDialog: false,
     dialogType: 1, // 1: 周任务提示弹窗 2: 课程暂停通知 3: 请假 4: 领取红包 5: 任务失败

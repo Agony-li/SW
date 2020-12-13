@@ -22,4 +22,4 @@
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
 </view>
-<view class="btn" bindtap="audioEnd">完成任务</view>
+<view class="btn" bindtap="audioEndDialog">完成任务</view>
