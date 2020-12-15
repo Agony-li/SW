@@ -391,6 +391,66 @@
   height: 90rpx !important;
 }
 
+/* 作息时间 */
+.schedule_time {
+  width: 100%;
+  height: 500rpx;
+  background-color: #fff;
+}
+.schedule_table {
+  padding: 24rpx;
+}
+.threeWidth {
+  width: 33.33%;
+}
+.fourWidth {
+  width: 33.33%;
+}
+.schedule_title {
+  display: flex;
+  height: 80rpx;
+  font-size: 25rpx;
+  background: rgba(54, 188, 150, 0.2);
+  align-items: center;
+  font-weight: 700;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
+.schedule_title view {
+  text-align: center;
+}
+.schedule_item {
+  display: flex;
+  background: rgba(54, 188, 150, 0.2);
+  border-top: 1rpx solid #fff;
+}
+.item_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item_title image{
+  width: 25rpx;
+  height: 25rpx;
+  vertical-align: middle;
+  margin-right: 16rpx;
+}
+.schedule_item view {
+  font-size: 25rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-left: 1rpx solid #fff;
+}
+.schedule_item:last-of-type {
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+}
+
+
+
+
+
 /* 弹窗 */
 .shadowBg {
   position: fixed;
@@ -477,3 +537,4 @@
   border-right: 1rpx solid #C1C1C1;
   color: #333333;
 }
+

@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历
+    active_plan: 3, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -52,7 +52,11 @@ Page({
     dong: [],
     mian: [],
     jing: [],
-    na: []
+    na: [],
+    /**
+     * 作息时间
+     */
+    scheduleList: [],
    },
    onReady: function (e) {
     let userInfo = wx.getStorageSync('info')
@@ -245,20 +249,25 @@ Page({
         }
       }
     } else if(data.data.message == '400') {
-      wx.showModal({
-        title: '提醒',
-        content: '请选择作息时间',
-        showCancel: false,
-        confirmText: "确定",
-        success: function (res) {
-          console.log(res)
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/components/scheduleConfig/index?id=',
-            })
-          }
-        }
+      this.setData({
+        active_plan: 3
       })
+      this.geScheduletList()
+      // wx.showModal({
+      //   title: '提醒',
+      //   content: '请选择作息时间',
+      //   showCancel: false,
+      //   confirmText: "确定",
+      //   success: function (res) {
+      //     // 查询作息时间
+      //     // console.log(res)
+      //     // if (res.confirm) {
+      //     //   wx.navigateTo({
+      //     //     url: '/components/scheduleConfig/index?id=',
+      //     //   })
+      //     // }
+      //   }
+      // })
     }
   },
 
@@ -469,11 +478,68 @@ Page({
     });
   },
 
-  
+  // 获取作息时间列表
+  async geScheduletList(id) {
+    let that = this;
+    let { data } = await util.httpRequestWithPromise('/rest/cbti/schendule/config?id='+id, 'GET', '', wx.getStorageSync('key'));
+    if (data.message == 600) {
+      wx.login({
+        success(res) {
+          if (res.code) {
+            //发起网络请求
+            wx.request({
+              url: config.imageUrlPrefix + '/wx/user/wx2f4af9802d72f78a/login',
+              data: {
+                code: res.code
+              },
+              success: function (res) {
+                if (res.statusCode === 200) {
+                  try {
+                    wx.setStorageSync('key', res.data.token);
+                    wx.setStorageSync('info', res.data.userInfo);
+                  } catch (e) {
 
-  // showDialog: function(){
-  //   this.dialog.showDialog();
-  // },
+                  }
+                  that.geScheduletList();
+                } else {
+                  wx.showToast({
+                    title: '登录失败',
+                    icon: 'none',
+                    duration: 2000
+                  })
+
+                }
+
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
+      })
+    } else if(data.message == 601){
+      wx.showModal({
+        title: '提示',
+        content: '请完善个人信息',
+        showCancel: false,
+        confirmText:'确定',
+        success(res){
+          if(res.confirm){
+              wx.navigateTo({
+                url: '../userInfo/index',
+              })
+          }
+        }
+      })
+    }else {
+      console.log('作息时间: ', data.data)
+      that.setData({
+        scheduleList: data.data
+      })
+    }
+  },
+
+
 
   // 展示周任务提示弹窗
   showDialog(e){
