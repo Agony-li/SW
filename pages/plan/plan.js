@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 3, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -57,6 +57,7 @@ Page({
      * 作息时间
      */
     scheduleList: [],
+    scheduleId: '', // 选中的作息时间id
    },
    onReady: function (e) {
     let userInfo = wx.getStorageSync('info')
@@ -535,6 +536,39 @@ Page({
       console.log('作息时间: ', data.data)
       that.setData({
         scheduleList: data.data
+      })
+    }
+  },
+
+  // 选择作息时间
+  chooseSchedule(e){
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      scheduleId: id
+    })
+  },
+
+  // 保存作息时间
+  saveSchedule(){
+    if(this.data.scheduleId){
+      this.saveSchendule()
+    } else {
+      wx.showToast({
+        title:'请选择作息时间',
+        icon: 'none'
+      })
+    }
+  },
+
+  async saveSchendule() {
+    let id = this.data.scheduleId
+    let { data } = await util.httpRequestWithPromise('/rest/cbti/schendule/save?id='+ id, 'GET', '', wx.getStorageSync('key'));
+    if(data.message == '200') {
+      this.setData({
+        active_plan: 1
+      })
+      wx.showToast({
+        title: '选择成功',
       })
     }
   },

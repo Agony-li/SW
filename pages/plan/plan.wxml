@@ -200,46 +200,41 @@
 				<van-calendar show-title="{{false}}" title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
 			</view>
 			<!-- 作息时间选择 -->
-			<view class="schedule_time">
-				<view class="schedule_table">
-					<view class="schedule_title">
-						<view class="fourWidth"></view>
-						<view class="fourWidth">动</view>
-						<view class="fourWidth">眠</view>
-						<view class="fourWidth">静</view>
-					</view>
-					<block wx:for="{{scheduleList}}" wx:key="index">
-						<view class="schedule_item">
-							<view class="fourWidth item_title">
-								<image src="../../images/schedule_unselect.png"></image>
-								<text>{{item.title}}</text>
+			<block wx:if="{{plan_start&&active_plan==3}}">
+				<view class="schedule_time">
+					<view class="schedule_table">
+						<view class="schedule_title">
+							<view class="fourWidth"></view>
+							<view class="fourWidth">动</view>
+							<view class="fourWidth">眠</view>
+							<view class="fourWidth">静</view>
+						</view>
+						<block wx:for="{{scheduleList}}" wx:key="index">
+							<view class="schedule_item {{item.id == scheduleId? 'schedule_item_active': ''}}" bindtap="chooseSchedule" data-id="{{item.id}}">
+								<view class="fourWidth item_title ">
+									<image wx:if="{{item.id == scheduleId}}" src="../../images/schedule_select.png"></image>
+									<image wx:else src="../../images/schedule_unselect.png"></image>
+									<text>{{item.title}}</text>
+								</view>
+								<view class="fourWidth">{{item.sportStartTime}}-{{item.sportEndTime}}</view>
+								<view class="fourWidth">{{item.sleepStartTime}}-{{item.sleepEndTime}}</view>
+								<view class="fourWidth">{{item.logStartTime}}-{{item.logEndTime}}</view>
 							</view>
-							<view class="fourWidth">{{item.sportStartTime}}-{{item.sportEndTime}}</view>
-							<view class="fourWidth">{{item.sleepStartTime}}-{{item.sleepEndTime}}</view>
-							<view class="fourWidth">{{item.logStartTime}}-{{item.logEndTime}}</view>
+						</block>
+						<view class="schedule_tip">
+							<view class="tip_circle"></view>
+							<view class="tip_des">请选择您的作息时间，我们将根据您的作息选择，判断训练计划是否达标。</view>
 						</view>
-					</block>
-					
-					<!-- <view class="schedule_item">
-						<view class="fourWidth item_title">
-							<image src="../../images/schedule_select.png"></image>
-							<text>作息1</text>
+						<view class="schedule_tip">
+							<view class="tip_circle"></view>
+							<view class="tip_des">一旦选择后，将无法更改，请慎重选择。</view>
 						</view>
-						<view class="fourWidth">5:30-7:30</view>
-						<view class="fourWidth">5:30-7:30</view>
-						<view class="fourWidth">5:30-7:30</view>
 					</view>
-					<view class="schedule_item">
-						<view class="fourWidth item_title">
-							<image src="../../images/schedule_unselect.png"></image>
-							<text>作息1</text>
-						</view>
-						<view class="fourWidth">5:30-7:30</view>
-						<view class="fourWidth">5:30-7:30</view>
-						<view class="fourWidth">5:30-7:30</view>
-					</view> -->
 				</view>
-			</view>
+				<view class="btn course_btn" bindtap="saveSchedule">
+					<text>选择该作息时间</text>
+				</view>
+			</block>
 		</block>
 		<block wx:else>
 			<view>

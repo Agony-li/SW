@@ -68,12 +68,13 @@ Page({
 
   // 确认完成任务提示
   audioEndDialog(){
+    let that = this
     wx.showModal({
       title: '提示',
       content: '是否确认完成该课程!',
       success (res) {
         if (res.confirm) {
-          this.audioEnd()
+          that.audioEnd()
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -89,6 +90,7 @@ Page({
         title: '提示',
         content: '您已完成本课时!',
         success (res) {
+          console.log(res)
           if (res.confirm) {
             wx.navigateBack({
               delta: 1
