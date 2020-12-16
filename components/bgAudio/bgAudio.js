@@ -44,6 +44,7 @@ Component({
         value: 0,
         duration: '00:00'
       })
+      this.triggerEvent('endAutoPlay')
     })
     wx.getBackgroundAudioManager()
     wx.setInnerAudioOption({
