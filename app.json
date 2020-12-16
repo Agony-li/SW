@@ -24,6 +24,7 @@
     "components/myCoupons/index",
     "components/helpCenter/helpCenter",
     "components/testIntro/testIntro",
+    "components/bgAudio/bgAudio",
 
     "pages/CBTI/index",
     "pages/strategy/strategy",

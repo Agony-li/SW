@@ -11,7 +11,15 @@ Page({
   data: {
     courseId: '',
     detail:null,
-    audio: {},
+    /**
+     * 音频信息
+     */
+    bgAudio: {
+      // src: 'https://music.163.com/song/media/outer/url?id=32526653.mp3', // 音频链接
+      // title: '冰与火之歌', // 标题
+      // singer: 'Ramin Djawadi' // 作者
+    }, // 音频属性
+    max: 105, // 后台返回的音频时长 s
     imageUrlPrefix: config.imageUrlPrefix
   },
 
@@ -36,14 +44,14 @@ Page({
       let fileUpload = data.data.data.fileUploadList[0]
       // audioContext.src = this.data.imageUrlPrefix+fileUpload.fileUrl
       let audio = {
-        name: fileUpload.fileName,
-        author: fileUpload.createBy, 
-        poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
+        title: fileUpload.fileName,
+        singer: fileUpload.createBy, 
+        // poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
         src: this.data.imageUrlPrefix+fileUpload.fileUrl,
       }
       this.setData({
         detail:data.data.data,
-        audio: audio
+        bgAudio: audio
       })
       
     }

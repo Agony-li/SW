@@ -11,13 +11,8 @@
   </view>
   <view class="article_content">
     <view class="article_audio">
-      <audio poster="{{audio.poster}}" name="{{audio.name}}" author="{{audio.author}}" src="{{audio.src}}" id="myAudio" controls bindtap="audioPlay" bindended="endAutoPlay"></audio>
-      <!-- <view class="pauseBtn">
-        <image src="../../images/pause.png" bindtap="play"></image>
-      </view>
-      <view class="audioTitle">
-        <view>{{audio.name}}</view>
-      </view> -->
+      <bgAudio max="{{max}}" bgAudio="{{bgAudio}}"></bgAudio>
+      <!-- <audio poster="{{audio.poster}}" name="{{audio.name}}" author="{{audio.author}}" src="{{audio.src}}" id="myAudio" controls bindtap="audioPlay" bindended="endAutoPlay"></audio> -->
     </view>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
