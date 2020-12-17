@@ -380,8 +380,7 @@
 /* 月历 */
 .yueli{
   width: 100%;
-  height: 550rpx;
-  background-color: pink;
+  border-bottom-left-radius: 12rpx;
 }
 .calendar {
   --calendar-height: 700rpx;
@@ -389,6 +388,25 @@
 }
 .van-calendar__day {
   height: 90rpx !important;
+}
+.yueli_tip {
+  background-color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0 50rpx 40rpx;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+}
+.tip_arl {
+  width: 19rpx;
+  height: 19rpx;
+  background-color: #36BC96;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+.tip_des {
+  font-size: 25rpx;
 }
 
 /* 作息时间 */

@@ -33,8 +33,15 @@ var Arabia_To_SimplifiedChinese = function(num){
   return tmpnewchar
 }
 
+// 月份补0操作
+var perfectMonth = function(yearmonth){
+  var month = yearmonth.split('-')[1]
+  return month < 10 ? '0'+month : month
+}
+
 module.exports = {
   articleDate: articleDate,
   splitDate: splitDate,
-  Arabia_To_SimplifiedChinese: Arabia_To_SimplifiedChinese
+  Arabia_To_SimplifiedChinese: Arabia_To_SimplifiedChinese,
+  perfectMonth: perfectMonth
 }

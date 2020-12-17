@@ -11,10 +11,10 @@
   </view>
   <view class="article_content">
     <view class="article_audio">
-      <bgAudio bind:endAutoPlay="endAutoPlay" max="{{max}}" bgAudio="{{bgAudio}}"></bgAudio>
+      <bgAudio bind:endAutoPlay="endAutoPlay" bgAudio="{{bgAudio}}"></bgAudio>
       <!-- <audio poster="{{audio.poster}}" name="{{audio.name}}" author="{{audio.author}}" src="{{audio.src}}" id="myAudio" controls bindtap="audioPlay" bindended="endAutoPlay"></audio> -->
     </view>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
 </view>
-<view class="btn" bindtap="audioEndDialog">完成任务</view>
+<!-- <view class="btn" bindtap="audioEndDialog">完成任务</view> -->

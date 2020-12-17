@@ -45,6 +45,7 @@
 }
 .audio_author {
   font-size: 24rpx;
+  color: #999999;
 }
 .slider {
   margin: 0;

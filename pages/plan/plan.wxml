@@ -188,16 +188,11 @@
 			</view>
 			<!-- 月历 -->
 			<view wx:if="{{plan_start&&active_plan==2}}" class="yueli">
-				<!-- <van-calendar  
-				type="multiple" 
-				color="#36BC96" 
-				poppable="{{ false }}" 
-				show-confirm="{{ false }}" 
-				class="calendar"
-				min-date="{{ minDate }}"
-				max-date="{{ maxDate }}"
-				/> -->
-				<van-calendar show-title="{{false}}" title="" type="multiple" color="#36BC96" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" min-date="{{ minDate }}" max-date="{{ maxDate }}" />
+				<calendar></calendar>
+				<view class="yueli_tip">
+					<view class="tip_arl"></view>
+					<view class="tip_des">当日完成任务</view>
+				</view>
 			</view>
 			<!-- 作息时间选择 -->
 			<block wx:if="{{plan_start&&active_plan==3}}">

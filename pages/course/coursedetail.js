@@ -19,7 +19,7 @@ Page({
       // title: '冰与火之歌', // 标题
       // singer: 'Ramin Djawadi' // 作者
     }, // 音频属性
-    max: 105, // 后台返回的音频时长 s
+    // max: 105, // 后台返回的音频时长 s
     imageUrlPrefix: config.imageUrlPrefix
   },
 
@@ -45,7 +45,7 @@ Page({
       // audioContext.src = this.data.imageUrlPrefix+fileUpload.fileUrl
       let audio = {
         title: fileUpload.fileName,
-        singer: fileUpload.createBy, 
+        singer: '播放完毕即完成课程', 
         // poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
         src: this.data.imageUrlPrefix+fileUpload.fileUrl,
       }

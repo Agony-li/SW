@@ -25,6 +25,7 @@
     "components/helpCenter/helpCenter",
     "components/testIntro/testIntro",
     "components/bgAudio/bgAudio",
+    "components/calendar/calendar",
 
     "pages/CBTI/index",
     "pages/strategy/strategy",

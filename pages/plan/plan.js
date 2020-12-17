@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       

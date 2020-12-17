@@ -1,0 +1,33 @@
+<wxs src="../../utils/filter.wxs"  module="filter"></wxs>
+<view class="calendar">
+  <!-- 月份切换 -->
+  <view class="current_month">
+    <view class="last_month" bindtap="cutLastMonth">
+      <block wx:if="{{lastYearMonth}}">
+        <image src="../../images/left.png"></image>
+        <text>{{filter.perfectMonth(lastYearMonth)}}月</text>
+      </block>
+    </view>
+    <view class="curr_month">{{currentYear}}年{{currentMonth}}月</view>
+    <view class="next_month" bindtap="cutNextMonth">
+      <block wx:if="{{nextYearMonth}}">
+        <text>{{filter.perfectMonth(nextYearMonth)}}月</text>
+        <image src="../../images/right.png"></image>
+      </block>
+    </view>
+  </view>
+  <!-- 星期 -->
+  <view class="week">
+    <view>日</view>
+    <view>一</view>
+    <view>二</view>
+    <view>三</view>
+    <view>四</view>
+    <view>五</view>
+    <view>六</view>
+  </view>
+  <!-- 日期 -->
+  <view class="date">
+    <view wx:for="{{allDateArr}}" wx:key="index" class="{{item.month}} {{item.choose}}">{{item.dateNum}}</view>
+  </view>
+</view>

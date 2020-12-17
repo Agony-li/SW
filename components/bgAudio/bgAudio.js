@@ -28,7 +28,7 @@ Component({
     //   title: '冰与火之歌', // 标题
     //   singer: 'Ramin Djawadi' // 作者
     // }, // 音频属性
-    // max: 105, // 后台返回的音频时长 s
+    max: '', // 后台返回的音频时长 s
     interval: '',
     isPlay: 0, // 播放状态 0:未播放 1:已播放
     duration: '00:00', // 时长 s(秒) 
@@ -70,6 +70,15 @@ Component({
       this.setData({
         isPlay: 0,
       })
+    })
+    
+    // 监听背景音乐播放进度更新事件
+    bgAudioManager.onTimeUpdate(() => {
+      if(this.data.max == ''){
+        this.setData({
+          max: bgAudioManager.duration
+        })
+      }
     })
   },
   moved: function(){},
@@ -140,7 +149,7 @@ Component({
     },
     // 秒转换成 分:秒 (需要小时自己扩展)
     timesToMinutesAndTimes(duration){
-      if (duration == 0) {
+      if (duration <= 0) {
         return '00:00'
       }
       let minutes = parseInt(duration/60) < 10 ? '0'+parseInt(duration/60): parseInt(duration/60)
