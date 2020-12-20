@@ -3,16 +3,16 @@
 <view class="mastersaid_list">
   <view class="list_tab">
     <block wx:for="{{contentList}}" wx:key="index">
-      <view bindtap="currentTab" data-type="{{item.courseType}}" class="tab_title {{course_active==item.courseType? 'active':''}}">{{item.name}}</view>
+      <view bindtap="currentTab" data-type="{{item.id}}" class="tab_title {{course_active==item.id? 'active':''}}">{{item.name}}</view>
     </block>
   </view>
   <view class="article_list" wx:if="{{courseList.length > 0}}">
     <block wx:for="{{courseList}}" wx:key="index">
-      <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.courseid}}'>
+      <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
         <view class="item_left">
           <view class="item_title">{{item.title}}</view>
           <view class="item_time_author">
-            <text>本周须完成{{item.total}}篇</text>
+            <text>本周须完成{{total}}篇</text>
             <text wx:if="{{item.isLearn==0}}">待完成</text>
             <text wx:else class="end">已完成</text>
             <text wx:if="{{item.needLearn}}">必修课</text>

@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -104,6 +104,12 @@
 					"name": "课程详情",
 					"pathName": "pages/course/coursedetail",
 					"query": "id=185f01f69f3611eaa36e525400b4248d",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "睡眠测评",
+					"pathName": "components/sleepTest/index",
 					"scene": null
 				}
 			]

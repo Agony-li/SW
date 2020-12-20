@@ -78,9 +78,15 @@ Page({
     let isCheck = await  util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=slepping_test&type=2', 'GET', '', wx.getStorageSync('key'));
     try {
       var value = wx.getStorageSync('key');
-      console.info('value' + value);
-      console.info('isCheck' + isCheck);
+      console.info('value', value);
+      console.info('isCheck', isCheck);
       if (value && isCheck.data.message != '600') {
+        // 调试修改
+        wx.navigateTo({
+          url: '../../components/testIntro/testIntro',
+        })
+
+        
         if(isCheck.data.message=='200'){
           // that.closeTotest();
           console.log('应该弹窗')

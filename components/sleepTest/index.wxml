@@ -1,137 +1,106 @@
 <import src="../../wxParse/wxParse.wxml" />
 
 <view class="containers">
-  <block wx:if="{{!isShowResult}}">
+	<block wx:if="{{!isShowResult}}">
 
+		<view class="progress-content">
+			<progress percent="{{finishP}}" activeColor="#00BFFF" backgroundColor="#ECECEC" border-radius="8" />
+			<view class="progress-num">
+				{{testInfo.current}}/{{testInfo.total}}
+			</view>
+		</view>
+		<view class="test-content">
 
-    <view class="progress-content">
-            <progress percent="{{finishP}}"   activeColor="#00BFFF" backgroundColor="#ECECEC" border-radius="8"/>
-            <view class="progress-num">
-                {{testInfo.current}}/{{testInfo.total}}
-            </view>
-    </view>
-    <view class="test-content">
+			<view class="question-name">
+				<block wx:if="{{testType == 'phq'}}">
+					在过去的两周里,您生活中是否出现以下症状，出现的频率是多少?
+				</block>
+				<block wx:elif="{{testType == 'sas'}}">
+					在过去的两周里,您生活中是否出现以下症状，出现的频率是多少?
+				</block>
+				<block wx:else>
+					<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+				</block>
+			</view>
+			<view class="question-choice" wx:for="{{testInfo.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.id" bindtap="choiceAnswer" data-id="{{test.dictCode}}">
+				<image wx:if="{{currentId==test.id}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				</image>
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
 
+				<view class="word-box">
+					<text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
+				</view>
 
-      <view class="question-name">
-        <block wx:if="{{testType == 'phq'}}">
-            在过去的两周里,您生活中是否出现以下症状，出现的频率是多少?
-        </block>
-        <block wx:elif="{{testType == 'sas'}}">
-            在过去的两周里,您生活中是否出现以下症状，出现的频率是多少?
-        </block>
-        <block wx:else>
-          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-        </block>
-      </view>
-      <view class="question-choice" wx:for="{{testInfo.childList}}" wx:for-item="test" wx:for-index="testIndex"
-        wx:key="test.id" bindtap="choiceAnswer" data-id="{{test.dictCode}}">
-        <image wx:if="{{currentId==test.id}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
-          mode="widthFix" lazy-load="false" binderror="" bindload="">
-        </image>
-        <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
-          binderror="" bindload=""></image>
+			</view>
+			<block wx:if="{{testInfo.dictCode == '0016'}}">
+				BMI指数计算器：
+				<view class="word-box">
+					<input type="text" placeholder="请输入您的体重(kg)" style="margin-top:10px" bindinput="getBMI" value="{{kg}}" data-type="kg" />
 
-        <view class="word-box">
-          <text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
-        </view>
+				</view>
+				<view class="word-box">
+					<input type="text" placeholder="请输入您的身高(cm)" style="margin-top:10px" bindinput="getBMI" value="{{cm}}" data-type="cm" />
+				</view>
+				<view class="word-box">
+					BMI指数： <label>{{resultItem}}</label>
+				</view>
+			</block>
 
-      </view>
-      <block wx:if="{{testInfo.dictCode == '0016'}}">
-      BMI指数计算器：
-        <view class="word-box">
-          <input type="text" placeholder="请输入您的体重(kg)" style="margin-top:10px" bindinput="getBMI" value="{{kg}}"
-            data-type="kg" />
+		</view>
 
-        </view>
-        <view class="word-box">
-          <input type="text" placeholder="请输入您的身高(cm)" style="margin-top:10px" bindinput="getBMI" value="{{cm}}"
-            data-type="cm" />
-        </view>
-        <view class="word-box">
-          BMI指数： <label>{{resultItem}}</label>
-        </view>
-      </block>
+		<view class="test-content">
+			<block wx:for="{{lbList}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
+				<view class="question-name">
+					{{itemIndex + 1}}.{{item.dictLabel}}
+				</view>
+				<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.id" bindtap="choiceOtherAnswer" data-id="{{test.dictCode}}" data-value="{{item.dictCode}}">
+					<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+					</image>
+					<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+					<view class="word-box">
+						<text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
+					</view>
+				</view>
+			</block>
+		</view>
 
-
-
-      <!-- <view class="question-choice">
-                <image class="choice-image" src="../../image/check-circle-fill@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>
-                <view class="word-box" >
-                        <text class="choice-detail" selectable="false" space="false" decode="false">A. 没有</text>
-                </view>
-                
-            </view>  -->
-    </view>
-
-    <view class="test-content">
-    
-      <block wx:for="{{lbList}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
-
-        <view class="question-name">
-          {{itemIndex + 1}}.{{item.dictLabel}}
-        </view>
-        <view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex"
-          wx:key="test.id" bindtap="choiceOtherAnswer" data-id="{{test.dictCode}}" data-value="{{item.dictCode}}">
-          <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
-            mode="widthFix" lazy-load="false" binderror="" bindload="">
-          </image>
-          <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false"
-            binderror="" bindload=""></image>
-
-          <view class="word-box">
-            <text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
-          </view>
-        </view>
-      </block>
-    </view>
-
-    <view class="pre-next-content" hover-class="none" hover-stop-propagation="false">
-      <view class="pre-next-btn" bindtap="endTest" style="margin-right: 20rpx;">
-        终止测试
-      </view>
-      <view class="pre-next-btn" style="margin-right: 20rpx;"
-        data-type='1' bindtap="nextQuestion" data-sort="{{testInfo.treeSort}}">
-        上一题
-      </view>
-      <view class="pre-next-btn" wx:if="{{current < total && ( testType == 'spiritual' && testInfo.treeSort == '30') || (testType == 'slepping_test' && testInfo.treeSort != '210') || ( testType == 'restless_legs' && testInfo.treeSort != '150') || ( testType == 'plm' && testInfo.treeSort != '180') || ( testType == 'apnea' && testInfo.treeSort != '420')}}" bindtap="nextQuestion" data-type='2'
-        data-sort="{{testInfo.treeSort}}">
-        下一题
-      </view>
-      <view class="submit-btn" wx:if="{{ (testType == 'slepping_test' && testInfo.treeSort == '210') || ( testType != 'slepping_test' && testInfo.treeSort == '150') ||  ( testType != 'slepping_test' && testInfo.treeSort == '180')  || ( testType != 'slepping_test' && testInfo.treeSort == '420') || (testType == 'spiritual' && testInfo.treeSort != '30')}}" data-type='2' bindtap="submit"
-        data-sort="{{testInfo.treeSort}}">
-        下一题
-      </view>
-      <view class="submit-btn" wx:if="{{lbList.length > 0}}" bindtap="submitLb" data-type='2'>
-        下一题
-      </view>
-    </view>
-  </block>
-  <block wx:else>
-    <view class="weui-panel__bd">
-      <block wx:for="{{resultList}}" wx:for-item="item">
-
-
-        <navigator open-type="navigate" url="../../components/lessonContent/index?id={{item.id}}&from=2"
-          class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.image}}" />
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.title}}</view>
-            <view class="weui-media-box__desc">{{item.createDate}}</view>
-          </view>
-        </navigator>
-      </block>
-    </view>
-  </block>
-  <modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm"
-    no-cancel="{{nocancel}}">
-    {{content}}
-  </modal>
-  <modal hidden="{{notifyHidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindconfirm="ok" no-cancel="true">
-    {{notifyContent}}
-  </modal>
+		<view class="pre-next-content" hover-class="none" hover-stop-propagation="false">
+			<view class="pre-next-btn" bindtap="endTest" style="margin-right: 20rpx;">
+				终止测试
+			</view>
+			<view class="pre-next-btn" style="margin-right: 20rpx;" data-type='1' bindtap="nextQuestion" data-sort="{{testInfo.treeSort}}">
+				上一题
+			</view>
+			<view class="pre-next-btn" wx:if="{{current < total && ( testType == 'spiritual' && testInfo.treeSort == '30') || (testType == 'slepping_test' && testInfo.treeSort != '210') || ( testType == 'restless_legs' && testInfo.treeSort != '150') || ( testType == 'plm' && testInfo.treeSort != '180') || ( testType == 'apnea' && testInfo.treeSort != '420')}}" bindtap="nextQuestion" data-type='2' data-sort="{{testInfo.treeSort}}">
+				下一题
+			</view>
+			<view class="submit-btn" wx:if="{{ (testType == 'slepping_test' && testInfo.treeSort == '210') || ( testType != 'slepping_test' && testInfo.treeSort == '150') ||  ( testType != 'slepping_test' && testInfo.treeSort == '180')  || ( testType != 'slepping_test' && testInfo.treeSort == '420') || (testType == 'spiritual' && testInfo.treeSort != '30')}}" data-type='2' bindtap="submit" data-sort="{{testInfo.treeSort}}">
+				下一题
+			</view>
+			<view class="submit-btn" wx:if="{{lbList.length > 0}}" bindtap="submitLb" data-type='2'>
+				下一题
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="weui-panel__bd">
+			<block wx:for="{{resultList}}" wx:for-item="item">
+				<navigator open-type="navigate" url="../../components/lessonContent/index?id={{item.id}}&from=2" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+					<view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+						<image class="weui-media-box__thumb" src="{{item.image}}" />
+					</view>
+					<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+						<view class="weui-media-box__title">{{item.title}}</view>
+						<view class="weui-media-box__desc">{{item.createDate}}</view>
+					</view>
+				</navigator>
+			</block>
+		</view>
+	</block>
+	<modal hidden="{{hidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
+		{{content}}
+	</modal>
+	<modal hidden="{{notifyHidden}}" title="提示" confirm-text="确定" cancel-text="取消" bindconfirm="ok" no-cancel="true">
+		{{notifyContent}}
+	</modal>
 </view>

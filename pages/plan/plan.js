@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -213,32 +213,31 @@ Page({
   // 获取课程信息
   async checkTest(){
     let that = this;
-    let data = await util.httpRequestWithPromise('/rest/cbti/mine','GET','', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise('/rest/ryqke/coursetype','GET','', wx.getStorageSync('key'));
     console.log('获取课程信息', data);
     if(data.data.message == '200'){
-      if(data.data.maps.length === 0){
+      if(data.data.data.length === 0){
         // wx.navigateTo({
         //   url: '../../components/sleepTest/index?testType=slepping_test'
         // })
       }else{
-        let arr = [];
-        (data.data.maps).map(item =>{
-           arr.push({
-             name:item.dict_label,
-             remarks: item.remarks,
-             courseType:item.course_type,
-             icon:item.description.split('|')[0],
-             icon_active:item.description.split('|')[1],
-           })
-        })
+        // let arr = [];
+        // (data.data.maps).map(item =>{
+        //    arr.push({
+        //      name:item.dict_label,
+        //      remarks: item.remarks,
+        //      courseType:item.course_type,
+        //      icon:item.description.split('|')[0],
+        //      icon_active:item.description.split('|')[1],
+        //    })
+        // })
+        let arr = data.data.data;
         that.setData({
-          contentList:arr,
+          contentList: arr,
           chooseContent: arr[0],
-          week: data.data.week,
-          course_active: data.data.maps[0].course_type
+          // week: data.data.week,
+          course_active: arr[0].id
         })
-        // 获取课程数量
-        this.getCourseNum(data.data.maps[0].course_type)
         if (data.data.week == 0) {
           this.setData({
             plan_start: false
@@ -273,60 +272,60 @@ Page({
   },
 
   // 获取课程数量
-  async getCourseNum(course_type) {
-    let data = await util.httpRequestWithPromise(`/rest/cbti/course/${course_type}?op=2`, 'get', '', wx.getStorageSync('key'));
-    console.log('获取课程数量', data)
-    if (data.statusCode === 200) {
-      this.setData({
-        course_num: data.data.total
-      })
-    }
-  },
+  // async getCourseNum(course_type) {
+  //   let data = await util.httpRequestWithPromise(`/rest/cbti/course/${course_type}?op=2`, 'get', '', wx.getStorageSync('key'));
+  //   console.log('  ', data)
+  //   if (data.statusCode === 200) {
+  //     this.setData({
+  //       course_num: data.data.total
+  //     })
+  //   }
+  // },
 
   // 
-  async checkType(option){
-    var key =  wx.getStorageSync('key');
-    if(!key) {
-        this.showDialog();
-        return;
-    }
-    let that = this;
-    let type = option.currentTarget.dataset.type;
-    if (type == 0){
-        wx.showModal({
-          title: '温馨提示',
-          content: '查看课程前请先进行睡眠测试并购买课程!',
-          confirmText: "确定",
-          cancelText: "取消",
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../../components/sleepTest/index?testType=slepping_test'
-              })
-            } else {
-              console.log('用户点击辅助操作')
-            }
-          }
-        });        
-      } else {
-      if (that.data.week == 0) {
-          wx.showModal({
-            content: '请于下周一开始课程学习!',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              }
-            }
-          });
-        } else  {
-        console.info(that.data.week)
-          wx.navigateTo({
-            url: 'list?type=' + type + "&week=" + that.data.week
-          })
-        }
-      }
-  },
+  // async checkType(option){
+  //   var key =  wx.getStorageSync('key');
+  //   if(!key) {
+  //       this.showDialog();
+  //       return;
+  //   }
+  //   let that = this;
+  //   let type = option.currentTarget.dataset.type;
+  //   if (type == 0){
+  //       wx.showModal({
+  //         title: '温馨提示',
+  //         content: '查看课程前请先进行睡眠测试并购买课程!',
+  //         confirmText: "确定",
+  //         cancelText: "取消",
+  //         success: function (res) {
+  //           if (res.confirm) {
+  //             wx.navigateTo({
+  //               url: '../../components/sleepTest/index?testType=slepping_test'
+  //             })
+  //           } else {
+  //             console.log('用户点击辅助操作')
+  //           }
+  //         }
+  //       });        
+  //     } else {
+  //     if (that.data.week == 0) {
+  //         wx.showModal({
+  //           content: '请于下周一开始课程学习!',
+  //           showCancel: false,
+  //           success: function (res) {
+  //             if (res.confirm) {
+  //               console.log('用户点击确定')
+  //             }
+  //           }
+  //         });
+  //       } else  {
+  //       console.info(that.data.week)
+  //         wx.navigateTo({
+  //           url: 'list?type=' + type + "&week=" + that.data.week
+  //         })
+  //       }
+  //     }
+  // },
 
   // 是否需要补救
   async confirmClass() {
@@ -455,13 +454,12 @@ Page({
       course_active: type,
       chooseContent: chooseContent
     })
-    this.getCourseNum(type)
   },
 
   // 跳转到课程列表页
   gotoCourseList(){
     wx.navigateTo({
-      url: '../course/courselist?course_active='+this.data.course_active+'&week='+this.data.week,
+      url: '../course/courselist?course_active='+this.data.course_active,
     })
   },
 

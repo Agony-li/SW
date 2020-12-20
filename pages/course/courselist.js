@@ -7,10 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    week:0, //当前周
     contentList: [], // 课程分类
     courseList: [], // 课程列表
-    course_active: '' // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
+    course_active: '', // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
+    total: '', // 本周必须完成总数
   },
 
   /**
@@ -20,7 +20,6 @@ Page({
     if(options.course_active){
       this.setData({
         course_active: options.course_active,
-        week: options.week
       })
     }
     this.checkTest()
@@ -30,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getCourseList(this.data.course_active)
+    // this.getCourseList(this.data.course_active)
   },
 
   // 切换tab
@@ -45,36 +44,25 @@ Page({
   // 获取课程信息
   async checkTest(){
     let that = this;
-    let data = await util.httpRequestWithPromise('/rest/cbti/mine','GET','', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise('/rest/ryqke/coursetype','GET','', wx.getStorageSync('key'));
     console.log('获取课程信息', data);
     if(data.data.message == '200'){
-      if(data.data.maps.length === 0){
-        
-      }else{
-        let arr = [];
-        (data.data.maps).map(item =>{
-           arr.push({
-             name:item.dict_label,
-             courseType:item.course_type,
-             icon:item.description.split('|')[0],
-             icon_active:item.description.split('|')[1],
-           })
-        })
-        that.setData({
-          contentList:arr,
-        })
-        this.getCourseList(this.data.course_active)
-      }
+      let arr = data.data.data;
+      that.setData({
+        contentList:arr,
+      })
+      this.getCourseList(this.data.course_active)
     }
   },
 
   // 获取课程列表
   async getCourseList(type) {
-    let data = await util.httpRequestWithPromise(`/rest/cbti/tasklist?coursetype=`+type, 'get', '', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise(`/rest/ryqke/courselist?courseType=`+type, 'get', '', wx.getStorageSync('key'));
     console.log('获取课程列表', data)
     if (data.statusCode === 200) {
       this.setData({
-        courseList: data.data.data
+        courseList: data.data.data,
+        total: data.data.total
       })
     }
   },

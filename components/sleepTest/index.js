@@ -94,7 +94,6 @@ Page({
     onShow() {
     },
     async getTestList(type, sort) {
-      console.info('getTestList:')
         var that = this;
         var sortUrl = "";
         console.info(sort);
@@ -107,6 +106,7 @@ Page({
         }
         let data = await util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=' + type +'' + sortUrl + ''+dictCodeUrl+ '&type=2', 'GET', '', wx.getStorageSync('key'));
         if (data.statusCode === 200) {
+          console.log(data.data);
             if (data.data.message == '200') {
                 if(data.data.data.current == 11) {
                   var info = wx.getStorageSync('info');

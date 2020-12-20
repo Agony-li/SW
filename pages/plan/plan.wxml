@@ -84,10 +84,10 @@
 				<view class="course">
 					<view class="course_icon">
 						<block wx:for="{{contentList}}" wx:key="index">
-							<view class="course_item" bindtap="currentCourse" data-type="{{item.courseType}}" data-index="{{index}}">
+							<view class="course_item" bindtap="currentCourse" data-type="{{item.id}}" data-index="{{index}}">
 								<view>{{item.name}}</view>
-								<image mode="heightFix" hidden="{{course_active==item.courseType}}" src="{{item.icon}}"></image>
-								<image mode="heightFix" hidden="{{course_active!=item.courseType}}" src="{{item.icon_active}}"></image>
+								<image mode="heightFix" hidden="{{course_active==item.id}}" src="{{item.icon}}"></image>
+								<image mode="heightFix" hidden="{{course_active!=item.id}}" src="{{item.icon_active}}"></image>
 							</view>
 						</block>
 					</view>
@@ -97,7 +97,7 @@
 				</view>
 				<view class="btn course_btn" bindtap="gotoCourseList">
 					<text>进入课程</text>
-					<text class="course_num">{{course_num}}</text>
+					<text class="course_num">{{chooseContent.num}}</text>
 				</view>
 			</view>
 			<!-- 任务 -->
