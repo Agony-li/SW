@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -107,9 +107,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "睡眠测评",
 					"pathName": "components/sleepTest/index",
+					"query": "testType=slepping_test&type=2",
 					"scene": null
 				}
 			]
