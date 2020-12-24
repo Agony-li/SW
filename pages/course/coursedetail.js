@@ -35,7 +35,7 @@ Page({
 
   // 获取课程详情
   async getCourseDetail(id) {
-    let data = await util.httpRequestWithPromise(`/rest/cbti/course?id=${id}`, 'get', '', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise(`/rest/ryqke/coursedetail?id=${id}`, 'get', '', wx.getStorageSync('key'));
     console.log('获取课程详情', data.data.data)
     if (data.statusCode === 200) {
       if(data.data.data.content!=undefined){
@@ -92,7 +92,7 @@ Page({
   
   // 完成课程任务方法
   async audioEnd(){
-    let data = await util.httpRequestWithPromise('/rest/evaluationProgramLearn/done?courseId='+this.data.courseId,'GET','',wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise('/rest/ryqke/coursedone?id='+this.data.courseId,'GET','',wx.getStorageSync('key'));
     if(data.data.result == "true") {
       wx.showModal({
         title: '提示',

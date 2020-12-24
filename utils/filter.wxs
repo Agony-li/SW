@@ -20,15 +20,15 @@ var splitDate = function(date){
 var Arabia_To_SimplifiedChinese = function(num){
   var tmpnewchar = '一'
   switch (num) {
-    case "1": tmpnewchar = "一"; break;
-    case "2": tmpnewchar = "二"; break;
-    case "3": tmpnewchar = "三"; break;
-    case "4": tmpnewchar = "四"; break;
-    case "5": tmpnewchar = "五"; break;
-    case "6": tmpnewchar = "六"; break;
-    case "7": tmpnewchar = "七"; break;
-    case "8": tmpnewchar = "八"; break;
-    case "9": tmpnewchar = "九"; break;
+    case 1: tmpnewchar = "一"; break;
+    case 2: tmpnewchar = "二"; break;
+    case 3: tmpnewchar = "三"; break;
+    case 4: tmpnewchar = "四"; break;
+    case 5: tmpnewchar = "五"; break;
+    case 6: tmpnewchar = "六"; break;
+    case 7: tmpnewchar = "七"; break;
+    case 8: tmpnewchar = "八"; break;
+    case 9: tmpnewchar = "九"; break;
   }
   return tmpnewchar
 }

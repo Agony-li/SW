@@ -92,7 +92,7 @@
 						</block>
 					</view>
 					<view class="course_des">
-						{{chooseContent.remarks}}
+						{{chooseContent.content}}
 					</view>
 				</view>
 				<view class="btn course_btn" bindtap="gotoCourseList">
@@ -104,16 +104,16 @@
 			<view wx:if="{{plan_start&&active_plan==1}}">
 				<view class="task">
 					<view class="task_header">
-						<view class="left_week" wx:if="{{taskObj.lstweek}}">
+						<view class="left_week" wx:if="{{taskObj.lstWeek}}">
 							<image src="../../images/left_arrow.png"></image>
 							<view>上一周</view>
 						</view>
 						<view class="left_week" wx:else></view>
 						<view class="center_week">
-							<view>第{{filter.Arabia_To_SimplifiedChinese(taskObj.curweek)}}周</view>
+							<view>第{{filter.Arabia_To_SimplifiedChinese(taskObj.curWeek)}}周</view>
 							<text>{{taskObj.cursDate}}-{{taskObj.cureDate}}</text>
 						</view>
-						<view class="right_week" wx:if="{{taskObj.nextweek}}">
+						<view class="right_week" wx:if="{{taskObj.nxtWeek}}">
 							<view>下一周</view>
 							<image src="../../images/right_arrow.png"></image>
 						</view>
@@ -124,7 +124,7 @@
 							<view class="li_week"></view>
 							<view class="li_week" wx:for="{{weekDay}}" wx:key="index">
 								<view>{{item}}</view>
-								<view>{{taskObj.curdays[index]}}</view>
+								<view>{{dayList[index]}}</view>
 							</view>
 						</view>
 						<view class="ul_content" wx:if="{{dong.length>0}}">
@@ -168,15 +168,36 @@
 							<view class="li left">
 								<image src="../../images/hong.png"></image>
 							</view>
-							<view class="li" wx:for="{{taskObj.curData.redbag}}" wx:key="index">
-								<image wx:if="{{item[index]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{item[index]==0}}" class="dai" src="../../images/dai.png"></image>
-							</view>
-							<!-- <view class="li">
-								<image class="kong" src="../../images/kong.png"></image>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[0]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[0]]==0}}" class="dai" src="../../images/dai.png"></image>
 							</view>
 							<view class="li">
-								<image class="dai" src="../../images/dai.png"></image>
+								<image wx:if="{{redbag[dayList[1]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[1]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[2]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[2]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[3]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[3]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[4]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[4]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[5]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[5]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<view class="li">
+								<image wx:if="{{redbag[dayList[6]]==1}}" class="duihao" src="../../images/dui.png"></image>
+								<image wx:if="{{redbag[dayList[6]]==0}}" class="dai" src="../../images/dai.png"></image>
+							</view>
+							<!-- <view class="li">
+								<view>{{redbag[taskObj.dayList[0]]}}</view>
 							</view> -->
 						</view>
 					</view>
