@@ -82,9 +82,9 @@ Page({
       console.info('isCheck', isCheck);
       if (value && isCheck.data.message != '600') {
         // 调试修改
-        wx.navigateTo({
-          url: '../../components/testIntro/testIntro',
-        })
+        // wx.navigateTo({
+        //   url: '../../components/testIntro/testIntro',
+        // })
 
         
         if(isCheck.data.message=='200'){
