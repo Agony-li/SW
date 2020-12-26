@@ -41,13 +41,13 @@ Page({
       if(data.data.data.content!=undefined){
         WxParse.wxParse('article', 'html', data.data.data.content, this, 2);
       }
-      let fileUpload = data.data.data.fileUploadList[0]
+      let fileUpload = data.data.data.fileList[0]
       // audioContext.src = this.data.imageUrlPrefix+fileUpload.fileUrl
       let audio = {
-        title: fileUpload.fileName,
+        title: fileUpload.name,
         singer: '播放完毕即完成课程', 
         // poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
-        src: this.data.imageUrlPrefix+fileUpload.fileUrl,
+        src: config.appUrl+fileUpload.url,
       }
       this.setData({
         detail:data.data.data,
