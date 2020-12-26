@@ -46,14 +46,15 @@ Page({
     /**
      * 任务数据
      */
+    day: 0, // 当天日
     mustRiskNum: 0, // 本周需要完成的任务数
     weekDay:['一', '二', '三', '四', '五', '六', '日'], // 常量周
     dayList: [],
     taskObj: {},
-    dong: [],
-    mian: [],
-    jing: [],
-    na: [],
+    dong: {},
+    mian: {},
+    jing: {},
+    na: {},
     redbag: [],
     /**
      * 作息时间
@@ -117,15 +118,126 @@ Page({
    *  任务部分
    */
   // 查询任务信息
-  async getTask() {
-    let data = await util.httpRequestWithPromise(`/rest/ryqtask/week`, 'get', '', wx.getStorageSync('key'));
+  async getTask(week) {
+    let data = await util.httpRequestWithPromise(`/rest/ryqtask/week?week=${week}`, 'get', '', wx.getStorageSync('key'));
     console.log('查询任务信息', data);
     if (data.statusCode === 200) {
       let taskObj = data.data.data
       this.setData({
         taskObj: taskObj,
         dayList: taskObj.dayList,
-        redbag: taskObj.redbag
+        dong: taskObj.ctypes[3]?taskObj.ctypes[3]:false,
+        mian: taskObj.ctypes[1]?taskObj.ctypes[1]:false,
+        jing: taskObj.ctypes[5]?taskObj.ctypes[5]:false,
+        na: taskObj.ctypes[4]?taskObj.ctypes[4]:false,
+        redbag: taskObj.redbag,
+        day: new Date().getDate()
+      })
+      if(this.data.week == 0){
+        this.setData({
+          week: taskObj.curWeek
+        })
+      }
+    }
+  },
+  
+  // 上一周 下一周
+  cutWeekTask(e){
+    let week = e.currentTarget.dataset.week
+    console.log(e);
+    
+    this.getTask(week)
+  },
+
+  // 跳转到训练上传图片
+  gotoTrainUploadPic(e){
+    // 判断是否是当天
+    let curWeek = this.data.taskObj.curWeek
+    let date = e.currentTarget.dataset.date
+    if(curWeek==this.data.week && date==this.data.day){
+      wx.navigateTo({
+        url: '../train/trainUploadPic',
+      })
+    }else {
+      wx.showToast({
+        title: '只能选择当天的任务',
+        icon: 'none'
+      })
+    }
+  },
+  
+  // 跳转到训练音频播放
+  gotoTrainAudio(e){
+    // 判断是否是当天
+    let curWeek = this.data.taskObj.curWeek
+    let date = e.currentTarget.dataset.date
+    if(curWeek==this.data.week && date==this.data.day){
+      wx.navigateTo({
+        url: '../train/trainAudio',
+      })
+    }else {
+      wx.showToast({
+        title: '只能选择当天的任务',
+        icon: 'none'
+      })
+    }
+  },
+
+  // 点击领取红包弹窗
+  getRedBag(e) {
+    // 判断是否是当天
+    let curWeek = this.data.taskObj.curWeek
+    let date = e.currentTarget.dataset.date
+    let type = e.currentTarget.dataset.type
+    if(curWeek==this.data.week && date==this.data.day){
+      if(type == 1){
+        wx.showToast({
+          title: '已领过红包',
+          icon: 'none'
+        })
+      }else if(type == 2){
+        wx.showToast({
+          title: '请先完成当日任务',
+          icon: 'none'
+        })
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: '确认领取红包!',
+          success (res) {
+            if (res.confirm) {
+              that.getBag(type);
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    }else {
+      wx.showToast({
+        title: '只能领取当天红包',
+        icon: 'none'
+      })
+    }
+  },
+
+  // 领取红包接口
+  async getBag(type) {
+    let article = this.data.articleList[0];
+    let response = await util.httpRequestWithPromise('/rest/user/sendRedpack?learnDate='+article.learnDate+'&week='+this.data.week+'&learnId='+article.id+'&type='+this.data.type,'GET','', wx.getStorageSync('key'));
+    if(Number(response.data.message) === 200){
+      wx.showToast({
+        title: '领取成功!',
+      })
+        this.setData({
+          redBags: 1,
+          recive:true
+        })
+    }else{
+      wx.showToast({
+        title: response.data.message,
+        icon: 'none',
+        duration: 2000
       })
     }
   },
@@ -630,19 +742,7 @@ Page({
     }
   },
 
-  // 跳转到训练上传图片
-  gotoTrainUploadPic(){
-    wx.navigateTo({
-      url: '../train/trainUploadPic',
-    })
-  },
   
-  // 跳转到训练音频播放
-  gotoTrainAudio(){
-    wx.navigateTo({
-      url: '../train/trainAudio',
-    })
-  },
   
 
 

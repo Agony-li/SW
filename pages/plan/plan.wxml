@@ -104,7 +104,7 @@
 			<view wx:if="{{plan_start&&active_plan==1}}">
 				<view class="task">
 					<view class="task_header">
-						<view class="left_week" wx:if="{{taskObj.lstWeek}}">
+						<view class="left_week" wx:if="{{taskObj.lstWeek}}" bindtap="cutWeekTask" data-week="{{taskObj.lstWeek}}">
 							<image src="../../images/left_arrow.png"></image>
 							<view>上一周</view>
 						</view>
@@ -113,54 +113,171 @@
 							<view>第{{filter.Arabia_To_SimplifiedChinese(taskObj.curWeek)}}周</view>
 							<text>{{taskObj.cursDate}}-{{taskObj.cureDate}}</text>
 						</view>
-						<view class="right_week" wx:if="{{taskObj.nxtWeek}}">
+						<view class="right_week" wx:if="{{taskObj.nxtWeek}}" bindtap="cutWeekTask" data-week="{{taskObj.nxtWeek}}">
 							<view>下一周</view>
 							<image src="../../images/right_arrow.png"></image>
 						</view>
+						<view class="right_week" wx:else></view>
 					</view>
 					<!-- 日期表格 -->
 					<view class="task_table">
 						<view class="ul_week">
 							<view class="li_week"></view>
-							<view class="li_week" wx:for="{{weekDay}}" wx:key="index">
+							<view class="li_week {{taskObj.curWeek==week&&dayList[index]==day ? 'todayBg':''}}" wx:for="{{weekDay}}" wx:key="index">
 								<view>{{item}}</view>
 								<view>{{dayList[index]}}</view>
 							</view>
 						</view>
-						<view class="ul_content" wx:if="{{dong.length>0}}">
+						<view class="ul_content" wx:if="{{dong}}">
 							<view class="li left">动</view>
-							<view class="li" wx:for="{{dong}}" wx:key="index">
-								<image wx:if="{{item.isLearn==1&&item.isUpload==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:elif="{{item.isJia==1}}" class="duihao" src="../../images/jia.png"></image>
-								<image wx:elif="{{item.isReceive==1}}" class="duihao" src="../../images/dai.png"></image>
-								<image wx:else class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[0]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[0]}}"></image>
+								<image wx:if="{{dong.days[dayList[0]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[1]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[1]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[1]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[1]}}"></image>
+								<image wx:if="{{dong.days[dayList[1]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[2]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[2]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[2]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[2]}}"></image>
+								<image wx:if="{{dong.days[dayList[2]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[3]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[3]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[3]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[3]}}"></image>
+								<image wx:if="{{dong.days[dayList[3]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[4]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[4]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[4]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[4]}}"></image>
+								<image wx:if="{{dong.days[dayList[4]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[5]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[5]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[5]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[5]}}"></image>
+								<image wx:if="{{dong.days[dayList[5]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[6]==day ? 'todayBg':''}}">
+								<image wx:if="{{dong.days[dayList[6]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{dong.days[dayList[6]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[6]}}"></image>
+								<image wx:if="{{dong.days[dayList[6]] == 2}}" class="jia" src="../../images/jia.png"></image>
 							</view>
 						</view>
-						<view class="ul_content" wx:if="{{mian.length>0}}">
+						<view class="ul_content" wx:if="{{mian}}">
 							<view class="li left">眠</view>
-							<view class="li" wx:for="{{mian}}" wx:key="index">
-								<image wx:if="{{item.isLearn==1&&item.isUpload==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:elif="{{item.isJia==1}}" class="duihao" src="../../images/jia.png"></image>
-								<image wx:elif="{{item.isReceive==1}}" class="duihao" src="../../images/dai.png"></image>
-								<image wx:else class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[0]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[0]}}"></image>
+								<image wx:if="{{mian.days[dayList[0]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[1]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[1]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[1]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[1]}}"></image>
+								<image wx:if="{{mian.days[dayList[1]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[2]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[2]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[2]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[2]}}"></image>
+								<image wx:if="{{mian.days[dayList[2]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[3]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[3]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[3]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[3]}}"></image>
+								<image wx:if="{{mian.days[dayList[3]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[4]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[4]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[4]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[4]}}"></image>
+								<image wx:if="{{mian.days[dayList[4]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[5]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[5]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[5]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[5]}}"></image>
+								<image wx:if="{{mian.days[dayList[5]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[6]==day ? 'todayBg':''}}">
+								<image wx:if="{{mian.days[dayList[6]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[6]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[6]}}"></image>
+								<image wx:if="{{mian.days[dayList[6]] == 2}}" class="jia" src="../../images/jia.png"></image>
 							</view>
 						</view>
-						<view class="ul_content" wx:if="{{na.length>0}}">
+						<view class="ul_content" wx:if="{{na}}">
 							<view class="li left">纳</view>
-							<view class="li" wx:for="{{na}}" wx:key="index">
-								<image wx:if="{{item.isLearn==1&&item.isUpload==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:elif="{{item.isJia==1}}" class="duihao" src="../../images/jia.png"></image>
-								<image wx:elif="{{item.isReceive==1}}" class="duihao" src="../../images/dai.png"></image>
-								<image wx:else class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[0]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[0]}}"></image>
+								<image wx:if="{{na.days[dayList[0]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[1]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[1]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[1]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[1]}}"></image>
+								<image wx:if="{{na.days[dayList[1]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[2]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[2]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[2]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[2]}}"></image>
+								<image wx:if="{{na.days[dayList[2]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[3]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[3]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[3]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[3]}}"></image>
+								<image wx:if="{{na.days[dayList[3]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[4]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[4]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[4]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[4]}}"></image>
+								<image wx:if="{{na.days[dayList[4]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[5]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[5]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[5]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[5]}}"></image>
+								<image wx:if="{{na.days[dayList[5]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[6]==day ? 'todayBg':''}}">
+								<image wx:if="{{na.days[dayList[6]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{na.days[dayList[6]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-date="{{dayList[6]}}"></image>
+								<image wx:if="{{na.days[dayList[6]] == 2}}" class="jia" src="../../images/jia.png"></image>
 							</view>
 						</view>
-						<view class="ul_content" wx:if="{{jing.length>0}}">
+						<view class="ul_content" wx:if="{{jing}}">
 							<view class="li left">静</view>
-							<view class="li" wx:for="{{jing}}" wx:key="index">
-								<image wx:if="{{item.isLearn==1&&item.isUpload==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:elif="{{item.isJia==1}}" class="duihao" src="../../images/jia.png"></image>
-								<image wx:elif="{{item.isReceive==1}}" class="duihao" src="../../images/dai.png"></image>
-								<image wx:else class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[0]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[0]}}"></image>
+								<image wx:if="{{jing.days[dayList[0]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[1]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[1]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[1]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[1]}}"></image>
+								<image wx:if="{{jing.days[dayList[1]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[2]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[2]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[2]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[2]}}"></image>
+								<image wx:if="{{jing.days[dayList[2]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[3]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[3]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[3]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[3]}}"></image>
+								<image wx:if="{{jing.days[dayList[3]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[4]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[4]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[4]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[4]}}"></image>
+								<image wx:if="{{jing.days[dayList[4]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[5]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[5]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[5]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[5]}}"></image>
+								<image wx:if="{{jing.days[dayList[5]] == 2}}" class="jia" src="../../images/jia.png"></image>
+							</view>
+							<view class="li {{taskObj.curWeek==week&&dayList[6]==day ? 'todayBg':''}}">
+								<image wx:if="{{jing.days[dayList[6]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{jing.days[dayList[6]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainAudio" data-date="{{dayList[6]}}"></image>
+								<image wx:if="{{jing.days[dayList[6]] == 2}}" class="jia" src="../../images/jia.png"></image>
 							</view>
 						</view>
 						<!-- 红包 -->
@@ -168,37 +285,41 @@
 							<view class="li left">
 								<image src="../../images/hong.png"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[0]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[0]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[0]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[0]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[0]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[0]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[0]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[0]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[1]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[1]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[1]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[1]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[1]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[1]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[1]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[1]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[1]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[2]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[2]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[2]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[2]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[2]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[2]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[2]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[2]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[2]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[3]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[3]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[3]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[3]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[3]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[3]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[3]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[3]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[3]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[4]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[4]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[4]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[4]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[4]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[4]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[4]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[4]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[4]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[5]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[5]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[5]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[5]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[5]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[5]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[5]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[5]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[5]}}" data-type="2"></image>
 							</view>
-							<view class="li">
-								<image wx:if="{{redbag[dayList[6]]==1}}" class="duihao" src="../../images/dui.png"></image>
-								<image wx:if="{{redbag[dayList[6]]==0}}" class="dai" src="../../images/dai.png"></image>
+							<view class="li {{taskObj.curWeek==week&&dayList[6]==day ? 'todayBg':''}}">
+								<image wx:if="{{redbag[dayList[6]]==1}}" class="duihao" src="../../images/duihao.png" bindtap="getRedBag" data-date="{{dayList[6]}}" data-type="1"></image>
+								<image wx:if="{{redbag[dayList[6]]==0}}" class="dai" src="../../images/dai.png" bindtap="getRedBag" data-date="{{dayList[6]}}" data-type="0"></image>
+								<image wx:if="{{redbag[dayList[6]]==2}}" class="kong" src="../../images/kong.png" bindtap="getRedBag" data-date="{{dayList[6]}}" data-type="2"></image>
 							</view>
-							<!-- <view class="li">
-								<view>{{redbag[taskObj.dayList[0]]}}</view>
-							</view> -->
 						</view>
 					</view>
 				</view>
