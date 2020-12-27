@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -79,17 +79,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "音频训练",
 					"pathName": "pages/train/trainAudio",
-					"query": "",
+					"query": "tasktype=5&plantitle=优眠计划",
 					"scene": null
 				},
 				{
 					"id": 2,
 					"name": "图片训练任务",
 					"pathName": "pages/train/trainUploadPic",
-					"query": "courseId=2d3597ea9f4c11eaa36e525400b4248d",
+					"query": "tasktype=3&plantitle=优眠计划",
 					"scene": null
 				},
 				{

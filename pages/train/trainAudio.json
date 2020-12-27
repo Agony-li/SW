@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "bgAudio": "/components/bgAudio/bgAudio"
+  },
   "navigationBarTitleText":"训练任务"
 }

@@ -154,9 +154,10 @@ Page({
     // 判断是否是当天
     let curWeek = this.data.taskObj.curWeek
     let date = e.currentTarget.dataset.date
+    let tasktype = e.currentTarget.dataset.tasktype
     if(curWeek==this.data.week && date==this.data.day){
       wx.navigateTo({
-        url: '../train/trainUploadPic',
+        url: `../train/trainUploadPic?tasktype=${tasktype}&plantitle=${this.data.planInfo.title}`,
       })
     }else {
       wx.showToast({
@@ -171,9 +172,10 @@ Page({
     // 判断是否是当天
     let curWeek = this.data.taskObj.curWeek
     let date = e.currentTarget.dataset.date
+    let tasktype = e.currentTarget.dataset.tasktype
     if(curWeek==this.data.week && date==this.data.day){
       wx.navigateTo({
-        url: '../train/trainAudio',
+        url: `../train/trainAudio?tasktype=${tasktype}&plantitle=${this.data.planInfo.title}`,
       })
     }else {
       wx.showToast({
@@ -259,7 +261,6 @@ Page({
   /**
    *  计划部分
    */
-  // 计划相关判断
 
   // 查询计划
   async getPlan() {

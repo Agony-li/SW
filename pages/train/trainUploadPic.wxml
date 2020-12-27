@@ -1,52 +1,73 @@
 <view class="containers">
-	<view class="title">上传运动照片</view>
-	<view class="des">PLAN A-CBT PLUS优眠计划 2020/10/22</view>
+	<view class="title">{{trainAudio.title}}</view>
+	<view class="des">{{planTitle}} {{date}}</view>
 	<view class="content">
 		<view class="exampleImg">
-			<image src="../../image/cbti_icon_4@2x.png"></image>
-			<image src="../../image/cbti_icon_4@2x.png"></image>
+			<image src="{{appUrl+trainAudio.imageList[0].url}}"></image>
 		</view>
 		<view class="describe">
-			<view class="des_item">
-				<view class="point"></view>
-				<view class="item_text">在小米运动中截取“运动”界面；</view>
-			</view>
-			<view class="des_item">
-				<view class="point"></view>
-				<view class="item_text">将截取的“运动”界面在下方上传至系统。</view>
+			<view class="content_text">
+				<rich-text nodes="{{trainAudio.content}}"></rich-text>
 			</view>
 		</view>
 		<view class="uploadImg">
-			<!-- <view class="upload_item">
-				<image src="../../images/uploadImg.png"></image>
-			</view>
-			<view class="upload_item">
-				<image src="../../images/uploadImg.png"></image>
-			</view> -->
 			<van-uploader
 				file-list="{{ fileList }}"
 				max-count="2"
 				bind:after-read="afterRead"
+				bind:delete = 'deleteImage'
 			/>
 		</view>
 	</view>
-	<view class="btn canfinish nofinish">上传照片</view>
-	<view class="btn leave">我想请假</view>
+	<!-- 手环 -->
+	<view class="bracelet">
+		<view class="bracelet_des">请选择您的手环类型：</view>
+		<radio-group bindchange="changeRadio">
+			<radio color="#36BC96" value="1" checked="{{checkRadio==1}}"/>小米
+			<radio color="#36BC96" value="2" checked="{{checkRadio==2}}"/>华为
+		</radio-group>
+	</view>
+	<view class="btn canfinish" bindtap="finishTrainImage" wx:if="{{isShowFinishBtn}}">完成任务</view>
+	<view class="btn {{isClickEndBtn?'canfinish':'nofinish'}}" wx:else bindtap="confirmUpload">上传照片</view>
+	<view class="btn leave" bindtap="planjia">我想请假</view>
 </view>
 <!-- 推荐阅读 -->
-<view class="course">
-	<view class="title">推荐阅读</view>
-	<view class="master_item">
-		<view class="item_left">
-			<view class="item_title">解锁CBT-PLUS攻略！</view>
-			<view class="item_time_author">
-				<text>本周内完成18篇</text>
-				<text class="end">已完成</text>
-			</view>
+<view class="course" wx:if="{{courseList.length > 0}}">
+  <view class="title">推荐阅读</view>
+  <block wx:for="{{courseList}}" wx:key="index">
+    <view class="master_item" bindtap="gotoCourseDetail" data-id='{{item.id}}'>
+      <view class="item_left">
+        <view class="item_title">{{item.title}}</view>
+        <view class="item_time_author">
+          <text>本周须完成{{total}}篇</text>
+          <text wx:if="{{item.isLearn==0}}">待完成</text>
+          <text wx:else class="end">已完成</text>
+          <text wx:if="{{item.needLearn}}">必修课</text>
+          <text wx:else>选修课</text>
+        </view>
+      </view>
+      <view class="item_right">
+        <image wx:if="{{item.isLearn!=0}}" class="qianzhang" src="../../images/qianzhang.png"></image>
+        <image class="item_image" src="{{item.image}}"></image>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 请假弹窗 -->
+<view class="shadowBg" wx:if="{{isShowDialog}}" bindtap="cancelDialog"></view>
+<block wx:if="{{isShowDialog}}">
+	<!-- 通用弹窗 -->
+	<view class="dialog">
+		<view class="title">{{dialog.title}}</view>
+		<view class="dialog_content_image">
+			<image src="{{dialog.img}}"></image>
 		</view>
-		<view class="item_right">
-			<image class="qianzhang" src="../../images/qianzhang.png"></image>
-			<image class="item_image" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640"></image>
+		<view class="dialog_des">{{dialog.des}}</view>
+		<view class="dialog_double_btn">
+			<view bindtap="cancelDialog">{{dialog.btn1}}</view>
+			<view wx:if='{{dialog.btn2.type == 1}}' bindtap="cancelDialog">{{dialog.btn2.txt}}</view>
+			<view wx:if='{{dialog.btn2.type == 2}}' bindtap="taskqingjia">{{dialog.btn2.txt}}</view>
 		</view>
 	</view>
-</view>
+</block>

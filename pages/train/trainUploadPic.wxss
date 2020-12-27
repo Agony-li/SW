@@ -15,7 +15,7 @@
 .content {
   background-color: #fff;
   border-radius: 12rpx;
-  padding: 0 24rpx 98rpx 24rpx;
+  /* padding: 0 24rpx 98rpx 24rpx; */
   margin-bottom: 24rpx;
 }
 .exampleImg {
@@ -23,15 +23,20 @@
 }
 .exampleImg image {
   height: 255rpx;
+  width: 100%;
 }
-.exampleImg image:first-child{
+/* .exampleImg image:first-child{
   margin-right: 12rpx;
 }
 .exampleImg image:last-child{
   margin-left: 12rpx;
-}
+} */
 .describe {
   margin-top: 35rpx;
+}
+.content_text {
+  font-size: 30rpx;
+  padding: 0 24rpx;
 }
 .des_item {
   display: flex;
@@ -52,12 +57,27 @@
 }
 .uploadImg {
   display: flex;
-  margin-top: 48rpx;
+  padding: 48rpx 24rpx;
 }
 .upload_item image{
   width: 161rpx;
   height: 161rpx;
   margin-right: 24rpx;
+}
+.bracelet {
+  width: 100%;
+  padding: 10rpx 10rpx;
+  background-color: #fff;
+  font-size: 25rpx;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  margin-bottom: 24rpx;
+}
+.bracelet_des {
+  padding-left: 14rpx;
+}
+radio {
+  transform:scale(0.6);
 }
 .btn {
   font-size: 30rpx;
@@ -151,4 +171,91 @@
   width: 248rpx;
   height: 164rpx;
   border-radius: 12rpx;
+}
+
+/* 弹窗 */
+.shadowBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+.dialog {
+  background-color: #fff;
+  width: 700rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12rpx;
+}
+.dialog .title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #333333;
+  font-weight: 700;
+  padding: 46rpx 0 58rpx;
+  text-align: center;
+}
+.dialog_content {
+  padding-left: 155rpx;
+}
+.content_item {
+  display: flex;
+  align-items: center;
+  font-size: 25rpx;
+  line-height: 25rpx;
+  padding-bottom: 24rpx;
+}
+.content_item image{
+  width: 36rpx;
+  height: 36rpx;
+  padding-right: 14rpx;
+}
+.dialog_btn {
+  width: 100%;
+  height: 102rpx;
+  background-color: #36BC96;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  font-size: 29rpx;
+  line-height: 102rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 46rpx;
+}
+.dialog_content_image {
+  text-align: center;
+  padding-bottom: 58rpx;
+}
+.dialog_content_image image{
+  width: 179rpx;
+  height: 242rpx;
+}
+.dialog_des {
+  padding: 0 35rpx;
+  font-size: 25rpx;
+  line-height: 36rpx;
+  color: #333333;
+}
+.dialog_double_btn {
+  display: flex;
+  margin-top: 37rpx;
+  border-top: 1rpx solid #C1C1C1;
+}
+.dialog_double_btn view {
+  width: 50%;
+  height: 100rpx;
+  text-align: center;
+  font-size: 29rpx;
+  line-height: 100rpx;
+  color: #36BC96;
+}
+.dialog_double_btn view:first-child {
+  border-right: 1rpx solid #C1C1C1;
+  color: #333333;
 }
