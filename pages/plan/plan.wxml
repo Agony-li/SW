@@ -429,12 +429,12 @@
 	<view class="dialog" wx:else>
 		<view class="title">{{dialog.title}}</view>
 		<view class="dialog_content_image">
-			<image src="{{dialog.img}}"></image>
+			<image class="{{dialog.type == 'redbag'?'redbag':''}}" src="{{dialog.img}}"></image>
 		</view>
 		<view class="dialog_des">{{dialog.des}}</view>
 		<view class="dialog_double_btn">
-			<view bindtap="cancelDialog">{{dialog.btn[0]}}</view>
-			<view>{{dialog.btn[1]}}</view>
+			<view bindtap="cancelDialog">{{dialog.btn1}}</view>
+			<view>{{dialog.btn2}}</view>
 		</view>
 	</view>
 </block>

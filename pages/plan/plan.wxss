@@ -506,6 +506,10 @@
   height: 100%;
   background: rgba(0,0,0,0.6);
 }
+.redbag {
+  width: 319rpx !important;
+  height: 311rpx !important;
+}
 .dialog {
   background-color: #fff;
   width: 700rpx;

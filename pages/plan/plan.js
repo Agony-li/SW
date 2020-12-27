@@ -36,7 +36,7 @@ Page({
     maxDate: new Date(2011, 2, 7).getTime(),
     // 弹窗
     isShowDialog: false,
-    dialogType: 1, // 1: 周任务提示弹窗 2: 课程暂停通知 3: 请假 4: 领取红包 5: 任务失败
+    dialogType: 1, // 1: 周任务提示弹窗 2: 课程暂停通知 3: 领取红包
     dialog: {
       title: '',
       img: '',
@@ -61,6 +61,8 @@ Page({
      */
     scheduleList: [],
     scheduleId: '', // 选中的作息时间id
+    // 弹窗对象信息
+    dialog: {}, //  
    },
    onReady: function (e) {
     let userInfo = wx.getStorageSync('info')
@@ -186,11 +188,12 @@ Page({
   },
 
   // 点击领取红包弹窗
-  getRedBag(e) {
+  async getRedBag(e) {
     // 判断是否是当天
     let curWeek = this.data.taskObj.curWeek
     let date = e.currentTarget.dataset.date
-    let type = e.currentTarget.dataset.type
+    // let type = e.currentTarget.dataset.type
+    let type = 0
     if(curWeek==this.data.week && date==this.data.day){
       if(type == 1){
         wx.showToast({
@@ -203,16 +206,26 @@ Page({
           icon: 'none'
         })
       }else{
-        wx.showModal({
-          title: '提示',
-          content: '确认领取红包!',
-          success (res) {
-            if (res.confirm) {
-              that.getBag(type);
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
+        let data = await util.httpRequestWithPromise('/rest/user/amount?label='+'jia','GET','',wx.getStorageSync('key'));
+        console.log('获取红包价格', data)
+        let redBagAmount = data.data.data
+        // 红包弹窗信息
+        let des = ''
+        let btn1 = '稍后'
+        let btn2 = '领取（'+redBagAmount+'.00元）'
+        des = '恭喜您本日全部完成，快来领取红包吧！！！'
+        let dialog = {
+          title: '领取红包',
+          type: 'redbag',
+          img: '../../images/redbag_dialog.png',
+          des: des,
+          btn1,
+          btn2
+        }
+        this.setData({
+          dialog,
+          dialogType: 3, 
+          isShowDialog: true
         })
       }
     }else {
@@ -225,16 +238,14 @@ Page({
 
   // 领取红包接口
   async getBag(type) {
-    let article = this.data.articleList[0];
-    let response = await util.httpRequestWithPromise('/rest/user/sendRedpack?learnDate='+article.learnDate+'&week='+this.data.week+'&learnId='+article.id+'&type='+this.data.type,'GET','', wx.getStorageSync('key'));
+    let response = await util.httpRequestWithPromise('/rest/ryqtask/sendRedpack?type','GET','', wx.getStorageSync('key'));
     if(Number(response.data.message) === 200){
       wx.showToast({
         title: '领取成功!',
       })
-        this.setData({
-          redBags: 1,
-          recive:true
-        })
+      this.setData({
+        isShowDialog: false
+      })
     }else{
       wx.showToast({
         title: response.data.message,
