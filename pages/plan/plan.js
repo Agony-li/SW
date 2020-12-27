@@ -192,8 +192,7 @@ Page({
     // 判断是否是当天
     let curWeek = this.data.taskObj.curWeek
     let date = e.currentTarget.dataset.date
-    // let type = e.currentTarget.dataset.type
-    let type = 0
+    let type = e.currentTarget.dataset.type
     if(curWeek==this.data.week && date==this.data.day){
       if(type == 1){
         wx.showToast({
