@@ -213,7 +213,7 @@ Page({
         let des = ''
         let btn1 = '稍后'
         let btn2 = '领取（'+redBagAmount+'.00元）'
-        des = '恭喜您本日全部完成，快来领取红包吧！！！'
+        des = '恭喜您本日任务全部完成，快来领取红包吧！！！'
         let dialog = {
           title: '领取红包',
           type: 'redbag',
@@ -237,8 +237,9 @@ Page({
   },
 
   // 领取红包接口
-  async getBag(type) {
-    let response = await util.httpRequestWithPromise('/rest/ryqtask/sendRedpack?type','GET','', wx.getStorageSync('key'));
+  async getBag() {
+    let response = await util.httpRequestWithPromise('/rest/ryqtask/sendRedpack','GET','', wx.getStorageSync('key'));
+    console.log('领取红包接口',response);
     if(Number(response.data.message) === 200){
       wx.showToast({
         title: '领取成功!',

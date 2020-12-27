@@ -434,7 +434,7 @@
 		<view class="dialog_des">{{dialog.des}}</view>
 		<view class="dialog_double_btn">
 			<view bindtap="cancelDialog">{{dialog.btn1}}</view>
-			<view>{{dialog.btn2}}</view>
+			<view bindtap="getBag">{{dialog.btn2}}</view>
 		</view>
 	</view>
 </block>
