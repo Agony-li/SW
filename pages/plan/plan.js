@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 1, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -56,6 +56,7 @@ Page({
     jing: {},
     na: {},
     redbag: [],
+    showSchedulet: '', // 显示的作息时间
     /**
      * 作息时间
      */
@@ -88,18 +89,84 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 进入计划判断
+    this.checkPlan()
     
     // // 获取准备页的接口
     // this.getPlanOptions()
-    // 查询计划
-    this.getPlan()
-    // // 是否需要补救
-    // this.confirmClass();
-    
-    // 获取任务接口
-    this.getTask()
-    // 周任务提醒
-    // this.getWeekTaskTips()
+  },
+
+  // 进入计划判断
+  async checkPlan(){
+    let data = await util.httpRequestWithPromise('/rest/ryqke/ckplan','GET','', wx.getStorageSync('key'));
+    console.log('进入计划判断',data);
+    let status = data.data.message
+    // let status = 200
+    if(status == 604){
+      this.setData({
+        isOrder: false
+      })
+    }else{
+      this.setData({
+        isOrder: true
+      })
+      if (status === 200) {
+        // 获取课程接口
+        this.checkTest()
+        this.getPlan()
+      }else if(status == 600){ // 用户失效
+        wx.navigateTo({
+          url: '../userCenter/login',
+        })
+        return
+      }else if(status == 605){ // 学习已结束
+        
+      }else if(status == 607){ // 请于下周一开始学习
+        this.setData({
+          plan_ready: true, // 是否做好计划前准备
+          plan_start: false, // 计划是否开启
+        })
+        this.getPlanOptions()
+      }else if(status == 606){ // 当前周计划未准备好
+        this.setData({
+          plan_ready: false, // 是否做好计划前准备
+          plan_start: false, // 计划是否开启
+        })
+        // 获取准备页的接口
+        this.getPlanOptions()
+      }else if(status == 400){  // 请设置作息时间
+        this.setData({
+          active_plan: 3
+        })
+        this.geScheduletList()
+      }else if (status == 410){ // 上周计划未完成
+        this.setData({
+          isOrder: false
+        })
+        // 付费重启
+        let data = await util.httpRequestWithPromise('/rest/user/amount?label=reopen','GET','',wx.getStorageSync('key'));
+        console.log('获取计划重启价格', data)
+        let reopenAmount = data.data.data
+        // 红包弹窗信息
+        let des = ''
+        let btn1 = '稍后'
+        let btn2 = '支付（'+reopenAmount+'.00元）'
+        des = '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。'
+        let dialog = {
+          title: '课程暂停通知',
+          type: 'stopPlan',
+          img: '../../images/stop_plan.png',
+          des: des,
+          btn1,
+          btn2
+        }
+        this.setData({
+          dialog,
+          dialogType: 3, 
+          isShowDialog: true
+        })
+      }
+    }
   },
 
   // 切换计划tab
@@ -108,11 +175,54 @@ Page({
     this.setData({
       active_plan: type
     })
-    if(type==1){
+    if(type == 0){
+      // 获取课程接口
+      this.checkTest()
+    }else if(type==1){
       // 获取任务接口
       this.getTask()
       // 周任务提醒
-    this.getWeekTaskTips()
+      this.getWeekTaskTips()
+      // 查询作息时间
+      this.getScheduletStr()
+    } else {
+      // 获取月历接口
+
+    }
+  },
+
+  // 支付重启课程
+  async payReOpen(){
+    let that = this;
+    let result = await util.httpRequestWithPromise('/ryqpay/taskqingjia', 'POST', '', wx.getStorageSync('key'));
+    wx.requestPayment({
+      'appId': result.data.data.appId,
+      'timeStamp': result.data.data.timeStamp,
+      'nonceStr': result.data.data.nonceStr,
+      'package': result.data.data.packageValue,
+      'signType': "MD5",
+      'paySign': result.data.data.paySign,
+      'success': function (res) {
+        if (res.errMsg == "requestPayment:ok") {
+          that.reOpenPaySuccess();
+        }
+      },
+      'fail': function (res) {
+        console.info(res);
+
+      },
+      'complete': function (res) {
+        console.info(res);
+      }
+    })
+  },
+
+  // 课程重启接口
+  async reOpenPaySuccess(){
+    let data = await util.httpRequestWithPromise(`/ryqpay/reopen`, 'get', '', wx.getStorageSync('key'));
+    console.log('课程重启接口', data);
+    if (data.statusCode === 200) {
+      this.checkPlan()
     }
   },
 
@@ -140,6 +250,17 @@ Page({
           week: taskObj.curWeek
         })
       }
+    }
+  },
+
+  // 查询作息时间
+  async getScheduletStr(){
+    let data = await util.httpRequestWithPromise(`/rest/ryqke/cfgtimesave`, 'get', '', wx.getStorageSync('key'));
+    console.log('查询作息时间', data);
+    if (data.statusCode === 200) {
+      this.setData({
+        showSchedulet: data.data.data
+      })
     }
   },
   
@@ -205,7 +326,7 @@ Page({
           icon: 'none'
         })
       }else{
-        let data = await util.httpRequestWithPromise('/rest/user/amount?label='+'jia','GET','',wx.getStorageSync('key'));
+        let data = await util.httpRequestWithPromise('/rest/ryqtask/getredbagprice','GET','',wx.getStorageSync('key'));
         console.log('获取红包价格', data)
         let redBagAmount = data.data.data
         // 红包弹窗信息
@@ -243,9 +364,6 @@ Page({
       wx.showToast({
         title: '领取成功!',
       })
-      this.setData({
-        isShowDialog: false
-      })
     }else{
       wx.showToast({
         title: response.data.message,
@@ -253,6 +371,9 @@ Page({
         duration: 2000
       })
     }
+    this.setData({
+      isShowDialog: false
+    })
   },
 
   // 周任务提醒
@@ -338,132 +459,23 @@ Page({
     let data = await util.httpRequestWithPromise('/rest/ryqke/coursetype','GET','', wx.getStorageSync('key'));
     console.log('获取课程信息', data);
     if(data.data.message == '200'){
-      if(data.data.data.length === 0){
-        // wx.navigateTo({
-        //   url: '../../components/sleepTest/index?testType=slepping_test'
-        // })
-      }else{
-        let arr = [];
-        (data.data.data).map(item =>{
-           arr.push({
-             id: item.id,
-             name:item.name,
-             content: item.content,
-             num: item.num,
-             icon:item.img.split('|')[0],
-             icon_active:item.img.split('|')[1],
-           })
-        })
-        that.setData({
-          contentList: arr,
-          chooseContent: arr[0],
-          course_active: arr[0].id
-        })
-        // if (data.data.week == 0) {
-        //   this.setData({
-        //     plan_start: false
-        //   })
-        // }else{
-        //   this.setData({
-        //     plan_start: true
-        //   })
-        // }
-      }
-    } else if(data.data.message == '400') {
-      this.setData({
-        active_plan: 3
+      let arr = [];
+      (data.data.data).map(item =>{
+          arr.push({
+            id: item.id,
+            name:item.name,
+            content: item.content,
+            num: item.num,
+            icon:item.img.split('|')[0],
+            icon_active:item.img.split('|')[1],
+          })
       })
-      this.geScheduletList()
-      // wx.showModal({
-      //   title: '提醒',
-      //   content: '请选择作息时间',
-      //   showCancel: false,
-      //   confirmText: "确定",
-      //   success: function (res) {
-      //     // 查询作息时间
-      //     // console.log(res)
-      //     // if (res.confirm) {
-      //     //   wx.navigateTo({
-      //     //     url: '/components/scheduleConfig/index?id=',
-      //     //   })
-      //     // }
-      //   }
-      // })
+      that.setData({
+        contentList: arr,
+        chooseContent: arr[0],
+        course_active: arr[0].id
+      })
     }
-  },
-
-
-  // 是否需要补救
-  async confirmClass() {
-    let that = this;
-    let data = await util.httpRequestWithPromise('/rest/user/selectClass','GET','', wx.getStorageSync('key'));
-    console.info('是否需要补救', data.data.message)
-    if(data.data.data == 0 && data.data.message == '601') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '补救次数为0, 请联系管理重新购买课程!',
-        confirmText:"确定",//默认是“确定”
-        success: function (res) {
-           if (res.cancel) {
-              //点击取消,默认隐藏弹框
-           } else {
-             wx.switchTab({
-               url: '../../pages/index/index',
-             })
-           }
-        },
-        fail: function (res) { },//接口调用失败的回调函数
-        complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
-     })
-    } else if(data.data.message == '201' || data.data.message == '202') {
-      wx.showModal({
-        title: '提示',
-        showCancel: true,
-        content: '心理课程未完成学习, 需补缴66元继续学习！',
-        confirmText:"确定",//默认是“确定”
-        success: function (res) {
-           if (res.cancel) {
-              //点击取消,默认隐藏弹框
-              wx.switchTab({
-                url: '../../pages/index/index',
-              })
-           } else {
-            that.confirm();
-           }
-        },
-        fail: function (res) { },//接口调用失败的回调函数
-        complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
-     })
-    } else if(data.data.data == 2) {
-      this.setData({
-        hidden: false
-      });
-    } else if(data.data.message == 900){
-      wx.showModal({
-        title: '提示',
-        showCancel: true,
-        content: '您已完成所有课程学习!',
-        confirmText:"确定",//默认是“确定”
-        success: function (res) {
-           if (res.cancel) {
-              //点击取消,默认隐藏弹框
-              wx.switchTab({
-                url: '../../pages/index/index',
-              })
-           } else {
-            wx.switchTab({
-              url: '../../pages/index/index',
-            });
-           }
-        },
-        fail: function (res) { },//接口调用失败的回调函数
-        complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
-     })
-    } else if(data.data.message == 600) {
-      console.info("1111")
-      // this.showDialog();
-    } 
   },
 
    
@@ -544,61 +556,11 @@ Page({
   },
 
   // 获取作息时间列表
-  async geScheduletList(id) {
-    let that = this;
-    let { data } = await util.httpRequestWithPromise('/rest/cbti/schendule/config?id='+id, 'GET', '', wx.getStorageSync('key'));
-    if (data.message == 600) {
-      wx.login({
-        success(res) {
-          if (res.code) {
-            //发起网络请求
-            wx.request({
-              url: config.imageUrlPrefix + '/wx/user/wx2f4af9802d72f78a/login',
-              data: {
-                code: res.code
-              },
-              success: function (res) {
-                if (res.statusCode === 200) {
-                  try {
-                    wx.setStorageSync('key', res.data.token);
-                    wx.setStorageSync('info', res.data.userInfo);
-                  } catch (e) {
-
-                  }
-                  that.geScheduletList();
-                } else {
-                  wx.showToast({
-                    title: '登录失败',
-                    icon: 'none',
-                    duration: 2000
-                  })
-
-                }
-
-              }
-            })
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        }
-      })
-    } else if(data.message == 601){
-      wx.showModal({
-        title: '提示',
-        content: '请完善个人信息',
-        showCancel: false,
-        confirmText:'确定',
-        success(res){
-          if(res.confirm){
-              wx.navigateTo({
-                url: '../userInfo/index',
-              })
-          }
-        }
-      })
-    }else {
-      console.log('作息时间: ', data.data)
-      that.setData({
+  async geScheduletList() {
+    let { data } = await util.httpRequestWithPromise('/rest/ryqke/cfgtime', 'GET', '', wx.getStorageSync('key'));
+    console.log('获取作息时间列表', data)
+    if(data.message == 200){
+      this.setData({
         scheduleList: data.data
       })
     }
@@ -624,9 +586,10 @@ Page({
     }
   },
 
+  // 保存作息时间接口
   async saveSchendule() {
     let id = this.data.scheduleId
-    let { data } = await util.httpRequestWithPromise('/rest/cbti/schendule/save?id='+ id, 'GET', '', wx.getStorageSync('key'));
+    let { data } = await util.httpRequestWithPromise('/rest/ryqke/cfgtimesave?id='+ id, 'GET', '', wx.getStorageSync('key'));
     if(data.message == '200') {
       this.setData({
         active_plan: 1
@@ -647,52 +610,6 @@ Page({
       isShowDialog: true,
       dialogType: type,
     })
-    switch(type){
-      case '2': 
-        this.setData({
-          dialogType: 2,
-          dialog: {
-            title: '课程暂停通知',
-            img: '../../images/dialog_img.png',
-            des: '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。',
-            btn: ['稍后','支付（50.00元）']
-          }
-        })
-      break;
-      case '3':
-        this.setData({
-          dialogType: 3,
-          dialog: {
-            title: '请假',
-            img: '../../images/dialog_img.png',
-            des: '您每周每种任务只能请假一次，本次使用类别 [悟]，确定使用吗？',
-            btn: ['取消','支付（1.00元）']
-          }
-        })
-      break;
-      case '4':
-        this.setData({
-          dialogType: 4,
-          dialog: {
-            title: '领取红包',
-            img: '../../images/dialog_img.png',
-            des: '恭喜您本日全部完成，快来领取红包吧！！！',
-            btn: ['稍后','领取']
-          }
-        })
-      break;
-      case '5':
-        this.setData({
-          dialogType: 5,
-          dialog: {
-            title: '任务失败',
-            img: '../../images/dialog_img.png',
-            des: '经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。',
-            btn: ['取消','重新上传']
-          }
-        })
-      break;
-    }
   },
 
   // 取消弹窗
@@ -746,8 +663,6 @@ Page({
         }
       })
       } 
-      } else {
-        that.showDialog();
       }
     } catch (e) {
       // Do something when catch error

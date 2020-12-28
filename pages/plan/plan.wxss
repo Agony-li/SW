@@ -378,6 +378,9 @@
   font-size: 25rpx;
   color: #333;
 }
+.tip_bottom {
+  margin-bottom: 24rpx;
+}
 .tip image{
   width: 25rpx;
   height: 25rpx;

@@ -323,7 +323,11 @@
 						</view>
 					</view>
 				</view>
-				<view class="tip" bindtap="showDialog" data-type="1">
+				<view class="tip" wx:if="{{showSchedulet}}">
+					<image src="../../images/tip_tan.png"></image>
+					<view>作息时间: {{showSchedulet}}</view>
+				</view>
+				<view class="tip tip_bottom" bindtap="showDialog" data-type="1">
 					<image src="../../images/tip_tan.png"></image>
 					<view>本周需至少完成{{mustRiskNum}}天任务，点击查看图例详情</view>
 				</view>
@@ -400,7 +404,7 @@
 		<view class="dialog_content">
 			<view class="content_item">
 				<image src="../../images/tip_tan.png"></image>
-				<view>本周需至少完成3天任务</view>
+				<view>本周需至少完成{{mustRiskNum}}天任务</view>
 			</view>
 			<view class="content_item">
 				<image src="../../images/duihao_dialog.png"></image>
@@ -434,7 +438,8 @@
 		<view class="dialog_des">{{dialog.des}}</view>
 		<view class="dialog_double_btn">
 			<view bindtap="cancelDialog">{{dialog.btn1}}</view>
-			<view bindtap="getBag">{{dialog.btn2}}</view>
+			<view wx:if="{{dialog.type == 'redbag'}}" bindtap="getBag">{{dialog.btn2}}</view>
+			<view wx:if="{{dialog.type == 'stopPlan'}}" bindtap="payReOpen">{{dialog.btn2}}</view>
 		</view>
 	</view>
 </block>
