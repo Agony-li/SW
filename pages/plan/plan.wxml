@@ -323,13 +323,19 @@
 						</view>
 					</view>
 				</view>
-				<view class="tip" wx:if="{{showSchedulet}}">
+				<view class="tip_schedulet" wx:if="{{showSchedulet}}">
 					<image src="../../images/tip_tan.png"></image>
-					<view>作息时间: {{showSchedulet}}</view>
+					<view class="tip_des">
+						<view class="tip_title">作息时间:  </view>
+						<view>
+							<view>{{showSchedulet[0]}}，{{showSchedulet[1]}}</view>
+							<view>{{showSchedulet[2]}}</view>
+						</view>
+					</view>
 				</view>
 				<view class="tip tip_bottom" bindtap="showDialog" data-type="1">
 					<image src="../../images/tip_tan.png"></image>
-					<view>本周需至少完成{{mustRiskNum}}天任务，点击查看图例详情</view>
+					<view>本周需至少完成{{needNum}}天任务，点击查看图例详情</view>
 				</view>
 			</view>
 			<!-- 月历 -->

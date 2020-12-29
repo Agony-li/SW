@@ -378,10 +378,28 @@
   font-size: 25rpx;
   color: #333;
 }
+.tip_schedulet {
+  margin-top: 24rpx;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 39rpx;
+  padding: 24rpx 24rpx;
+  box-sizing: border-box;
+}
+.tip_title {
+  padding-right: 24rpx;
+}
+.tip_schedulet image {
+  padding-top: 6rpx;
+}
+.tip_des {
+  display: flex;
+}
 .tip_bottom {
   margin-bottom: 24rpx;
 }
-.tip image{
+.tip image,.tip_schedulet image{
   width: 25rpx;
   height: 25rpx;
   padding-right: 11rpx;

@@ -47,7 +47,7 @@ Page({
      * 任务数据
      */
     day: 0, // 当天日
-    mustRiskNum: 0, // 本周需要完成的任务数
+    needNum: 0, // 本周需要完成的任务数
     weekDay:['一', '二', '三', '四', '五', '六', '日'], // 常量周
     dayList: [],
     taskObj: {},
@@ -181,9 +181,7 @@ Page({
     }else if(type==1){
       // 获取任务接口
       this.getTask()
-      // 周任务提醒
-      this.getWeekTaskTips()
-      // 查询作息时间
+        // 查询作息时间
       this.getScheduletStr()
     } else {
       // 获取月历接口
@@ -204,7 +202,7 @@ Page({
       'paySign': result.data.data.paySign,
       'success': function (res) {
         if (res.errMsg == "requestPayment:ok") {
-          that.reOpenPaySuccess();
+          that.checkPlan();
         }
       },
       'fail': function (res) {
@@ -216,15 +214,6 @@ Page({
       }
     })
   },
-
-  // 课程重启接口
-  // async reOpenPaySuccess(){
-  //   let data = await util.httpRequestWithPromise(`/ryqpay/reopen`, 'get', '', wx.getStorageSync('key'));
-  //   console.log('课程重启接口', data);
-  //   if (data.statusCode === 200) {
-  //     this.checkPlan()
-  //   }
-  // },
 
   /**
    *  任务部分
@@ -243,6 +232,7 @@ Page({
         jing: taskObj.ctypes[5]?taskObj.ctypes[5]:false,
         na: taskObj.ctypes[4]?taskObj.ctypes[4]:false,
         redbag: taskObj.redbag,
+        needNum: taskObj.needNum,
         day: new Date().getDate()
       })
       if(this.data.week == 0){
@@ -259,7 +249,7 @@ Page({
     console.log('查询作息时间', data);
     if (data.statusCode === 200) {
       this.setData({
-        showSchedulet: data.data.data
+        showSchedulet: data.data.data.split("，")
       })
     }
   },
@@ -375,19 +365,6 @@ Page({
       isShowDialog: false
     })
   },
-
-  // 周任务提醒
-  async getWeekTaskTips() {
-    let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/weektasktips`, 'get', '', wx.getStorageSync('key'));
-    console.log('周任务提醒', data);
-    if (data.statusCode === 200) {
-      this.setData({
-        mustRiskNum: data.data.data
-      })
-    }
-  },
-
-
 
 
   /**
