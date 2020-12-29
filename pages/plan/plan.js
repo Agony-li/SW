@@ -110,7 +110,7 @@ Page({
       this.setData({
         isOrder: true
       })
-      if (status === 200) {
+      if (status == 200) {
         // 获取课程接口
         this.checkTest()
         this.getPlan()
@@ -194,7 +194,7 @@ Page({
   // 支付重启课程
   async payReOpen(){
     let that = this;
-    let result = await util.httpRequestWithPromise('/ryqpay/taskqingjia', 'POST', '', wx.getStorageSync('key'));
+    let result = await util.httpRequestWithPromise('/ryqpay/reopen', 'POST', '', wx.getStorageSync('key'));
     wx.requestPayment({
       'appId': result.data.data.appId,
       'timeStamp': result.data.data.timeStamp,
@@ -218,13 +218,13 @@ Page({
   },
 
   // 课程重启接口
-  async reOpenPaySuccess(){
-    let data = await util.httpRequestWithPromise(`/ryqpay/reopen`, 'get', '', wx.getStorageSync('key'));
-    console.log('课程重启接口', data);
-    if (data.statusCode === 200) {
-      this.checkPlan()
-    }
-  },
+  // async reOpenPaySuccess(){
+  //   let data = await util.httpRequestWithPromise(`/ryqpay/reopen`, 'get', '', wx.getStorageSync('key'));
+  //   console.log('课程重启接口', data);
+  //   if (data.statusCode === 200) {
+  //     this.checkPlan()
+  //   }
+  // },
 
   /**
    *  任务部分
