@@ -418,9 +418,9 @@ Page({
     console.log('保存/查询计划准备状态', data)
     if (data.statusCode === 200) {
       this.setData({
-        plan_ready: data.data.result
+        plan_ready: data.data.data
       })
-      if(data.data.result){
+      if(data.data.data){
         for (let i = 0; i < this.data.options.length; i++) {
           this.setData({
             ['options['+i+'].status']: true
