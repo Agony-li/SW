@@ -76,7 +76,7 @@
 				</view>
 				<!-- 按钮 -->
 				<view wx:if="{{plan_ready}}" class="btn" bindtap="finishPrepare" bindtap="">请于下周一开始课程学习</view>
-				<view wx:else class="btn" bindtap="finishPrepare">准备完成（将于下周一正式开启计划）</view>
+				<view wx:else class="btn" bindtap="finishPrepare">完成准备（将于下周一正式开启计划）</view>
 			</view>
 			<!-- 准备好之后显示的内容 -->
 			<!-- 课程 -->

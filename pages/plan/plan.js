@@ -100,8 +100,8 @@ Page({
   async checkPlan(){
     let data = await util.httpRequestWithPromise('/rest/ryqke/ckplan','GET','', wx.getStorageSync('key'));
     console.log('进入计划判断',data);
-    let status = data.data.message
-    // let status = 200
+    // let status = data.data.message
+    let status = 606
     if(status == 604){
       this.setData({
         isOrder: false
