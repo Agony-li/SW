@@ -100,71 +100,74 @@ Page({
   async checkPlan(){
     let data = await util.httpRequestWithPromise('/rest/ryqke/ckplan','GET','', wx.getStorageSync('key'));
     console.log('进入计划判断',data);
-    let status = data.data.message
-    // let status = 606
-    if(status == 604){
-      this.setData({
-        isOrder: false
-      })
-    }else{
-      this.setData({
-        isOrder: true
-      })
-      if (status == 200) {
-        // 获取课程接口
-        this.checkTest()
-        this.getPlan()
-      }else if(status == 600){ // 用户失效
-        wx.navigateTo({
-          url: '../userCenter/login',
-        })
-        return
-      }else if(status == 605){ // 学习已结束
-        
-      }else if(status == 607){ // 请于下周一开始学习
-        this.setData({
-          plan_ready: true, // 是否做好计划前准备
-          plan_start: false, // 计划是否开启
-        })
-        this.getPlanOptions()
-      }else if(status == 606){ // 当前周计划未准备好
-        this.setData({
-          plan_ready: false, // 是否做好计划前准备
-          plan_start: false, // 计划是否开启
-        })
-        // 获取准备页的接口
-        this.getPlanOptions()
-      }else if(status == 400){  // 请设置作息时间
-        this.setData({
-          active_plan: 3
-        })
-        this.geScheduletList()
-      }else if (status == 410){ // 上周计划未完成
+    if(data.statusCode==200){
+      this.getPlan()  // 获取计划信息
+      let status = data.data.message
+      // let status = 606
+      if(status == 604){
         this.setData({
           isOrder: false
         })
-        // 付费重启
-        let data = await util.httpRequestWithPromise('/rest/user/amount?label=reopen','GET','',wx.getStorageSync('key'));
-        console.log('获取计划重启价格', data)
-        let reopenAmount = data.data.data
-        // 红包弹窗信息
-        let des = ''
-        let btn1 = '稍后'
-        let btn2 = '支付（'+reopenAmount+'.00元）'
-        des = '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。'
-        let dialog = {
-          title: '课程暂停通知',
-          type: 'stopPlan',
-          img: '../../images/stop_plan.png',
-          des: des,
-          btn1,
-          btn2
-        }
+      }else{
         this.setData({
-          dialog,
-          dialogType: 3, 
-          isShowDialog: true
+          isOrder: true
         })
+        if (status == 200) {
+          // 获取课程接口
+          this.checkTest()
+          
+        }else if(status == 600){ // 用户失效
+          wx.navigateTo({
+            url: '../userCenter/login',
+          })
+          return
+        }else if(status == 605){ // 学习已结束
+          
+        }else if(status == 607){ // 请于下周一开始学习
+          this.setData({
+            plan_ready: true, // 是否做好计划前准备
+            plan_start: false, // 计划是否开启
+          })
+          this.getPlanOptions()
+        }else if(status == 606){ // 当前周计划未准备好
+          this.setData({
+            plan_ready: false, // 是否做好计划前准备
+            plan_start: false, // 计划是否开启
+          })
+          // 获取准备页的接口
+          this.getPlanOptions()
+        }else if(status == 400){  // 请设置作息时间
+          this.setData({
+            active_plan: 3
+          })
+          this.geScheduletList()
+        }else if (status == 410){ // 上周计划未完成
+          this.setData({
+            isOrder: false
+          })
+          // 付费重启
+          let data = await util.httpRequestWithPromise('/rest/user/amount?label=reopen','GET','',wx.getStorageSync('key'));
+          console.log('获取计划重启价格', data)
+          let reopenAmount = data.data.data
+          // 红包弹窗信息
+          let des = ''
+          let btn1 = '稍后'
+          let btn2 = '支付（'+reopenAmount+'.00元）'
+          des = '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。'
+          let dialog = {
+            title: '课程暂停通知',
+            type: 'stopPlan',
+            img: '../../images/stop_plan.png',
+            des: des,
+            btn1,
+            btn2
+          }
+          this.setData({
+            dialog,
+            dialogType: 3, 
+            isShowDialog: true
+          })
+        }
       }
     }
   },
