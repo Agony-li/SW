@@ -20,7 +20,7 @@ Component({
     nextInvalidDaysArr: [], // 当前月之后无效日期
 
     mindate: '2020-12-07',
-    maxdate: '2021-07-07',
+    maxdate: '2021-02-07',
     chooseDateArr: [
       '2020-12-13',
       '2020-12-01',
