@@ -4,7 +4,29 @@ Component({
    * 组件对外的属性
    */
   properties: {
-    
+    mindate: {
+      type: String,
+      value: '',
+      observer: function (newVal) {
+        console.log('最小日期', newVal)
+        this.setData({
+          mindate: newVal
+        })
+        this.initData()
+      }
+    },
+    maxdate: {
+      type: String,
+      value: '',
+      observer: function (newVal) {
+        console.log('最大日期', newVal)
+        this.setData({
+          maxdate: newVal
+        })
+        this.initData()
+      }
+    },
+    chooseDateArr: Array, // 当前月选中的日期
   },
   /**
    * 页面的初始数据
@@ -18,13 +40,6 @@ Component({
     currentDateArr: [], // 当前月有效数据
     lastInvalidDaysArr: [], // 当前月之前无效日期
     nextInvalidDaysArr: [], // 当前月之后无效日期
-
-    mindate: '2020-12-07',
-    maxdate: '2021-02-07',
-    chooseDateArr: [
-      '2020-12-13',
-      '2020-12-01',
-    ], // 当前月选中的日期
   },
 
   // 组件生命周期函数，可以为函数，或一个在methods段中定义的方法名

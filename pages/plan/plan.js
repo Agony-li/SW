@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -31,9 +31,9 @@ Page({
     course_active: '',  // 1: 眠, 2: 悟, 3: 动, 4: 纳, 5: 静
     course_num: 0,
     // 月历
-    show: false,
-    minDate: new Date(2010, 12, 7).getTime(),
-    maxDate: new Date(2011, 2, 7).getTime(),
+    mindate: '', // 最大日期
+    maxdate: '', // 最小日期
+    chooseDateArr: [], // 月历选中日期
     // 弹窗
     isShowDialog: false,
     dialogType: 1, // 1: 周任务提示弹窗 2: 课程暂停通知 3: 领取红包
@@ -188,7 +188,8 @@ Page({
       this.getScheduletStr()
     } else {
       // 获取月历接口
-
+      let month = new Date().getFullYear()+'-'+new Date().getMonth()+1
+      this.getYueLi(month)
     }
   },
 
@@ -382,6 +383,8 @@ Page({
       if(data.data.message == 200){
         this.setData({
           planInfo: data.data,
+          maxdate: data.data.endDate,
+          mindate: data.data.startDate,
           isOrder: true
         })
         // 获取课程信息
@@ -522,19 +525,14 @@ Page({
   },
 
   // 月历
-  onDisplay() {
-    this.setData({ show: true });
+  // 获取月历接口
+  async getYueLi(month){
+    let data = await util.httpRequestWithPromise('/rest/ryqtask/month?month='+month,'GET','', wx.getStorageSync('key'));
+    console.log('获取月历接口', data);
+    if(data.data.message == '200'){
+      
+    }
   },
-  onClose() {
-    this.setData({ show: false });
-  },
-  onConfirm(event) {
-    this.setData({
-      show: false,
-      date: `选择了 ${event.detail.length} 个日期`,
-    });
-  },
-
   // 获取作息时间列表
   async geScheduletList() {
     let { data } = await util.httpRequestWithPromise('/rest/ryqke/cfgtime', 'GET', '', wx.getStorageSync('key'));
