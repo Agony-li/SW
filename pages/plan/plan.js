@@ -376,7 +376,7 @@ Page({
 
   // 查询计划
   async getPlan() {
-    let data = await util.httpRequestWithPromise(`/rest/evaluationProgramLearn/learncycle`, 'get', '', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise(`/rest/ryqke/learncycle`, 'get', '', wx.getStorageSync('key'));
     console.log('查询计划', data);
     if (data.statusCode === 200) {
       if(data.data.message == 200){

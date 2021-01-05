@@ -1,119 +1,119 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": false,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"compileHotReLoad": false,
-		"useMultiFrameRuntime": false,
-		"useApiHook": true,
-		"enableEngineNative": false,
-		"useIsolateContext": true,
-		"userConfirmedBundleSwitch": false,
-		"packNpmManually": true,
-		"packNpmRelationList": [
-			{
-				"packageJsonPath": "./package.json",
-				"miniprogramNpmDistDir": "./miniprogram/"
-			}
-		],
-		"minifyWXSS": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
-	"appid": "wx7eee8f596bb30850",
-	"projectname": "SW",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"list": []
-		},
-		"conversation": {
-			"list": []
-		},
-		"plugin": {
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"list": []
-		},
-		"miniprogram": {
-			"list": [
-				{
-					"id": -1,
-					"name": "计划",
-					"pathName": "pages/plan/plan",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "音频训练",
-					"pathName": "pages/train/trainAudio",
-					"query": "tasktype=5&plantitle=优眠计划",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "图片训练任务",
-					"pathName": "pages/train/trainUploadPic",
-					"query": "tasktype=3&plantitle=优眠计划",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "课程列表",
-					"pathName": "pages/course/courselist",
-					"query": "course_active=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程详情",
-					"pathName": "pages/course/coursedetail",
-					"query": "id=185f01f69f3611eaa36e525400b4248d",
-					"scene": null
-				},
-				{
-					"id": 5,
-					"name": "睡眠测评",
-					"pathName": "components/sleepTest/index",
-					"query": "testType=slepping_test&type=2",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.3",
+  "appid": "wx7eee8f596bb30850",
+  "projectname": "SW",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "计划",
+          "pathName": "pages/plan/plan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "音频训练",
+          "pathName": "pages/train/trainAudio",
+          "query": "tasktype=5&plantitle=优眠计划",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "图片训练任务",
+          "pathName": "pages/train/trainUploadPic",
+          "query": "tasktype=3&plantitle=优眠计划",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "课程列表",
+          "pathName": "pages/course/courselist",
+          "query": "course_active=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程详情",
+          "pathName": "pages/course/coursedetail",
+          "query": "id=185f01f69f3611eaa36e525400b4248d",
+          "scene": null
+        },
+        {
+          "id": 5,
+          "name": "睡眠测评",
+          "pathName": "components/sleepTest/index",
+          "query": "testType=slepping_test&type=2",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
