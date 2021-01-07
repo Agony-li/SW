@@ -15,7 +15,7 @@ Page({
     plan_ready: false, // 是否做好计划前准备
     plan_start: true, // 计划是否开启
     userInfo: '',
-    active_plan: 2, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
+    active_plan: 0, // 0 表示课程, 1 表示任务 2 表示月历 3 表示添加作息时间
     week: 0,
     optionList: [
       
@@ -527,10 +527,13 @@ Page({
   // 月历
   // 获取月历接口
   async getYueLi(month){
-    let data = await util.httpRequestWithPromise('/rest/ryqtask/month?month='+month,'GET','', wx.getStorageSync('key'));
+    console.log(month.detail);
+    let data = await util.httpRequestWithPromise('/rest/ryqtask/month?month='+month.detail,'GET','', wx.getStorageSync('key'));
     console.log('获取月历接口', data);
     if(data.data.message == '200'){
-      
+      this.setData({
+        chooseDateArr: data.data.data.okdays
+      })
     }
   },
   // 获取作息时间列表

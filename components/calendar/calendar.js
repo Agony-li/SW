@@ -12,7 +12,6 @@ Component({
         this.setData({
           mindate: newVal
         })
-        this.initData()
       }
     },
     maxdate: {
@@ -23,10 +22,19 @@ Component({
         this.setData({
           maxdate: newVal
         })
-        this.initData()
       }
     },
-    chooseDateArr: Array, // 当前月选中的日期
+    chooseDateArr: {
+      type: Array,
+      observer: function (newVal) {
+        // console.log('选中的日期', newVal)
+        this.setData({
+          chooseDateArr: newVal
+        })
+        this.initData()
+        this.getCurrentMonthDateArr()
+      }
+    }, // 当前月选中的日期
   },
   /**
    * 页面的初始数据
@@ -40,6 +48,7 @@ Component({
     currentDateArr: [], // 当前月有效数据
     lastInvalidDaysArr: [], // 当前月之前无效日期
     nextInvalidDaysArr: [], // 当前月之后无效日期
+    chooseDateArr: [],
   },
 
   // 组件生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -53,6 +62,8 @@ Component({
     // 将选中的日期状态改为choose
     updateCurrentDateArr(currentDateArr){
       let chooseDateArr = this.data.chooseDateArr
+      console.log("选中的日期", chooseDateArr);
+      
       // 改变选中日期的状态
       for (let i = 0; i < currentDateArr.length; i++) {
         for (let j = 0; j < chooseDateArr.length; j++) {
@@ -122,6 +133,8 @@ Component({
       }
       this.initData()
       this.getCurrentMonthDateArr()
+      let monthParams = year + "-" + month
+      this.triggerEvent("getYueLi", monthParams)
     },
 
     // 切换下一个月
@@ -141,6 +154,8 @@ Component({
       }
       this.initData()
       this.getCurrentMonthDateArr()
+      let monthParams = year + "-" + month
+      this.triggerEvent("getYueLi", monthParams)
     },
 
     // 1. 计算某年某月的天数

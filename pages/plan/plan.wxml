@@ -340,7 +340,7 @@
 			</view>
 			<!-- 月历 -->
 			<view wx:if="{{plan_start&&active_plan==2}}" class="yueli">
-				<calendar mindate="{{mindate}}" maxdate="{{maxdate}}" chooseDateArr="{{chooseDateArr}}"></calendar>
+				<calendar mindate="{{mindate}}" maxdate="{{maxdate}}" chooseDateArr="{{chooseDateArr}}" bind:getYueLi="getYueLi"></calendar>
 				<view class="yueli_tip">
 					<view class="tip_arl"></view>
 					<view class="tip_des">当日完成任务</view>
@@ -410,7 +410,7 @@
 		<view class="dialog_content">
 			<view class="content_item">
 				<image src="../../images/tip_tan.png"></image>
-				<view>本周需至少完成{{mustRiskNum}}天任务</view>
+				<view>本周需至少完成{{needNum}}天任务</view>
 			</view>
 			<view class="content_item">
 				<image src="../../images/duihao_dialog.png"></image>
