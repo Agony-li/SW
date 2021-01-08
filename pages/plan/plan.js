@@ -524,11 +524,16 @@ Page({
     })
   },
 
+
+  // 给组件调用切换月份
+  getYueLiComponent(month){
+    this.getYueLi(month.detail)
+  },
+
   // 月历
   // 获取月历接口
   async getYueLi(month){
-    console.log(month.detail);
-    let data = await util.httpRequestWithPromise('/rest/ryqtask/month?month='+month.detail,'GET','', wx.getStorageSync('key'));
+    let data = await util.httpRequestWithPromise('/rest/ryqtask/month?month='+month,'GET','', wx.getStorageSync('key'));
     console.log('获取月历接口', data);
     if(data.data.message == '200'){
       this.setData({

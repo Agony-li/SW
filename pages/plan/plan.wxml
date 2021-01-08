@@ -340,7 +340,7 @@
 			</view>
 			<!-- 月历 -->
 			<view wx:if="{{plan_start&&active_plan==2}}" class="yueli">
-				<calendar mindate="{{mindate}}" maxdate="{{maxdate}}" chooseDateArr="{{chooseDateArr}}" bind:getYueLi="getYueLi"></calendar>
+				<calendar mindate="{{mindate}}" maxdate="{{maxdate}}" chooseDateArr="{{chooseDateArr}}" bind:getYueLi="getYueLiComponent"></calendar>
 				<view class="yueli_tip">
 					<view class="tip_arl"></view>
 					<view class="tip_des">当日完成任务</view>
