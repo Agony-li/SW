@@ -60,9 +60,10 @@ Page({
   },
 
   // 点击快速入口
-  gotoPlanTab(){
-    wx.switchTab({
-      url: '../../pages/CBTI/index',
+  goToPlanDetail(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../../components/plandetail/plandetail?id='+id,
     })
   },
 

@@ -20,7 +20,7 @@
   <!-- 快速入口导航(最多展示6个) -->
   <view class="quick_enter_module" wx:if="{{quickList.length > 0}}">
     <block wx:for="{{quickList}}" wx:key="index">
-      <view class="quick_enter_item" bindtap="goToTest">
+      <view class="quick_enter_item" bindtap="goToPlanDetail" data-id="{{item.articleData.id}}">
         <image class="quick_enter_image" src="{{imgBaseUrl+item.image}}"></image>
       </view>
     </block>

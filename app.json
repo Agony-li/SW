@@ -26,6 +26,7 @@
     "components/testIntro/testIntro",
     "components/bgAudio/bgAudio",
     "components/calendar/calendar",
+    "components/plandetail/plandetail",
 
     "pages/CBTI/index",
     "pages/strategy/strategy",
