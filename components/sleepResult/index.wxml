@@ -30,9 +30,9 @@
             <view wx:if="{{score<=7}}" class="pre-next-btn" bindtap="goToOther" data-type="1">
                 提高睡眠质量
             </view>
-            <view wx:if="{{score<=7}}" class="pre-next-btn" bindtap="goToOther" data-type="2">
+            <!-- <view wx:if="{{score<=7}}" class="pre-next-btn" bindtap="goToOther" data-type="2">
                 我想减肥塑身
-            </view>
+            </view> -->
             <view wx:if="{{score>7}}" class="pre-next-btn" bindtap="goToLession" data-type="0">
              下一步
             </view>
