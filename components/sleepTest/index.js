@@ -39,6 +39,7 @@ Page({
         this.setData({
             testType: option.testType
         });
+        
         if (option.from) {
             this.getTestList1(option.testType)
         } else {
@@ -92,6 +93,7 @@ Page({
         })
     },
     onShow() {
+      
     },
     async getTestList(type, sort) {
         var that = this;
@@ -568,8 +570,11 @@ Page({
   confirm: function () {
     var that = this;
     if (that.data.testType == 'apnea' || that.data.testType == 'phq' || that.data.testType == 'sas') {
-      wx.navigateTo({
-        url: '../../components/confirmNotic/index?id=' + that.data.currentData.id + '&price=' + that.data.currentData.price + '&title=' + that.data.currentData.title + '&createDate=' + that.data.currentData.createDate + '&from=3'
+      // wx.navigateTo({
+      //   url: '../../components/confirmNotic/index?id=' + that.data.currentData.id + '&price=' + that.data.currentData.price + '&title=' + that.data.currentData.title + '&createDate=' + that.data.currentData.createDate + '&from=3'
+      // })
+      wx.switchTab({
+        url: '../../pages/index/index',
       })
     } else {
       this.setData({

@@ -1,60 +1,73 @@
-.containers{
-    height: 100%;
-    box-sizing: border-box;
-    padding: 10rpx 30rpx;
+.containers {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10rpx 30rpx;
 }
-.title text{
-    font-size:32rpx;
-font-family:PingFangSC-Regular;
-font-weight:400;
-color:rgba(0,0,0,1);
-line-height:45rpx;
+.result_content {
+  margin-top: 36rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 36rpx 24rpx;
+  height: 523rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
 }
-.test-result{
-    text-align: center;
-    margin-top: 98rpx;
+.title text {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+  line-height: 45rpx;
 }
-.test-result image{
-    width: 204rpx;
-    height: 253rpx;
+
+.test-result {
+  /* text-align: center; */
+  margin-top: 34rpx;
 }
-.r-1{
-    margin-top: 50rpx;
-    font-size:28rpx;
-font-family:PingFangSC-Regular;
-font-weight:400;
-color:#4D4D4D;
-line-height:40rpx;
-display: flex;
-flex-flow: row;
-width: 100%;
-justify-content: center;
+
+.test-result image {
+  width: 204rpx;
+  height: 253rpx;
 }
-.r-t{
-    color: #00BFFF;
-    padding:0;
+
+.r-1 {
+  /* margin-top: 50rpx; */
+  font-size: 25rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 700;
+  color: #4D4D4D;
+  line-height: 40rpx;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  /* justify-content: center; */
 }
-.pre-next-content{
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    /* padding: 0 150rpx; */
-    /* text-align: center; */
-    margin-top: 142rpx;
+
+.r-t {
+  color: #36BC96;
+  padding: 0;
 }
-.pre-next-btn{
-    margin: 0 auto;
-    /* width:300rpx; */
-    padding: 0 20rpx;
-height:80rpx;
-/* background:rgba(0,191,255,1); */
-background: #36BC96;
-box-shadow:0px 7rpx 22rpx 1rpx rgba(0,191,255,0.44);
-border-radius:4rpx;  
-   line-height: 80rpx;
-   text-align: center;
-   font-size:28rpx;
-   font-family:PingFangSC-Regular;
-   font-weight:400;
-   color:rgba(255,255,255,1);
+
+.pre-next-content {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  /* padding: 0 150rpx; */
+  /* text-align: center; */
+  margin-top: 25rpx;
+}
+
+.pre-next-btn {
+  width: 100%;
+  background-color: #36BC96;
+  border-radius: 12rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #fff;
+}
+.left_btn {
+  margin-right: 37rpx;
+  color: #36BC96;
+  background-color: #E7E7E7;
 }

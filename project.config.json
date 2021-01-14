@@ -112,6 +112,20 @@
 					"pathName": "components/sleepTest/index",
 					"query": "testType=slepping_test&type=2",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测评小结",
+					"pathName": "components/sleepResult/index",
+					"query": "tasktype=3&plantitle=优眠计划",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "第二部分小结",
+					"pathName": "components/sleepOtherResult/index",
+					"query": "tasktype=3&plantitle=优眠计划",
+					"scene": null
 				}
 			]
 		}

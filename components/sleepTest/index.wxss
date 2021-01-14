@@ -83,6 +83,7 @@
   
 }
 .pre-next-content .pre-last-btn {
+  box-sizing: border-box;
   border: 1px solid #36BC96;
   background-color: #F2F4F5;
   color: #36BC96;

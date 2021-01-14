@@ -1,32 +1,29 @@
 <view class="containers">
+  <view class="result_content">
     <view class="title">
-        <text>您的测评结果</text>
+      <text>测试结果：</text>
     </view>
     <view class="test-result" hover-class="none" hover-stop-propagation="false">
-        <image  src="{{imgUrl}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-            
-        </image>
-        <view class="r-1" hover-class="none" hover-stop-propagation="false">
-       
-                {{remark}}
-        </view>
-        
+      <!-- <image src="{{imgUrl}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      </image> -->
+      <view class="r-1" hover-class="none" hover-stop-propagation="false">
+        {{remark}}
+      </view>
     </view>
-    <view  class="pre-next-content" hover-class="none" hover-stop-propagation="false">
-
-             <view  class="pre-next-btn" bindtap="endTest">
-                终止测试
-            </view>
-            <block wx:if="{{title == '' || title == null}}">
-            <view class="pre-next-btn" bindtap="goToLession" data-type="0">
-             下一步
-            </view>
-               </block>
-               <block wx:else>
-                           <view class="pre-next-btn" bindtap="confirm" data-type="0">
-             确定
-            </view>
-                
-               </block>
-        </view>  
+  </view>
+	<view class="pre-next-content" hover-class="none" hover-stop-propagation="false">
+		<view class="pre-next-btn left_btn" bindtap="endTest">
+			暂缓测试
+		</view>
+		<block wx:if="{{title == '' || title == null}}">
+			<view class="pre-next-btn" bindtap="goToLession" data-type="0">
+				下一步
+			</view>
+		</block>
+		<block wx:else>
+			<view class="pre-next-btn" bindtap="confirm" data-type="0">
+				确定
+			</view>
+		</block>
+	</view>
 </view>
