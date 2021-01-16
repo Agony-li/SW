@@ -33,12 +33,13 @@ Page({
         age: 0,
         sex: 0,
         notifyHidden: true,
-        notifyContent: ""
+        notifyContent: "",
     },
     onLoad: function (option) {
         this.setData({
             testType: option.testType
         });
+        this.deleteOldData()
         
         if (option.from) {
             this.getTestList1(option.testType)
@@ -47,6 +48,14 @@ Page({
         }
 
     },
+    // 删除临时数据
+    async deleteOldData(){
+      let data = await util.httpRequestWithPromise('/rest/evaluationType/deltemp', 'GET', '', wx.getStorageSync('key'));
+      if(data.data.message == 200){
+        console.log('删除临时数据成功', data);
+      }
+    },
+
     getBMI: function(option) {
       var value = option.detail.value;
       console.info(option)
@@ -107,6 +116,7 @@ Page({
           dictCodeUrl += '&dictCode=' + this.data.currentId
         }
         let data = await util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=' + type +'' + sortUrl + ''+dictCodeUrl+ '&type=2', 'GET', '', wx.getStorageSync('key'));
+        // let data = await util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=phq&treeSort=420&dictCode=001901&type=2', 'GET', '', wx.getStorageSync('key'));
         if (data.statusCode === 200) {
           console.log(data.data);
             if (data.data.message == '200') {
@@ -263,7 +273,7 @@ Page({
                   remark = "经测试，您属于原发性失眠，非其它生理性失眠，下面进行心理原因分析。"
                 }
                 wx.navigateTo({
-                  url: '../../components/sleepOtherResult/index?remark=' + remark
+                  url: '../../components/sleepOtherResult/index?tjId='+res.data.data.tjId+'&remark=' + remark
                 }) 
                 this.setData({
                   lbList: data.data.data,
@@ -426,6 +436,8 @@ Page({
             }
           if (option.currentTarget.dataset.type == 2) {
             let res = await util.httpRequestWithPromise('/rest/evaluationProgram/valid_program?dictType=' + this.data.testType, 'GET', '', wx.getStorageSync('key'))
+            // 获取推荐文章id
+            console.log('推荐文章id', res);
             if (res.data.message == '500') {
               let data = res.data.data;
               if (data.type == '2') {
@@ -459,7 +471,7 @@ Page({
                   remark = "经测试，您属于原发性失眠，非其它生理性失眠，下面进行心理原因分析。"
                 }
                 wx.navigateTo({
-                  url: '../../components/sleepOtherResult/index?remark=' + remark
+                  url: '../../components/sleepOtherResult/index?tjId='+res.data.data.tjId+'&remark=' + remark
                 })
                 if (res.data.data.length > 1 ) {
                   that.setData({
@@ -517,16 +529,17 @@ Page({
         })
       }
       let res = await util.httpRequestWithPromise('/rest/evaluationProgram/valid_program?dictType=' + this.data.testType, 'GET', '', wx.getStorageSync('key'))
+      console.log('推荐文章id', res.data.data.tjId);
       if (res.data.message == '500') {
         let data = res.data.data;
         if (data.type == '2') {
           wx.navigateTo({
-            url: '../../components/sleepOtherResult/index?remark=' + data.remarks + '&id=' + data.id + '&price=' + data.price + '&title=' + data.title + '&createDate=' + data.createDate + '&from=3'
+            url: '../../components/sleepOtherResult/index?tjId='+res.data.data.tjId+'&remark=' + data.remarks + '&id=' + data.id + '&price=' + data.price + '&title=' + data.title + '&createDate=' + data.createDate + '&from=3'
               })
         } else if (data.type == "1" && that.data.testType != 'slepping_test') {
           if ((that.data.testType == 'apnea' || that.data.testType == 'phq' || that.data.testType == 'sas') && data.remarks != "") {
             wx.navigateTo({
-              url: '../../components/sleepOtherResult/index?remark=' + data.remarks + '&id=' + data.id + '&price=' + data.price + '&title=' + data.title + '&createDate=' + data.createDate + '&from=3'
+              url: '../../components/sleepOtherResult/index?tjId='+res.data.data.tjId+'&remark=' + data.remarks + '&id=' + data.id + '&price=' + data.price + '&title=' + data.title + '&createDate=' + data.createDate + '&from=3'
             })
           } else {
             wx.navigateTo({
@@ -542,7 +555,7 @@ Page({
           if (that.data.testType == 'apnea'){
               remark = "经测试，您属于原发性失眠，非其它生理性失眠，下面进行心理原因分析。"
               wx.navigateTo({
-                url: '../../components/sleepOtherResult/index?remark=' + remark
+                url: '../../components/sleepOtherResult/index?tjId='+res.data.data.tjId+'&remark=' + remark
               })
           } else if (that.data.testType == 'phq'){
             that.setData({

@@ -124,7 +124,7 @@
 					"id": 7,
 					"name": "第二部分小结",
 					"pathName": "components/sleepOtherResult/index",
-					"query": "tasktype=3&plantitle=优眠计划",
+					"query": "tasktype=3&plantitle=优眠计划&tjId= 1349358874827603968",
 					"scene": null
 				}
 			]

@@ -7,7 +7,7 @@
   background-color: #fff;
   border-radius: 12rpx;
   padding: 36rpx 24rpx;
-  height: 523rpx;
+  padding-bottom: 24rpx;
   box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
 }
 .title text {
@@ -64,4 +64,12 @@
   margin-right: 37rpx;
   color: #36BC96;
   background-color: #E7E7E7;
+}
+/* 文章 */
+.show_article {
+  margin-top: 24rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
+  padding: 36rpx 24rpx 26rpx;
 }

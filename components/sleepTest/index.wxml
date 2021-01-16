@@ -46,18 +46,24 @@
 
 		</view>
 
-		<!-- <view class="test-content">
+		<view class="test-content" wx:if="{{lbList.length > 0}}">
 			<block wx:for="{{lbList}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
-				<view class="question-name">
-					{{itemIndex + 1}}.{{item.dictLabel}}
+				<view class="question">
+					<view class="question-name">
+						{{itemIndex + 1}}.{{item.dictLabel}}
+					</view>
 				</view>
 				<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.id" bindtap="choiceOtherAnswer" data-id="{{test.dictCode}}" data-value="{{item.dictCode}}">
-					<view class="word-box">
+					<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png"
+            mode="widthFix" lazy-load="false" binderror="" bindload="">
+          </image>
+          <image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+					<view class="word-box  {{test.checked == true?'choose_choice':''}}">
 						<text class="choice-detail" selectable="false" space="false" decode="false">{{choiceList[testIndex]}}.{{test.dictLabel}}</text>
 					</view>
 				</view>
 			</block>
-		</view> -->
+		</view>
 
 		<view class="pre-next-content" hover-class="none" hover-stop-propagation="false">
 			<view class="pre-last-btn" wx:if="{{testInfo.current!=1}}" style="margin-right: 20rpx;" data-type='1' bindtap="nextQuestion" data-sort="{{testInfo.treeSort}}">
