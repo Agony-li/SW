@@ -2,8 +2,10 @@
 
 <view class="containers">
 	<block wx:if="{{!isShowResult}}">
-		<view class="part_title">失眠严重程度（1/3）</view>
-		<view class="progress-content">
+		<view class="part_title {{lbList.length > 0?'marginBottom':''}}">
+			失眠严重程度（{{testInfo.total==7?'1':testInfo.total==14?'2':'3'}}/3）
+		</view>
+		<view class="progress-content" hidden="{{lbList.length > 0}}">
 			<progress class="mini-progress" percent="{{finishP}}" activeColor="#36BC96" backgroundColor="#FFF" border-radius="8" />
 			<view class="progress-num">
 				{{testInfo.current}} / {{testInfo.total}}
@@ -48,7 +50,7 @@
 
 		<view class="test-content" wx:if="{{lbList.length > 0}}">
 			<block wx:for="{{lbList}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="item.dictCode">
-				<view class="question">
+				<view class="question question_list">
 					<view class="question-name">
 						{{itemIndex + 1}}.{{item.dictLabel}}
 					</view>

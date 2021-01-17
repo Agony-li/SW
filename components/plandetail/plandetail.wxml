@@ -36,3 +36,7 @@
     </view> -->
   </view>
 </view>
+<view class="bottomBtn" bindtap="gotoBuy">
+  <image src="../../images/quickBtn.png"></image>
+  <view class="btndes">立即购买</view>
+</view>

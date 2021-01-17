@@ -27,7 +27,7 @@ Page({
       })
     }
     this.setData({
-      tjId: option.tjId,
+      tjId: option.tjId == 'undefined'? 0 : option.tjId,
       id: option.id,
       price: option.price,
       title: option.title,
@@ -37,7 +37,9 @@ Page({
       programId: option.pId,
       remark: option.remark
     })
-    this.getArticleDetail(option.tjId)
+    if(option.tjId != 'undefined'){
+      this.getArticleDetail(option.tjId)
+    }
   },
   
   goToLession() {

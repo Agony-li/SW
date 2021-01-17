@@ -41,6 +41,68 @@ Page({
     this.getDetail(option.id, option.form);
   
   },
+
+  // gotoBuy(){
+
+  // },
+  async gotoBuy () {
+    let userInfo = wx.getStorageSync('info')
+    if(!userInfo){
+      wx.navigateTo({
+        url: '../userCenter/login',
+      })
+      return
+    }
+    let that = this;
+    let isCheck = await  util.httpRequestWithPromise('/rest/evaluationType/listData.json?dictType=slepping_test&type=2', 'GET', '', wx.getStorageSync('key'));
+    try {
+      var value = wx.getStorageSync('key');
+      console.info('value', value);
+      console.info('isCheck', isCheck);
+      if (value && isCheck.data.message != '600') {
+        // 调试修改
+        // wx.navigateTo({
+        //   url: '../../components/testIntro/testIntro',
+        // })
+
+        
+        if(isCheck.data.message=='200'){
+          // that.closeTotest();
+          console.log('应该弹窗')
+          wx.navigateTo({
+            url: '../../components/testIntro/testIntro',
+          })
+        }else if(isCheck.data.message=='500'){
+          wx.navigateTo({
+            url: '../../components/serviceOpen/index?score='+isCheck.data.total+'&isOrder='+isCheck.data.isOrder+'&pId='+isCheck.data.programId
+          })
+        } else if(isCheck.data.message=='501') {
+          wx.showToast({
+            title: '请在订单中进行付款!',
+          })
+        } else if(isCheck.data.message=='601') {
+          wx.showModal({
+        title: '提示',
+        content: '请完善个人信息',
+        showCancel: false,
+        confirmText:'确定',
+        success(res){
+          if(res.confirm){
+              wx.navigateTo({
+                url: '../../components/userInfo/index',
+              })
+          }
+        }
+      })
+      } 
+      } else {
+        that.showDialog();
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+  },
+
   async learnDone(){
     let data = await util.httpRequestWithPromise('/rest/cms/learnDown?id=' + this.data.id + '&form=' + this.data.form, 'GET', '', wx.getStorageSync('key'));
     if(data.data.message == "200") {

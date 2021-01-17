@@ -1,6 +1,6 @@
 <import src="../../wxParse/wxParse.wxml" />
 <view class="containers">
-  <view class="result_content">
+  <view class="result_content {{tjId==0?'h523':''}}">
     <view class="title">
       <text>测试结果：</text>
     </view>
@@ -11,7 +11,7 @@
     </view>
   </view>
 	<!-- 推荐文章 -->
-	<view class="show_article" wx:if="{{tjId}}">
+	<view class="show_article" wx:if="{{tjId!=0}}">
 		<view class="title">
       <text>推荐方案：</text>
 			<template is="wxParse" data="{{wxParseData:article.nodes}}" />

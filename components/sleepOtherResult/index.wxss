@@ -73,3 +73,10 @@
   box-shadow: 0rpx 4rpx 13rpx 0rpx #E8EDEC;
   padding: 36rpx 24rpx 26rpx;
 }
+video {
+  margin-top: 12rpx;
+  border-radius: 12rpx !important;
+}
+.h523 {
+  height: 523rpx;
+}
