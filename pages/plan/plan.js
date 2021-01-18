@@ -141,7 +141,7 @@ Page({
             active_plan: 3
           })
           this.geScheduletList()
-        }else if (status == 410){ // 上周计划未完成
+        }else if (status == 410 || status == 411){ // 上周计划未完成
           this.setData({
             isOrder: false
           })

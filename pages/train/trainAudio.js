@@ -198,6 +198,18 @@ Page({
         wx.navigateBack({
           delta: 1
         })
+      }else if(data.data.message == 607){
+        wx.showModal({
+          title: '提示',
+          content: '请在正确的作息时间内完成任务',
+          success (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
     }
   },
