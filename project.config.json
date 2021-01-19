@@ -127,6 +127,20 @@
 					"pathName": "components/sleepOtherResult/index",
 					"query": "tasktype=3&plantitle=优眠计划&tjId= 1349358874827603968",
 					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "测评提示",
+					"pathName": "components/confirmNotic/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/userCenter/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

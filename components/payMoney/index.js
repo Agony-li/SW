@@ -51,7 +51,7 @@ Page({
    },
    async payNow(){
      let that = this;
-    let result = await util.httpRequestWithPromise('/pay/getPrepayIdResult?id=' + this.data.id + '&couponId=' + this.data.couponId, 'POST', '', wx.getStorageSync('key'));
+    let result = await util.httpRequestWithPromise('/rest/ryqpay/buyplan?id=' + this.data.id + '&couponId=' + this.data.couponId, 'POST', '', wx.getStorageSync('key'));
     var timastemp = Date.parse(new Date()) / 1000 + '';
     console.info(timastemp)
     console.info(result.data)
@@ -89,8 +89,11 @@ Page({
     console.info(data);
     var that = this;
     if (data.message == '200') {
-      wx.redirectTo({
-        url: '../../components/confirmNotic/index?id=&price=&title=&createDate=&from=5'
+      // wx.redirectTo({
+      //   url: '../../components/confirmNotic/index?id=&price=&title=&createDate=&from=5'
+      // })
+      wx.switchTab({
+        url: '../../pages/plan/plan',
       })
     } 
   },

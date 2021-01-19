@@ -195,3 +195,10 @@ button::after{
   background-color: #03C360;
   color: #fff;
 }
+button {
+  width: auto;
+  height: auto;
+  display: inline;
+  padding: 0;
+  margin: 0;
+}

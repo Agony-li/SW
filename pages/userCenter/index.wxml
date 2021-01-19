@@ -112,7 +112,9 @@
 				<view class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-kefu.png"></image>
-						<text class="item_text">客服中心</text>
+						<!-- <text class="item_text"> -->
+							<button class="item_text" open-type="contact">客服中心</button>
+						<!-- </text> -->
 					</view>
 					<view class="item_right">
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>

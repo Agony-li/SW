@@ -3,7 +3,7 @@
     padding-left:20px;
     padding-right:20px;
     box-sizing: border-box;
-    background:#f2f2f2;
+    background:#FFf;
 }
 .lession-content-1{
     width: 100%;
