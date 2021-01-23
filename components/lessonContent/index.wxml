@@ -1,34 +1,29 @@
 <import src="../../wxParse/wxParse.wxml" />
-<scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0"
-      scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper=""
-      bindscrolltolower="" bindscroll="">
-      <view class="lession-content-1" hover-class="none" hover-stop-propagation="false">
-            <image id="myVideo" src="https://sp.caiyuantech.com/userfiles/fileupload/banner.png"></image>
-
-      </view>
-      <view class="lession-content-2" hover-class="none" hover-stop-propagation="false">
-            <view class="lession-tab" hover-class="none " hover-stop-propagation="false">
-                  <view class="tab-1" bindtap="tab1"
-                        style="color:{{isActive==1?'#00BFFF':'#999999'}};border-bottom:{{isActive==1?'3rpx solid #00BFFF':'3rpx solid #ffffff'}}">
-                        课程详情</view>
-                  <view class="tab-2" bindtap="tab2"
-                        style="color:{{isActive==2?'#00BFFF':'#999999'}};border-bottom:{{isActive==2?'3rpx solid #00BFFF':'3rpx solid #ffffff'}}">
-                        课程体系</view>
-            </view>
-            <view wx:if="{{isActive==1}}" class="lession-tab-1" hover-class="none" hover-stop-propagation="false">
-                  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-
-            </view>
-            <view wx:else class="lession-tab-2" hover-class="none" hover-stop-propagation="false">
-                     <image style="width:280px; height:320px; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
-            </view>
-      </view>
-     
+<scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="" bindscroll="">
+	<view class="lession-content-1" hover-class="none" hover-stop-propagation="false">
+		<!-- <image id="myVideo" src="https://sp.caiyuantech.com/userfiles/fileupload/banner.png"></image> -->
+    <image style="width:280px; height:320px; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
+	</view>
+	<view class="lession-content-2" hover-class="none" hover-stop-propagation="false">
+		<view class="lession-tab" hover-class="none " hover-stop-propagation="false">
+			<view class="tab-1" bindtap="tab1" style="color:{{isActive==1?'#36BC96':'#999999'}};border-bottom:{{isActive==1?'3rpx solid #36BC96':'3rpx solid #ffffff'}}">
+				课程详情</view>
+			<!-- <view class="tab-2" bindtap="tab2" style="color:{{isActive==2?'#00BFFF':'#999999'}};border-bottom:{{isActive==2?'3rpx solid #00BFFF':'3rpx solid #ffffff'}}">
+				课程体系</view> -->
+		</view>
+		<view wx:if="{{isActive==1}}" class="lession-tab-1" hover-class="none" hover-stop-propagation="false">
+			<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+		</view>
+		<view wx:else class="lession-tab-2" hover-class="none" hover-stop-propagation="false">
+			<image style="width:280px; height:320px; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
+		</view>
+	</view>
 
 
 
 
-      <!-- <view class="title">{{articleDetail.title}}</view>
+
+	<!-- <view class="title">{{articleDetail.title}}</view>
     <view class="article-time" hover-class="none" hover-stop-propagation="false">
           {{articleDetail.createDate}}
     </view>
@@ -38,11 +33,11 @@
         <button bindtap="buyNow" wx:if="{{showPay}}">立即购买</button> -->
 </scroll-view>
 <view class="buy-btn-content" hover-class="none" hover-stop-propagation="false" wx:if="{{isShowBuyBtn}}">
-      <button open-type="contact" bindcontact="handleContact">
-            <image class="service-icon" src="../../image/service_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""> </image>
-            <text class="service-name" selectable="false" space="false" decode="false">咨询</text>
-      </button>
-      <view class="pay-btn" hover-class="none" bindtap="buyNow" hover-stop-propagation="false">
-            我要学习（￥{{articleDetail.price}}）
-      </view>
+	<button open-type="contact" bindcontact="handleContact">
+		<image class="service-icon" src="../../images/zixun.png" mode="widthFix" lazy-load="false" binderror="" bindload=""> </image>
+		<text class="service-name" selectable="false" space="false" decode="false">咨询</text>
+	</button>
+	<view class="pay-btn" hover-class="none" bindtap="buyNow" hover-stop-propagation="false">
+		我要学习（￥{{articleDetail.price}}）
+	</view>
 </view>

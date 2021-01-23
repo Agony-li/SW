@@ -87,20 +87,6 @@
 					"scene": null
 				},
 				{
-					"id": 2,
-					"name": "图片训练任务",
-					"pathName": "pages/train/trainUploadPic",
-					"query": "tasktype=3&plantitle=优眠计划",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "课程列表",
-					"pathName": "pages/course/courselist",
-					"query": "course_active=1",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "课程详情",
 					"pathName": "pages/course/coursedetail",
@@ -116,30 +102,16 @@
 				},
 				{
 					"id": -1,
-					"name": "测评小结",
-					"pathName": "components/sleepResult/index",
-					"query": "tasktype=3&plantitle=优眠计划",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "第二部分小结",
-					"pathName": "components/sleepOtherResult/index",
-					"query": "tasktype=3&plantitle=优眠计划&tjId= 1349358874827603968",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "测评提示",
+					"name": "测评风险确认书",
 					"pathName": "components/confirmNotic/index",
-					"query": "",
+					"query": "id=1205171174680756224&price=1198&title=乐眠升级计划&createDate=2019-12-13 01:02&from=3",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "我的",
-					"pathName": "pages/userCenter/index",
-					"query": "",
+					"name": "components/lessonContent/index",
+					"pathName": "components/lessonContent/index",
+					"query": "id=1205171174680756224&price=1198&title=乐眠升级计划&createDate=2019-12-13 01:02&from=3",
 					"scene": null
 				}
 			]

@@ -4,11 +4,11 @@ const app = getApp()
 
 Page({
    data:{
-    icon60:'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
+    icon60:'https://d2.hiecm.com/userfiles/fileupload/202011/1323804402703491074.png',
     discountCode:null,
     nums:1,
     title:null,
-    description:null,
+    description:'',
     price:null,
     id:null,
     total:null,

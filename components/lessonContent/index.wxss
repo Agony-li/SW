@@ -7,7 +7,7 @@
 .lession-content-1{
     width: 100%;
     font-size: 0;
-    height: 400rpx;
+    /* height: 400rpx; */
 }
 #myVideo{
     width: 100%;
@@ -29,14 +29,14 @@
     align-items: center;
     justify-content: space-around;
     border-bottom: 2rpx solid rgba(204,204,204,1);
-
+    background-color: #ffffff;
 }
 .tab-1{
     font-size:30rpx;
 font-family:PingFangSC-Medium;
 font-weight:500;
-color:rgba(0,191,255,1);
-border-bottom: 3rpx solid #00BFFF;
+color: #36BC96;
+border-bottom: 3rpx solid #36BC96;
 width:180rpx;
 padding-bottom: 18rpx;
 padding-top: 18rpx;

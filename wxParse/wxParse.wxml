@@ -23,7 +23,7 @@
     <audio controls bindtap="playaudio" name="喜知悦行" author="" id="myAudio" class="myAudio" data-src="{{item.attr.src}}" poster="https://s3.ax1x.com/2020/11/12/Bxkew6.png" data-title="睡眠科学概况"></audio>
     <!-- <audio controls bindtap="playaudio" author="{{item.attr.title}}" id="myAudio" class="myAudio" data-src="{{item.attr.src}}" poster="https://s3.ax1x.com/2020/11/12/BxiE9J.png" data-title="睡眠科学概况"></audio> -->
     <!-- <audio class="{{item.classStr}} wxParse-{{item.tag}}" src="{{item.attr.src}}" name="{{item.attr.title}}" author="喜知悦行" id="mpvoice" controls loop></audio> -->
-    <video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}"></video>
+    <video wx:if="{{item.attr.src.splice('.')[1] == 'mp4'}}" class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}"></video>
   </view>
 </template>
 

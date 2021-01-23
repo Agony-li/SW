@@ -5,8 +5,8 @@
     background:#f2f2f2;
 }
 .goods-img image{
-    width:180rpx;
-height:180rpx;
+    width:303rpx;
+height:149rpx;
 border-radius:8rpx;
 }
 .goods-content{
