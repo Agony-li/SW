@@ -51,7 +51,7 @@ Page({
    },
    async payNow(){
      let that = this;
-    let result = await util.httpRequestWithPromise('/rest/ryqpay/buyplan?id=' + this.data.id + '&couponId=' + this.data.couponId, 'POST', '', wx.getStorageSync('key'));
+    let result = await util.httpRequestWithPromise('/ryqpay/buyplan?id=' + this.data.id + '&couponId=' + this.data.couponId, 'POST', '', wx.getStorageSync('key'));
     var timastemp = Date.parse(new Date()) / 1000 + '';
     console.info(timastemp)
     console.info(result.data)

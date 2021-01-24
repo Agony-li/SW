@@ -62,9 +62,16 @@ Page({
   // 点击快速入口
   goToPlanDetail(e){
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '../../components/plandetail/plandetail?id='+id,
-    })
+    if(id == '1323804433095417856'){
+      wx.navigateTo({
+        url: '../../components/plandetail/plandetail?id='+id,
+      })
+    }else {
+      wx.showToast({
+        icon: 'none',
+        title: '敬请期待',
+      })
+    }
   },
 
   async goToTest () {
