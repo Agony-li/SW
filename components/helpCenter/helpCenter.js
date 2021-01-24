@@ -1,18 +1,35 @@
-// components/helpCenter/helpCenter.js
+import util from '../../utils/util.js';
+import config from '../../utils/dev.config';
+var  WxParse= require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    detail: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let id = '1351513456438009856'
+    this.getArticleDetail(id)
+  },
 
+  // 获取课程详情
+  async getArticleDetail(id) {
+    let data = await util.httpRequestWithPromise(`/rest/cms/article?id=${id}`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取课程详情', data.data.data)
+    if (data.statusCode === 200) {
+      if(data.data.data.content!=undefined){
+        WxParse.wxParse('article', 'html', data.data.data.articleData.content, this, 2);
+      }
+      this.setData({
+        detail:data.data.data,
+      })
+    }
   },
 
   /**

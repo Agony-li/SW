@@ -109,9 +109,9 @@
 				},
 				{
 					"id": -1,
-					"name": "components/lessonContent/index",
-					"pathName": "components/lessonContent/index",
-					"query": "id=1205171174680756224&price=1198&title=乐眠升级计划&createDate=2019-12-13 01:02&from=3",
+					"name": "我的",
+					"pathName": "pages/userCenter/index",
+					"query": "",
 					"scene": null
 				}
 			]

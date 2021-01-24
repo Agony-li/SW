@@ -1,9 +1,8 @@
+<import src="../../wxParse/wxParse.wxml" />
 <view class="help_center">
   <view class="help_header">
-    <view>Q&A</view>
-    <view>常见问题解答</view>
   </view>
   <view>
-    <rich-text></rich-text>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
 </view>

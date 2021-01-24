@@ -122,7 +122,7 @@
 				</view>
 			</view>
 			<view class="list_item">
-				<view class="item">
+				<navigator url="../../components/helpCenter/helpCenter" class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-help.png"></image>
 						<text class="item_text">帮助中心</text>
@@ -130,7 +130,7 @@
 					<view class="item_right">
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
 					</view>
-				</view>
+				</navigator>
 			</view>
 		</view>
 		<!-- 第三部分 -->

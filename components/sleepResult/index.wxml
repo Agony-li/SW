@@ -8,7 +8,7 @@
 				<!-- <image src="{{imgUrl}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image> -->
 				<view class="r-1" hover-class="none" hover-stop-propagation="false">
 					<block wx:if="{{score <= 7}}">
-						恭喜恭喜,经测评您目前 {{level}} 。欢迎您选择提升睡眠质量或优眠减脂塑身训练课程。
+						恭喜恭喜,经测评您目前 {{level}} 。欢迎您选择提升睡眠质量的优眠计划。
 					</block>
 					<block wx:else>
 						经测评, 您有<text class="r-t" selectable="false" space="false" decode="false">{{level}}</text>，下面进行生理原因分析。

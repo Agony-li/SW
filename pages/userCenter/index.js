@@ -53,16 +53,20 @@ Page({
       })
     }
   },
- 
+
+  // 跳转到各个二级页面
+  // gotoSecondPage(e){
+
+  // },
   
   showDialog: function(){
     this.dialog.showDialog();
-    },
+  },
     
-    confirmEvent: function(){
-    this.dialog.hideDialog();
-    },
-    bindGetUserInfo: function(e) {
+  confirmEvent: function(){
+  this.dialog.hideDialog();
+  },
+  bindGetUserInfo: function(e) {
     var that = this;
     var userInfo = e.detail.userInfo == null ? e.detail.detail.userInfo: e.detail.userInfo;
     console.log(userInfo)
