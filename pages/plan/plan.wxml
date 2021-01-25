@@ -169,7 +169,7 @@
 						<view class="ul_content" wx:if="{{mian}}">
 							<view class="li left">眠</view>
 							<view class="li {{taskObj.curWeek==week&&dayList[0]==day ? 'todayBg':''}}">
-								<image wx:if="{{mian.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png"></image>
+								<image wx:if="{{mian.days[dayList[0]] == 1}}" class="duihao" src="../../images/duihao.png" bindtap="gotoTrainUploadPic" data-tasktype="1" data-date="{{dayList[0]}}"></image>
 								<image wx:if="{{mian.days[dayList[0]] == 0}}" class="kong" src="../../images/kong.png" bindtap="gotoTrainUploadPic" data-tasktype="1" data-date="{{dayList[0]}}"></image>
 								<image wx:if="{{mian.days[dayList[0]] == 2}}" class="jia" src="../../images/jia.png"></image>
 							</view>

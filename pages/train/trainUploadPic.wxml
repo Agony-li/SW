@@ -3,7 +3,7 @@
 	<view class="des">{{planTitle}} {{date}}</view>
 	<view class="content">
 		<view class="exampleImg">
-			<image src="{{appUrl+trainAudio.imageList[0].url}}"></image>
+			<image src="{{trainAudio.imageList[0].url}}"></image>
 		</view>
 		<view class="describe">
 			<view class="content_text">

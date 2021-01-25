@@ -115,7 +115,11 @@ Page({
         if (status == 200) {
           // 获取课程接口
           this.checkTest()
-          
+          // 获取任务信息
+          this.getTask()
+          // 获取月历接口
+          let month = new Date().getFullYear()+'-'+new Date().getMonth()+1
+          this.getYueLi(month)
         }else if(status == 600){ // 用户失效
           wx.navigateTo({
             url: '../userCenter/login',
@@ -252,9 +256,12 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/ryqke/cfgtimesave`, 'get', '', wx.getStorageSync('key'));
     console.log('查询作息时间', data);
     if (data.statusCode === 200) {
-      this.setData({
-        showSchedulet: data.data.data.split("，")
-      })
+      if(data.data.message == 200){
+        this.setData({
+          showSchedulet: data.data.data.split("，")
+        })
+      }
+      
     }
   },
   
