@@ -15,19 +15,12 @@
 	</view>
 	<!-- 奖励明细 -->
 	<view class="list">
-		<view class="item">
+		<view wx:for="{{list}}" wx:key="index" class="item">
 			<view class="item_left">
-				<view class="item_title">申请剩余奖金 </view>
-				<view class="item_date">2020/10/09</view>
+				<view class="item_title">{{item.name}} </view>
+				<view class="item_date">{{item.date}}</view>
 			</view>
-			<view class="item_right">220.00元</view>
-		</view>
-		<view class="item">
-			<view class="item_left">
-				<view class="item_title">申请剩余奖金 </view>
-				<view class="item_date">2020/10/09</view>
-			</view>
-			<view class="item_right">220.00元</view>
+			<view class="item_right">{{item.price}}元</view>
 		</view>
 	</view>
 	<!-- 申请将近按钮 -->

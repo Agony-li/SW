@@ -1,6 +1,8 @@
 .help_center {
-  margin: 36rpx 0;
+  margin: 36rpx 14rpx;
   background-color: #fff;
+  padding: 20rpx;
+  border-radius: 6rpx;
 }
 .help_header {
   padding: 36rpx 0;

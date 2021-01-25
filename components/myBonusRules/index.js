@@ -1,51 +1,34 @@
 // components/myBonusRules/index.js
+import util from '../../utils/util.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    content: `Web 富文本编辑器有很多，但我们是认真的！
-    为何选择 wangEditor
-    万星项目 Github Star 1w+
-    简洁、轻量级、文档齐全
-    QQ 群及时答疑
-    开源团队维护，非个人单兵作战
-    初见
-    npm 安装 npm i wangeditor --save ，几行代码即可创建一个编辑器。
-    
-    import E from 'wangeditor'
-    const editor = new E('#div1')
-    editor.create()
-    更多使用配置，请阅读使用文档。
-    
-    浏览器兼容性
-    兼容主流 PC 浏览器，IE11+
-    不支持移动端和 ipad
-    遇到问题
-    加入 QQ 群 164999061(人已满) 710646022
-    提交问题和建议
-    贡献代码
-    欢迎非团队成员贡献代码，提交 Pull Request，请一定参考贡献代码流程。
-    
-    谁在维护
-    wangEditor 现有一个开源团队在维护，团队可以保证答疑、bug 修复和迭代效率。
-    
-    查看开发团队，或想加入开发团队
-    
-    为我们点赞
-    如果你感觉有收获，欢迎给我打赏，以激励我们更多输出优质开源内容。
-    
-      
-    
-    `
+    content: ``
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取奖金规则
+    let id = '1343737327339950080'
+    this.getMyBonusRules(id)
+  },
 
+  // 获取奖金规则
+  async getMyBonusRules(id){
+    let data = await util.httpRequestWithPromise(`/rest/cms/article?id=${id}`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取奖金规则', data.data.data)
+    if (data.statusCode === 200) {
+      if(data.data.data.articleData.content!=undefined){
+        this.setData({
+          content:data.data.data.articleData.content,
+        })
+      }
+    }
   },
 
   /**

@@ -122,7 +122,7 @@
 				</view>
 			</view>
 			<view class="list_item">
-				<navigator url="../../components/helpCenter/helpCenter" class="item">
+				<navigator url="../../components/helpCenter/helpCenter?id=1351513456438009856&type=2" class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-help.png"></image>
 						<text class="item_text">帮助中心</text>
@@ -147,7 +147,7 @@
 				</view>
 			</view>
 			<view class="list_item">
-				<view class="item">
+				<navigator url="../../components/helpCenter/helpCenter?id=1351513627754356736&type=1" class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-banben.png"></image>
 						<text class="item_text">版本</text>
@@ -155,10 +155,10 @@
 					<view class="item_right">
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
 					</view>
-				</view>
+				</navigator>
 			</view>
 			<view class="list_item">
-				<view class="item">
+				<navigator url="../../components/helpCenter/helpCenter?id=1351512294754213888&type=3" class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-aboutus.png"></image>
 						<text class="item_text">关于我们</text>
@@ -166,7 +166,7 @@
 					<view class="item_right">
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
 					</view>
-				</view>
+				</navigator>
 			</view>
 		</view>
 	</view>

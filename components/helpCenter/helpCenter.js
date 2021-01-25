@@ -14,8 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let id = '1351513456438009856'
-    this.getArticleDetail(id)
+    this.getArticleDetail(options.id)
+    this.setTitle(options.type)
   },
 
   // 获取课程详情
@@ -23,11 +23,28 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/cms/article?id=${id}`, 'get', '', wx.getStorageSync('key'));
     console.log('获取课程详情', data.data.data)
     if (data.statusCode === 200) {
-      if(data.data.data.content!=undefined){
-        WxParse.wxParse('article', 'html', data.data.data.articleData.content, this, 2);
+      if(data.data.data.articleData.content!=undefined){
+        // WxParse.wxParse('article', 'html', data.data.data.articleData.content, this, 2);
+        this.setData({
+          detail:data.data.data,
+        })
       }
-      this.setData({
-        detail:data.data.data,
+    }
+  },
+
+  // 设置标题
+  setTitle(type){
+    if(type == 1){
+      wx.setNavigationBarTitle({
+        title:'版本'
+      })
+    }else if(type == 2){
+      wx.setNavigationBarTitle({
+        title:'帮助中心'
+      })
+    }else if(type == 3){
+      wx.setNavigationBarTitle({
+        title:'关于我们'
       })
     }
   },

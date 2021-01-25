@@ -113,6 +113,19 @@
 					"pathName": "pages/userCenter/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的奖金",
+					"pathName": "components/myBonus/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "奖金规则",
+					"pathName": "components/myBonusRules/index",
+					"scene": null
 				}
 			]
 		}

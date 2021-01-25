@@ -1,10 +1,12 @@
 // components/myBonus/index.wxml.js
+import util from '../../utils/util.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    balance: '',
     list: []
   },
 
@@ -12,7 +14,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取我的奖金
+    this.getMyBonus()
+  },
 
+  // 获取我的奖金
+  async getMyBonus(){
+    let data = await util.httpRequestWithPromise(`/rest/ryqmy/bonuslist`, 'get', '', wx.getStorageSync('key'));
+    console.log('获取我的奖金', data)
+    if (data.statusCode === 200) {
+      this.setData({
+        balance: data.data.data.balance,
+        list: data.data.data.list
+      })
+    }
   },
 
   /**
