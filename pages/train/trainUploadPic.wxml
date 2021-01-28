@@ -27,8 +27,8 @@
 			<radio color="#36BC96" value="2" checked="{{checkRadio==2}}"/>华为
 		</radio-group>
 	</view>
-	<view class="btn canfinish" bindtap="finishTrainImage" wx:if="{{isShowFinishBtn}}">完成任务</view>
-	<view class="btn {{isClickEndBtn?'canfinish':'nofinish'}}" wx:else bindtap="confirmUpload">上传照片</view>
+	<!-- <view class="btn canfinish" bindtap="finishTrainImage" wx:if="{{isShowFinishBtn}}">完成任务</view> -->
+	<view class="btn {{isClickEndBtn?'canfinish':'nofinish'}}" wx:if="{{!isShowFinishBtn}}" bindtap="confirmUpload">上传照片</view>
 	<view class="btn leave" bindtap="planjia">我想请假</view>
 </view>
 <!-- 推荐阅读 -->
