@@ -24,8 +24,8 @@ Page({
     console.log('获取我的奖金', data)
     if (data.statusCode === 200) {
       this.setData({
-        balance: data.data.data.balance,
-        list: data.data.data.list
+        balance: data.data.balance,
+        list: data.data.list
       })
     }
   },

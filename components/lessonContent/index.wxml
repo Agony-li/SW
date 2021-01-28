@@ -2,7 +2,7 @@
 <scroll-view class="containers" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="" bindscroll="">
 	<view class="lession-content-1" hover-class="none" hover-stop-propagation="false">
 		<!-- <image id="myVideo" src="https://sp.caiyuantech.com/userfiles/fileupload/banner.png"></image> -->
-    <image style="width:100%; height:320px; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
+		<image style="width:100%; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
 	</view>
 	<view class="lession-content-2" hover-class="none" hover-stop-propagation="false">
 		<view class="lession-tab" hover-class="none " hover-stop-propagation="false">
@@ -15,7 +15,7 @@
 			<template is="wxParse" data="{{wxParseData:article.nodes}}" />
 		</view>
 		<view wx:else class="lession-tab-2" hover-class="none" hover-stop-propagation="false">
-			<image style="width:280px; height:320px; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
+			<image style="width:100%; padding-right:20px" src="{{vUrl}}" bindtap='imgYu'></image>
 		</view>
 	</view>
 

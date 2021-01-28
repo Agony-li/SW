@@ -1,8 +1,8 @@
-<view wx:if="{{list.length > 0}}">
+<view>
 	<view class="header">
 		<view class="header_content">
 			<view class="header_title">当前奖金池金额（元）</view>
-			<view class="total_money">220.00</view>
+			<view class="total_money">{{balance}}</view>
 		</view>
 		<navigator url="../../components/myBonusRules/index">
 			<view class="rules">
@@ -14,21 +14,25 @@
 		</navigator>
 	</view>
 	<!-- 奖励明细 -->
-	<view class="list">
-		<view wx:for="{{list}}" wx:key="index" class="item">
-			<view class="item_left">
-				<view class="item_title">{{item.name}} </view>
-				<view class="item_date">{{item.date}}</view>
+	<block wx:if="{{list.length > 0}}">
+		<view class="list">
+			<view wx:for="{{list}}" wx:key="index" class="item">
+				<view class="item_left">
+					<view class="item_title">{{item.name}} </view>
+					<view class="item_date">{{item.date}}</view>
+				</view>
+				<view class="item_right">{{item.price}}元</view>
 			</view>
-			<view class="item_right">{{item.price}}元</view>
 		</view>
-	</view>
-	<!-- 申请将近按钮 -->
-	<view class="btn">申请奖金</view>
+		<!-- 申请将近按钮 -->
+		<view class="btn">申请奖金</view>
+	</block>
+	<block wx:else >
+		<!-- 暂无数据 -->
+		<view class="nodata">
+			<image class="nodata_img" src="../../images/nodata.jpg"></image>
+			<view class="nodata_des">暂无数据</view>
+		</view>
+	</block>
 </view>
 
-<!-- 暂无数据 -->
-<view wx:else class="nodata">
-	<image class="nodata_img" src="../../images/nodata.jpg"></image>
-	<view class="nodata_des">暂无数据</view>
-</view>

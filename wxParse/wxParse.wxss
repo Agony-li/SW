@@ -89,6 +89,8 @@ view{
 .wxParse-img{
     /*background-color: #efefef;*/
     overflow: hidden;
+    width: 100%;
+    display: block;
 }
 
 .wxParse-blockquote {
@@ -200,7 +202,7 @@ view{
 .wxParse-p{
   font-size:28rpx;
   color:#4d4d4d;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
 }
 .wxParse-b{
    font-size:28rpx;

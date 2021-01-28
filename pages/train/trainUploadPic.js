@@ -121,8 +121,6 @@ Page({
       this.setData({
         isShowFinishBtn: true
       })
-    }else if(message == '600'){
-
     }else{
       console.log('图片识别失败');
       // 失败的情况
@@ -132,7 +130,7 @@ Page({
       let btn2 = {type: 1, txt: '重新上传'}
       des = ' 经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。'
       let dialog = {
-        title: '任务失败',
+        title: '任务失败('+message+')',
         img: '../../images/trainfail.png',
         des: des,
         btn1,

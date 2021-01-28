@@ -1,4 +1,7 @@
 @import"../../wxParse/wxParse.wxss";
+page {
+    background-color: #ffffff;
+}
 .containers{
     padding:0;
     box-sizing: border-box;
@@ -14,11 +17,10 @@
     height: 400rpx;
 }
 .lession-content-2{
-    margin-top: 20rpx;
+    /* margin-top: 20rpx; */
     width: 100%;
     background: #ffffff;
-    margin-bottom: 100rpx;
-
+    /* margin-bottom: 100rpx; */
 }
 .lession-tab{
     width: 100%;

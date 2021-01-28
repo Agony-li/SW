@@ -24,9 +24,9 @@ Page({
     console.log('获取课程详情', data.data.data)
     if (data.statusCode === 200) {
       if(data.data.data.articleData.content!=undefined){
-        // WxParse.wxParse('article', 'html', data.data.data.articleData.content, this, 2);
+        WxParse.wxParse('article', 'html', data.data.data.articleData.content, this, 2);
         this.setData({
-          detail:data.data.data,
+          detail:data.data.data.articleData.content.replace(/\<img/gi, '<img style="width:100%;height:auto;display:block" '),
         })
       }
     }

@@ -52,7 +52,7 @@
 				<!-- </navigator> -->
 			</view>
 			<view class="list_item">
-				<navigator url="../../components/applyBonus/index?done={{done}}&week={{currentWeek}}">
+				<navigator url="../../components/myBonus/index">
 					<view class="item">
 						<view class="item_left">
 							<image class="item_icon" src="../../images/icon-price.png"></image>
@@ -109,17 +109,15 @@
 		<!-- 第二部分 -->
 		<view class="module">
 			<view class="list_item">
-				<view class="item">
+				<button class="item" open-type="contact">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-kefu.png"></image>
-						<!-- <text class="item_text"> -->
-							<button class="item_text" open-type="contact">客服中心</button>
-						<!-- </text> -->
+						<text class="item_text">客服中心</text>
 					</view>
 					<view class="item_right">
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
 					</view>
-				</view>
+				</button>
 			</view>
 			<view class="list_item">
 				<navigator url="../../components/helpCenter/helpCenter?id=1351513456438009856&type=2" class="item">
@@ -135,7 +133,7 @@
 		</view>
 		<!-- 第三部分 -->
 		<view class="module">
-			<view class="list_item">
+			<!-- <view class="list_item">
 				<view class="item">
 					<view class="item_left">
 						<image class="item_icon" src="../../images/icon-upload.png"></image>
@@ -145,7 +143,7 @@
 						<image class="item_right_arrow" src="../../images/black_arrow.png"></image>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<view class="list_item">
 				<navigator url="../../components/helpCenter/helpCenter?id=1351513627754356736&type=1" class="item">
 					<view class="item_left">

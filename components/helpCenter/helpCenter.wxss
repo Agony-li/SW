@@ -1,14 +1,7 @@
-.help_center {
-  margin: 36rpx 14rpx;
+page {
   background-color: #fff;
-  padding: 20rpx;
-  border-radius: 6rpx;
 }
-.help_header {
-  padding: 36rpx 0;
-  margin:  0 24rpx;
-  box-sizing: border-box;
-  font-size: 30rpx;
-  font-weight: 700;
-  border-bottom: 1rpx solid #E7E7E7;
+.help_center img{
+  width: 100% !important;
+  display: block !important;
 }

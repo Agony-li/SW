@@ -1,7 +1,4 @@
 <view class="help_center">
-  <!-- <view class="help_header">
-  </view> -->
-  <view>
-    <rich-text nodes="{{detail.articleData.content}}"></rich-text>
-  </view>
+  <rich-text nodes="{{detail}}"></rich-text>
+  <!-- <image  mode='widthFix' class="help_img" src="https://d2.xizhiyuexing.com/userfiles/admin/images/20210128/1611826206816017759.jpeg"></image> -->
 </view>

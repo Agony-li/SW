@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -125,6 +125,7 @@
 					"id": -1,
 					"name": "奖金规则",
 					"pathName": "components/myBonusRules/index",
+					"query": "",
 					"scene": null
 				}
 			]
