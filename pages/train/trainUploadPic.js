@@ -116,10 +116,17 @@ Page({
     let data = await util.httpRequestWithPromise(`/rest/ryqtask/imgupsleep?id=${this.data.trainAudio.id}&dtype=${this.data.checkRadio}&img1=${img1}&fileId1=${fileId1}&img2=${img2}&fileId2=${fileId2}`, 'GET', '', wx.getStorageSync('key'));
     console.log('运动图片识别接口', data);
     let message = data.data.message
-    if(message == '200') {
+    if(message == '200' || message == '613') {
       // 显示完成按钮
       this.setData({
         isShowFinishBtn: true
+      })
+      wx.showToast({
+        icon: 'none',
+        title: '训练已完成',
+      })
+      wx.navigateBack({
+        delta: 1
       })
     }else{
       console.log('图片识别失败');
