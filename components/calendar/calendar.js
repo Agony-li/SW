@@ -10,7 +10,7 @@ Component({
       observer: function (newVal) {
         console.log('最小日期', newVal)
         this.setData({
-          mindate: newVal
+          mindate: newVal.replace(/[-]/g, '/')
         })
       }
     },
@@ -20,7 +20,7 @@ Component({
       observer: function (newVal) {
         console.log('最大日期', newVal)
         this.setData({
-          maxdate: newVal
+          maxdate: newVal.replace(/[-]/g, '/')
         })
       }
     },
