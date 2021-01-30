@@ -362,8 +362,15 @@ Page({
     let response = await util.httpRequestWithPromise('/rest/ryqtask/sendRedpack','GET','', wx.getStorageSync('key'));
     console.log('领取红包接口',response);
     if(Number(response.data.message) === 200){
+      // 获取任务接口
+      this.getTask()
       wx.showToast({
         title: '领取成功!',
+      })
+    }else if(response.data.message == 603){
+      wx.showToast({
+        icon:'none',
+        title: '红包已领取!',
       })
     }else{
       wx.showToast({
