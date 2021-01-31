@@ -44,7 +44,7 @@
 		"minifyWXSS": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
+	"libVersion": "2.14.4",
 	"appid": "wx2f4af9802d72f78a",
 	"projectname": "SW",
 	"debugOptions": {
@@ -132,6 +132,14 @@
 					"id": -1,
 					"name": "我的订单",
 					"pathName": "components/transactionRecords/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程详情",
+					"pathName": "pages/course/coursedetail",
+					"query": "id=1349926100895182848",
 					"scene": null
 				}
 			]

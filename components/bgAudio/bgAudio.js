@@ -71,6 +71,10 @@ Component({
         isPlay: 0,
       })
     })
+    // 音频错误事件
+    bgAudioManager.onError(res => {
+      console.log('音频错误事件', res);
+    })
     
     // 监听背景音乐播放进度更新事件
     bgAudioManager.onTimeUpdate(() => {
@@ -165,7 +169,7 @@ Component({
       if(this.data.value == 0){
         bgAudioManager.play()
       }else{
-        bgAudioManager.seek(this.data.value)
+        // bgAudioManager.seek(this.data.value)
         this.setData({
           duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
         })
@@ -185,7 +189,7 @@ Component({
     changeSlider(e){
       let that = this
       let value = e.detail.value
-      bgAudioManager.seek(value)
+      // bgAudioManager.seek(value)
       that.setData({
         value: value,
         duration: that.timesToMinutesAndTimes(that.data.max - value),
