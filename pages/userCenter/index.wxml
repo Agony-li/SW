@@ -66,6 +66,7 @@
 			</view>
 			<view class="list_item">
 				<navigator url="../../components/transactionRecords/index" open-type="navigate">
+				<!-- <navigator url="../../components/myOrders/myOrders" open-type="navigate"> -->
 					<view class="item">
 						<view class="item_left">
 							<image class="item_icon" src="../../images/icon-order.png"></image>

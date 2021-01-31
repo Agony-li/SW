@@ -1,237 +1,217 @@
 <view class="containers" hover-class="none" hover-stop-propagation="false">
-        <!-- <view class="weui-cells weui-cells_after-title">
-            <block wx:for="{{recordList}}" wx:for-item="item">
-                    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                            <view class="weui-cell__bd">{{item.programName}}</view>
-                            <view class="weui-cell__ft weui-cell__ft_in-access">{{item.orderNo}}</view>
-                        </navigator>
-            </block>
-            </view> -->
-            <view class="page__bd">
-                <view class="weui-tab">
-                    <view class="weui-navbar">
-                        <block wx:for="{{tabs}}" wx:key="*this">
-                            <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-                                <view class="weui-navbar__title">{{item}}</view>
-                            </view>
-                        </block>
-                        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
-                    </view>
-                    <view class="weui-tab__panel">
-                        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                                <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
-                                       <view class="order-f-1" hover-class="none" hover-stop-propagation="false">
-                                               <text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
-                                               <text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
-                                               <text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
-                                               <text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
+	<view class="page__bd">
+		<view class="weui-tab">
+			<view class="weui-navbar">
+				<block wx:for="{{tabs}}" wx:key="*this">
+					<view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+						<view class="weui-navbar__title">{{item}}</view>
+					</view>
+				</block>
+				<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+			</view>
+			<view class="weui-tab__panel">
+				<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+					<view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+						<view class="order-f-1" hover-class="none" hover-stop-propagation="false">
+							<text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
+							<text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
+							<text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
+							<text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
 
-                                               <text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
-                                       </view> 
-                                       <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
-                                             <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
-                                                     <image class="f-2-m"  src="https://sp.caiyuantech.com{{items.image}}"  mode="widthFix" lazy-load="false" binderror="" bindload="">
-                                                             
-                                                     </image>
-                                                     <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
-                                                       {{items.programName}}
-                                                     </view>
-                                             </view>
-                                            
-                                             <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
-                                                ￥{{items.price}}
-                                             </view>
-                                       </view>
-                                        <view class="order-f-3" hover-class="none" hover-stop-propagation="false">
-                                                <!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
-                                                <text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
-                                              
-                                       </view>
-                                       <view class="order-f-4" hover-class="none" hover-stop-propagation="false">
-                                             <view  wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}"  class="f-4-1" hover-class="none" hover-stop-propagation="false">
-                                                      取消订单
-                                              </view>
-                                              <view  wx:if="{{items.status==1}}" bindtap="confirmOrder"  class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
-                                                        立即付款
-                                                </view>
-                                                 <view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false" bindtap="items.evaluationProgramOrderRefund==undefined?refundMoney:''" data-info="{{items}}">
-                                                        {{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
-                                                </view>
-                                       </view>
-                                </view>
-                                <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
-                                                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
-                                </view>
-                        </view>
-                        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                                <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
-                                                <view class="order-f-1" hover-class="none" hover-stop-propagation="false">
-                                                                <text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
-                                                                <text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
-                                                                <text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
-                                                                <text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
-                 
-                                                                <text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
-                                                        </view> 
-                                                        <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
-                                                              <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
-                                                                      <image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-                                                                              
-                                                                      </image>
-                                                                      <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.programName}}
-                                                                      </view>
-                                                              </view>
-                                                             
-                                                              <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
-                                                                 ￥{{items.price}}
-                                                              </view>
-                                                        </view>
-                                                         <view class="order-f-3" hover-class="none" hover-stop-propagation="false">
-                                                                 <!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
-                                                                 <text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
-                                                               
-                                                        </view>
-                                                        <view class="order-f-4" hover-class="none" hover-stop-propagation="false">
-                                                               <view  wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}"  class="f-4-1" hover-class="none" hover-stop-propagation="false">
-                                                      取消订单
-                                              </view>
-                                              <view  wx:if="{{items.status==1}}" bindtap="confirmOrder"  class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
-                                                        立即付款
-                                                </view>
-                                                                  <view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
-                                                                 </view>
-                                                        </view>
-                                 </view>
-                                 <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
-                                                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
-                                </view>
-                        </view>
-                        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                                <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
-                                                <view class="order-f-1" hover-class="none" hover-stop-propagation="false">
-                                                                <text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
-                                                                <text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
-                                                                <text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
-                                                                <text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
-                 
-                                                                <text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
-                                                        </view> 
-                                                        <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
-                                                              <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
-                                                                      <image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-                                                                              
-                                                                      </image>
-                                                                      <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.programName}}
-                                                                      </view>
-                                                              </view>
-                                                             
-                                                              <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
-                                                                 ￥{{items.price}}
-                                                              </view>
-                                                        </view>
-                                                         <view class="order-f-3" hover-class="none" hover-stop-propagation="false">
-                                                                 <!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
-                                                                 <text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
-                                                               
-                                                        </view>
-                                                        <view class="order-f-4" hover-class="none" hover-stop-propagation="false">
-                                                               <view  wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}"  class="f-4-1" hover-class="none" hover-stop-propagation="false">
-                                                      取消订单
-                                              </view>
-                                              <view  wx:if="{{items.status==1}}" bindtap="confirmOrder"  class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
-                                                        立即付款
-                                                </view>
-                                                                  <view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
-                                                                 </view>
-                                                        </view>
-                                 </view>
-                                 <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
-                                                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
-                                </view>
-                        </view>
-                        <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
-                                <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
-                                                <view class="order-f-1" hover-class="none" hover-stop-propagation="false">
-                                                                <!-- <text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
-                                                                <text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text> -->
-                                                                <text class="w-1" selectable="false" space="false" decode="false">已退款 </text>
-                                                                <!-- <text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text> -->
-                 
-                                                                <text class="w-2" selectable="false" space="false" decode="false">{{items.createDate}}</text>
-                                                        </view> 
-                                                        <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
-                                                              <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
-                                                                      <image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-                                                                              
-                                                                      </image>
-                                                                      <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.programName}}
-                                                                      </view>
-                                                              </view>
-                                                             
-                                                              <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
-                                                                 ￥{{items.orderPrice}}
-                                                              </view>
-                                                        </view>
-                                                         <view class="order-f-3" hover-class="none" hover-stop-propagation="false">
-                                                                 <!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
-                                                                 <text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.orderPrice}}</text>
-                                                               
-                                                        </view>
-                                                        <view class="order-f-4" hover-class="none" hover-stop-propagation="false">
-                                                             <view  wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}"  class="f-4-1" hover-class="none" hover-stop-propagation="false">
-                                                      取消订单
-                                              </view>
-                                              <view  wx:if="{{items.status==1}}" bindtap="confirmOrder"  class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
-                                                        立即付款
-                                                </view>
-                                                                  <view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
-                                                                 </view>
-                                                        </view>
-                                 </view>
-                                 <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
-                                                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
-                                </view>
-                        </view>
-                        <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
-                                <view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
-                                                <view class="order-f-1" hover-class="none" hover-stop-propagation="false">
-                                                                <text class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
-                                                                <text class="w-2" selectable="false" space="false" decode="false">{{items.applyTime}}</text>
-                                                        </view> 
-                                                        <view class="order-f-2" hover-class="none" hover-stop-propagation="false">
-                                                              <view class="f-2-1" hover-class="none" hover-stop-propagation="false">
-                                                                      <image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-                                                                              
-                                                                      </image>
-                                                                      <view class="f-2-2" hover-class="none" hover-stop-propagation="false">
-                                                                        {{items.programName}}
-                                                                      </view>
-                                                              </view>
-                                                             
-                                                              <view class="f-2-3" hover-class="none" hover-stop-propagation="false">
-                                                                 ￥{{items.price*0.01}}
-                                                              </view>
-                                                        </view>
-                                                        
-                                                        
-                                 </view>
-                                 <view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
-                                                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
-                                </view>
-                                <van-submit-bar
-                                price="{{ redbagPrice }}"
-                                button-text="已发送"
-                                />
-                        </view>
-                    </view>
-                </view>
-            </view>
-            <view class="loading" hidden="{{!searchLoading}}">{{loadMoreData}}</view>
-      <view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
+							<text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
+						</view>
+						<view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+							<view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+								<image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+
+								</image>
+								<view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+									{{items.programName}}
+								</view>
+							</view>
+
+							<view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+								￥{{items.price}}
+							</view>
+						</view>
+						<view class="order-f-3" hover-class="none" hover-stop-propagation="false">
+							<!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
+							<text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
+
+						</view>
+						<view class="order-f-4" hover-class="none" hover-stop-propagation="false" wx:if="{{items.status==1||items.isShowRefundBtn}}">
+							<view wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}" class="f-4-1" hover-class="none" hover-stop-propagation="false">
+								取消订单
+							</view>
+							<view wx:if="{{items.status==1}}" bindtap="confirmOrder" class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
+								立即付款
+							</view>
+							<view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false" bindtap="items.evaluationProgramOrderRefund==undefined?refundMoney:''" data-info="{{items}}">
+								{{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
+							</view>
+						</view>
+					</view>
+					<view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+						<view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+					</view>
+				</view>
+				<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+					<view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+						<view class="order-f-1" hover-class="none" hover-stop-propagation="false">
+							<text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
+							<text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
+							<text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
+							<text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
+
+							<text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
+						</view>
+						<view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+							<view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+								<image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+
+								</image>
+								<view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+									{{items.programName}}
+								</view>
+							</view>
+
+							<view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+								￥{{items.price}}
+							</view>
+						</view>
+						<view class="order-f-3" hover-class="none" hover-stop-propagation="false">
+							<!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
+							<text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
+
+						</view>
+						<view class="order-f-4" hover-class="none" hover-stop-propagation="false" wx:if="{{items.status==1||items.isShowRefundBtn}}">
+							<view wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}" class="f-4-1" hover-class="none" hover-stop-propagation="false">
+								取消订单
+							</view>
+							<view wx:if="{{items.status==1}}" bindtap="confirmOrder" class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
+								立即付款
+							</view>
+							<view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
+								{{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
+							</view>
+						</view>
+					</view>
+					<view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+						<view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+					</view>
+				</view>
+				<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+					<view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+						<view class="order-f-1" hover-class="none" hover-stop-propagation="false">
+							<text wx:if="{{items.status==1}}" class="w-1" selectable="false" space="false" decode="false">等待买家付款 </text>
+							<text wx:if="{{items.status==2}}" class="w-1" selectable="false" space="false" decode="false">交易完成 </text>
+							<text wx:if="{{items.status==3}}" class="w-1" selectable="false" space="false" decode="false">已退款 </text>
+							<text wx:if="{{items.status==4}}" class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
+
+							<text class="w-2" selectable="false" space="false" decode="false">{{items.paymentTime}}</text>
+						</view>
+						<view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+							<view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+								<image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+
+								</image>
+								<view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+									{{items.programName}}
+								</view>
+							</view>
+
+							<view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+								￥{{items.price}}
+							</view>
+						</view>
+						<view class="order-f-3" hover-class="none" hover-stop-propagation="false">
+							<!-- <text class="f-3-1" selectable="false" space="false" decode="false">共1件商品</text> -->
+							<text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.price}}</text>
+
+						</view>
+						<view class="order-f-4" hover-class="none" hover-stop-propagation="false" wx:if="{{items.status==1||items.isShowRefundBtn}}">
+							<view wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}" class="f-4-1" hover-class="none" hover-stop-propagation="false">
+								取消订单
+							</view>
+							<view wx:if="{{items.status==1}}" bindtap="confirmOrder" class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
+								立即付款
+							</view>
+							<view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
+								{{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
+							</view>
+						</view>
+					</view>
+					<view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+						<view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+					</view>
+				</view>
+				<view class="weui-tab__content" hidden="{{activeIndex != 3}}">
+					<view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+						<view class="order-f-1" hover-class="none" hover-stop-propagation="false">
+							<text class="w-1" selectable="false" space="false" decode="false">已退款 </text>
+							<text class="w-2" selectable="false" space="false" decode="false">{{items.createDate}}</text>
+						</view>
+						<view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+							<view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+								<image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+								</image>
+								<view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+									{{items.programName}}
+								</view>
+							</view>
+							<view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+								￥{{items.orderPrice}}
+							</view>
+						</view>
+						<view class="order-f-3" hover-class="none" hover-stop-propagation="false">
+							<text class="f-3-2" selectable="false" space="false" decode="false">合计：￥{{items.orderPrice}}</text>
+
+						</view>
+						<view class="order-f-4" hover-class="none" hover-stop-propagation="false" wx:if="{{items.status==1||items.isShowRefundBtn}}">
+							<view wx:if="{{items.status==1}}" bindtap="cancelOrder" data-id="{{items.id}}" class="f-4-1" hover-class="none" hover-stop-propagation="false">
+								取消订单
+							</view>
+							<view wx:if="{{items.status==1}}" bindtap="confirmOrder" class="f-4-2" data-id="{{items.id}}" data-pid="{{items.programId}}" hover-class="none" hover-stop-propagation="false">
+								立即付款
+							</view>
+							<view wx:if="{{items.status==2&&items.isShowRefundBtn}}" class="f-4-3" hover-class="none" hover-stop-propagation="false">
+								{{items.evaluationProgramOrderRefund.orderType==2?'退款中':'退款'}}
+							</view>
+						</view>
+					</view>
+					<view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+						<view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+					</view>
+				</view>
+				<view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+					<view class="order-content" hover-class="none" hover-stop-propagation="false" wx:for="{{recordList}}" wx:for-item="items">
+						<view class="order-f-1" hover-class="none" hover-stop-propagation="false">
+							<text class="w-1" selectable="false" space="false" decode="false">已领取红包 </text>
+							<text class="w-2" selectable="false" space="false" decode="false">{{items.applyTime}}</text>
+						</view>
+						<view class="order-f-2" hover-class="none" hover-stop-propagation="false">
+							<view class="f-2-1" hover-class="none" hover-stop-propagation="false">
+								<image class="f-2-m" src="https://sp.caiyuantech.com{{items.image}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+
+								</image>
+								<view class="f-2-2" hover-class="none" hover-stop-propagation="false">
+									{{items.programName}}
+								</view>
+							</view>
+
+							<view class="f-2-3" hover-class="none" hover-stop-propagation="false">
+								￥{{items.price*0.01}}
+							</view>
+						</view>
+					</view>
+					<view class="weui-loadmore weui-loadmore_line" wx:if="{{recordList.length==0}}">
+						<view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+					</view>
+					<van-submit-bar price="{{ redbagPrice }}" button-text="已发送" />
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="loading" hidden="{{!searchLoading}}">{{loadMoreData}}</view>
+	<view class="loading complete" hidden="{{!searchLoadingComplete}}">暂无更多数据</view>
 </view>

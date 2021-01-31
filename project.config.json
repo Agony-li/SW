@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -126,6 +126,12 @@
 					"name": "奖金规则",
 					"pathName": "components/myBonusRules/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "components/transactionRecords/index",
 					"scene": null
 				}
 			]

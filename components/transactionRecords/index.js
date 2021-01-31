@@ -4,10 +4,10 @@ import regeneratorRuntime from '../../common/regenerator-runtime/runtime';
 const app = getApp()
 Page({
     data:{
-        tabs: ["全部", "待支付", "已支付", "已退款", "已领红包"],
+        tabs: ["全部", "待支付", "已支付", "已退款"],
         activeIndex: 0,
         sliderOffset: 0,
-        sliderLeft: 0,
+        sliderLeft: 35,
             userCode:null,
             phone:null,
             extend_s1:null,//身高
