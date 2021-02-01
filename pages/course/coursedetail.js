@@ -47,7 +47,7 @@ Page({
         title: fileUpload.name,
         singer: '播放完毕即完成课程', 
         // poster: 'https://s3.ax1x.com/2020/11/12/Bxkew6.png',
-        src: config.appUrl+fileUpload.url,
+        src: fileUpload.url,
       }
       this.setData({
         detail:data.data.data,
