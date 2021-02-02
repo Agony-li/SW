@@ -1,5 +1,5 @@
 <view class="content">
-  <image src="{{appUrl+trainAudio.imageList[0].url}}"></image>
+  <image src="{{trainAudio.imageList[0].url}}"></image>
   <view class="title">冥想引导音频3分钟</view>
   <view class="des">{{planTitle}}  {{date}}</view>
   <view class="audio_module">

@@ -61,7 +61,7 @@ Page({
       let audio = {
         title: fileUpload.name,
         singer: '播放完毕即完成课程', 
-        src: config.appUrl+fileUpload.url,
+        src: fileUpload.url,
       }
       this.setData({
         trainAudio: data.data.data,
