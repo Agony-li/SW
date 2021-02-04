@@ -45,7 +45,7 @@ Page({
   // 跳转到文章详情
   gotoArticleDetail(){
     wx.navigateTo({
-      url: '../community/gooditemlist',
+      url: '../article/articledetail?id=1321759836085682176',
     })
   },
 
