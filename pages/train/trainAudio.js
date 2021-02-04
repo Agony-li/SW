@@ -61,7 +61,7 @@ Page({
       let audio = {
         title: fileUpload.name,
         singer: '播放完毕即完成课程', 
-        src: config.appUrl+fileUpload.url,
+        src: fileUpload.url,
       }
       this.setData({
         trainAudio: data.data.data,
@@ -183,6 +183,15 @@ Page({
     console.log('音频自动播放完')
     this.setData({
       isClickEndBtn: true
+    })
+  },
+
+  // 不在作息时间内播放弹窗
+  noTimeDialog(){
+    wx.showModal({
+      title: '提示',
+      content: '请在正确的作息时间内完成',
+      confirmText: '确认'
     })
   },
 

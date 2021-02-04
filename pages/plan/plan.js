@@ -248,6 +248,8 @@ Page({
           week: taskObj.curWeek
         })
       }
+      wx.setStorageSync('logetime', taskObj.logetime)
+      wx.setStorageSync('logstime', taskObj.logstime)
     }
   },
 

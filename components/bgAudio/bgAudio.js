@@ -14,6 +14,10 @@ Component({
       type: Number,
       value: ''
     }, // 后台返回的音频时长 s
+    train: {
+      type: Number,
+      value: 0
+    }
   },
 
   /**
@@ -163,19 +167,45 @@ Component({
 
     // 播放音频事件
     playAudio() {
-      bgAudioManager.src = this.data.bgAudio.src
-      bgAudioManager.title = this.data.bgAudio.title
-      bgAudioManager.singer = this.data.bgAudio.singer
-      if(this.data.value == 0){
-        bgAudioManager.play()
+      console.log('是否是训练: ',this.data.train);
+      if(this.data.train == 1){ // 音频训练
+        let logsMins = wx.getStorageSync('logstime').split(':')[0]*60+wx.getStorageSync('logstime').split(':')[1] // 开始作息时间
+        let logeMins = wx.getStorageSync('logetime').split(':')[0]*60+wx.getStorageSync('logstime').split(':')[1] // 结束作息时间
+        let nowMins = new Date().getHours()*60 + (new Date().getMinutes() +'')
+        console.log(nowMins);
+        if(logsMins < nowMins && nowMins< logeMins){
+          bgAudioManager.src = this.data.bgAudio.src
+          bgAudioManager.title = this.data.bgAudio.title
+          bgAudioManager.singer = this.data.bgAudio.singer
+          if(this.data.value == 0){
+            bgAudioManager.play()
+          }else{
+            // bgAudioManager.seek(this.data.value)
+            this.setData({
+              duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
+            })
+          }
+          // 开始倒计时
+          this.data.isPlay == 0 ? this.startTap():''
+        }else{
+          // 调用父方法
+          this.triggerEvent('noTimeDialog')
+        }
       }else{
-        // bgAudioManager.seek(this.data.value)
-        this.setData({
-          duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
-        })
+        bgAudioManager.src = this.data.bgAudio.src
+        bgAudioManager.title = this.data.bgAudio.title
+        bgAudioManager.singer = this.data.bgAudio.singer
+        if(this.data.value == 0){
+          bgAudioManager.play()
+        }else{
+          // bgAudioManager.seek(this.data.value)
+          this.setData({
+            duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
+          })
+        }
+        // 开始倒计时
+        this.data.isPlay == 0 ? this.startTap():''
       }
-      // 开始倒计时
-      this.data.isPlay == 0 ? this.startTap():''
     },
 
     // 暂停音频事件
