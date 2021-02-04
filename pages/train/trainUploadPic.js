@@ -129,7 +129,7 @@ Page({
         delta: 1
       })
     }else{
-      console.log('图片识别失败');
+      console.log('图片识别失败('+message+')');
       // 失败的情况
       // 弹窗信息
       let des = ''
@@ -172,7 +172,7 @@ Page({
       let btn2 = {type: 1, txt: '重新上传'}
       des = ' 经分析，您的任务数据并未按照计划目标完成，如需指导可联系客服。'
       let dialog = {
-        title: '任务失败',
+        title: '任务失败('+data.data.message+')',
         img: '../../images/trainfail.png',
         des: des,
         btn1,
