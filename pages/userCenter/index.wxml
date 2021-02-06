@@ -94,7 +94,7 @@
 			</view>
 
 			<view class="list_item">
-				<navigator url="../../components/transactionRecords/refunder?done={{done}}&week={{currentWeek}}">
+				<navigator url="../../components/myRefund/myRefund?done={{done}}&week={{currentWeek}}">
 					<view class="item">
 						<view class="item_left">
 							<image class="item_icon" src="../../images/icon-returnprice.png"></image>

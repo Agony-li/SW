@@ -1,9 +1,9 @@
 
-<view wx:if="{{list.length > 0}}">
+<view wx:if="{{recordList.length > 0}}">
 	<view class="header">
 		<view class="header_content">
 			<view class="header_title">可退款总金额（元）</view>
-			<view class="total_money">220.00</view>
+			<view class="total_money">{{recorderItem.refundAmount}}</view>
 		</view>
 		<navigator url="../../components/myRefund/myRefundRules">
 			<view class="rules">
@@ -19,7 +19,16 @@
 		
 	</view>
 	<!-- 申请将近按钮 -->
-	<view class="btn">申请退款</view>
+	<view class="btn">
+		<text wx:if="{{recorderItem.bonus == false&& recorderItem.weelDown != 2}}"> 未完成训练 </text>
+		<text wx:if="{{recorderItem.bonus == false && recorderItem.weelDown == 2}}"> 待申请 </text>
+		<text wx:if="{{recorderItem.back == true &&recorderItem.refundStatus == 0}}"> 待审核 </text>
+		<text wx:if="{{recorderItem.back == true &&recorderItem.refundStatus == 1}}"> 已发送 </text>
+		<text wx:if="{{endDone}}"> 训练已达标,不能领取 </text>
+		<view wx:if="{{week == currentWeek && !endDone && recorderItem.back == false  && recorderItem.weelDown == 2}}" class="f-4-3" hover-class="none" hover-stop-propagation="false" bindtap="refundMoney" data-info="{{recorderItem}}">
+			申请退款
+		</view>
+	</view>
 </view>
 
 <!-- 暂无数据 -->

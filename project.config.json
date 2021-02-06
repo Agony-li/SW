@@ -73,24 +73,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "计划",
-					"pathName": "pages/plan/plan",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 1,
 					"name": "音频训练",
 					"pathName": "pages/train/trainAudio",
 					"query": "tasktype=5&plantitle=优眠计划",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程详情",
-					"pathName": "pages/course/coursedetail",
-					"query": "id=185f01f69f3611eaa36e525400b4248d",
 					"scene": null
 				},
 				{
@@ -102,29 +88,8 @@
 				},
 				{
 					"id": -1,
-					"name": "测评风险确认书",
-					"pathName": "components/confirmNotic/index",
-					"query": "id=1205171174680756224&price=1198&title=乐眠升级计划&createDate=2019-12-13 01:02&from=3",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/userCenter/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "我的奖金",
 					"pathName": "components/myBonus/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "奖金规则",
-					"pathName": "components/myBonusRules/index",
 					"query": "",
 					"scene": null
 				},
@@ -140,6 +105,20 @@
 					"name": "课程详情",
 					"pathName": "pages/course/coursedetail",
 					"query": "id=1349926100895182848",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试存档",
+					"pathName": "components/testLog/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退款",
+					"pathName": "components/myRefund/myRefund",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -2,7 +2,6 @@
   width: 100%;
   height:100%;
   box-sizing: border-box;
-  /* border-top: 1rpx solid #dddddd; */
   background: #F5F5F5;
 }
 .loading{
@@ -18,7 +17,6 @@ page,
   padding-bottom: 0;
 }
 .weui-tab__content{
-  /* padding-top: 60px; */
   text-align: center;
 }
 .weui-navbar__slider {
@@ -166,7 +164,6 @@ vertical-align: middle;
 content: '';
 width: 40rpx;
 height: 40rpx;
-/* background: url(../../images/icon-loading.png) no-repeat; */
 background-size: contain;
 animation: rotate 1s linear infinite;
 }
