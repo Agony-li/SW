@@ -78,3 +78,16 @@
   position: absolute;
   right: 23rpx;
 }
+/* 无数据 */
+.nodata {
+  text-align: center;
+}
+.nodata_img {
+  margin-top: 80rpx;
+  width: 655rpx;
+  height: 383rpx;
+}
+.nodata_des {
+  font-size: 25rpx;
+  color: #333333;
+}

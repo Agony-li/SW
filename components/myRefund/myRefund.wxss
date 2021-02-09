@@ -89,7 +89,6 @@
   color: #FFFFFF;
   font-size: 30rpx;
 }
-
 /* 无数据 */
 .nodata {
   text-align: center;

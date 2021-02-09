@@ -20,7 +20,7 @@
 	</view>
 	<!-- 申请将近按钮 -->
 	<view class="btn">
-		<text wx:if="{{recorderItem.bonus == false&& recorderItem.weelDown != 2}}"> 未完成训练 </text>
+		<text class="noclick" wx:if="{{recorderItem.bonus == false&& recorderItem.weelDown != 2}}"> 未完成训练 </text>
 		<text wx:if="{{recorderItem.bonus == false && recorderItem.weelDown == 2}}"> 待申请 </text>
 		<text wx:if="{{recorderItem.back == true &&recorderItem.refundStatus == 0}}"> 待审核 </text>
 		<text wx:if="{{recorderItem.back == true &&recorderItem.refundStatus == 1}}"> 已发送 </text>
