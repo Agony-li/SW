@@ -73,13 +73,6 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 1,
-					"name": "音频训练",
-					"pathName": "pages/train/trainAudio",
-					"query": "tasktype=5&plantitle=优眠计划",
-					"scene": null
-				},
-				{
 					"id": 5,
 					"name": "睡眠测评",
 					"pathName": "components/sleepTest/index",
@@ -126,6 +119,13 @@
 					"name": "优惠券",
 					"pathName": "components/myCoupons/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "音频训练",
+					"pathName": "pages/train/trainAudio",
+					"query": "tasktype=5&plantitle=优眠计划",
 					"scene": null
 				}
 			]
