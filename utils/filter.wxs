@@ -39,9 +39,15 @@ var perfectMonth = function(yearmonth){
   return month < 10 ? '0'+month : month
 }
 
+// 格式化时间兼容ios
+var formdataForIOS = function(date){
+  return date.replace('-',"/").replace('-',"/")
+}
+
 module.exports = {
   articleDate: articleDate,
   splitDate: splitDate,
   Arabia_To_SimplifiedChinese: Arabia_To_SimplifiedChinese,
-  perfectMonth: perfectMonth
+  perfectMonth: perfectMonth,
+  formdataForIOS: formdataForIOS
 }

@@ -73,13 +73,6 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 5,
-					"name": "睡眠测评",
-					"pathName": "components/sleepTest/index",
-					"query": "testType=slepping_test&type=2",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "我的奖金",
 					"pathName": "components/myBonus/index",

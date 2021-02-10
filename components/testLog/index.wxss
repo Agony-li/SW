@@ -26,13 +26,17 @@
     align-items: center;
     margin-bottom: 37rpx;
 }
+.checkedChoice {
+    color: #3FAB8C;
+    background-color: rgba(63,171,140, 0.18);
+}
 .choice-image{
     width: 40rpx;
     height: 40rpx;
 }
 .word-box{
     height: 45rpx;
-    /* line-height: 1; */
+    line-height: 45rpx;
     width: 100%;
     margin-left: 10rpx;
 }

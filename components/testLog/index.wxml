@@ -9,10 +9,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -23,10 +23,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -36,10 +36,10 @@
 				<template is="wxParse" data="{{wxParseData:article.nodes}}" />
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -49,10 +49,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -62,10 +62,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -79,10 +79,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>
@@ -95,10 +95,10 @@
 				{{item.dictLabel}}
 			</view>
 			<view class="question-choice" wx:for="{{item.childList}}" wx:for-item="test" wx:for-index="testIndex" wx:key="test.dictCode" bindtap="choiceOtherAnswer" data-index="{{itemIndex}}" data-value="{{testIndex}}">
-				<image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				<!-- <image wx:if="{{test.checked == true}}" class="choice-image" src="../../image/check-circle-fill@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
 				</image>
-				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-				<view class="word-box">
+				<image wx:else class="choice-image" src="../../image/check_icon@2x.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image> -->
+				<view class="word-box {{test.checked == true ? 'checkedChoice': ''}}">
 					<text class="choice-detail" selectable="false" space="false" decode="false">{{test.dictLabel}}</text>
 				</view>
 			</view>

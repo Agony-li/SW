@@ -11,14 +11,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    couponType: 3
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.loadCoupons()
+      this.loadCoupons(this.data.couponType)
+  },
+
+  currentTab(e){
+    let couponType = e.currentTarget.dataset.type
+    this.setData({
+      couponType
+    })
+    this.loadCoupons(couponType)
   },
 
   /**
@@ -70,12 +79,12 @@ Page({
 
   },
 
-  async loadCoupons() {
-    let data = await util.httpRequestWithPromise('/rest/coupon/list?type=my', 'GET', '', wx.getStorageSync('key'));
+  async loadCoupons(loadCoupons) {
+    let data = await util.httpRequestWithPromise('/rest/coupon/mlist?itype='+loadCoupons, 'GET', '', wx.getStorageSync('key'));
     if(data.statusCode === 200){
-		console.log(data.data.data)
+		console.log(data.data.list)
 		this.setData({
-			list:data.data.data,
+			list:data.data.list,
 		});
     }
   },

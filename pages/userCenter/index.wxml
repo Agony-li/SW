@@ -80,7 +80,7 @@
 			</view>
 
 			<view class="list_item">
-				<navigator url="../../components/coupon/my" open-type="navigate">
+				<navigator url="../../components/myCoupons/index" open-type="navigate">
 					<view class="item">
 						<view class="item_left">
 							<image class="item_icon" src="../../images/icon-coupon.png"></image>
