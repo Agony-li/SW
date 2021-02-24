@@ -192,7 +192,7 @@ Page({
       this.getScheduletStr()
     } else {
       // 获取月历接口
-      let month = new Date().getFullYear()+'-'+new Date().getMonth()+1
+      let month = new Date().getFullYear()+'-'+(new Date().getMonth()+1)
       this.getYueLi(month)
     }
   },
