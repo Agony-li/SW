@@ -351,9 +351,14 @@
   width: 27rpx;
   height: 22rpx;
 }
-.li .kong, .shi {
+.li, .shi {
   width: 25rpx;
   height: 25rpx;
+}
+.kong {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx auto;
 }
 .li .jia, .dai {
   width: 36rpx;

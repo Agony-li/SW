@@ -57,7 +57,7 @@
 									<view>{{item.description}}</view>
 								</view>
 								<image wx:if="{{options[index].status}}" src="../../images/duihao.png"></image>
-								<image wx:else src="../../images/kuang.png"></image>
+								<image wx:if="{{!options[index].status&&!plan_ready}}" src="../../images/kuang.png"></image>
 							</view>
 						</block>
 
