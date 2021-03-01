@@ -26,7 +26,7 @@
 			"outputPath": ""
 		},
 		"bundle": false,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -115,7 +115,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "音频训练",
 					"pathName": "pages/train/trainAudio",
 					"query": "tasktype=5&plantitle=优眠计划",

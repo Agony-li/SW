@@ -493,6 +493,9 @@ Page({
 
   // 选中options
   chooseOption(e){
+    if(this.data.plan_ready){
+      return;
+    }
     let index = e.currentTarget.dataset.index
     let status = "options["+index+"].status"
     if(this.data.options[index].status){

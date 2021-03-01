@@ -62,6 +62,7 @@ Page({
         title: fileUpload.name,
         singer: '播放完毕即完成课程', 
         src: fileUpload.url,
+        len: fileUpload.len
       }
       this.setData({
         trainAudio: data.data.data,
@@ -202,24 +203,14 @@ Page({
     }
     let data = await util.httpRequestWithPromise('/rest/ryqtask/done?id='+this.data.trainAudio.id,'GET','',wx.getStorageSync('key'));
     console.log('完成任务接口', data)
-    if(data.data.result == "true") {
-      if(data.data.message == 200){
-        wx.navigateBack({
-          delta: 1
-        })
-      }else if(data.data.message == 607){
-        wx.showModal({
-          title: '提示',
-          content: '请在正确的作息时间内完成任务',
-          success (res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-      }
+    if(data.data.message == 200){
+      wx.navigateBack({
+        delta: 1
+      })
+    }else if(data.data.message == 607){
+      wx.navigateBack({
+        delta: 1
+      })
     }
   },
 

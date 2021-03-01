@@ -10,10 +10,6 @@ Component({
       type: Object,
       value: ''
     }, // 音频属性
-    max: {
-      type: Number,
-      value: ''
-    }, // 后台返回的音频时长 s
     train: {
       type: Number,
       value: 0
@@ -32,7 +28,7 @@ Component({
     //   title: '冰与火之歌', // 标题
     //   singer: 'Ramin Djawadi' // 作者
     // }, // 音频属性
-    max: '', // 后台返回的音频时长 s
+    // max: this.data.bgAudio.len, // 后台返回的音频时长 s
     interval: '',
     isPlay: 0, // 播放状态 0:未播放 1:已播放
     duration: '00:00', // 时长 s(秒) 
@@ -81,13 +77,13 @@ Component({
     })
     
     // 监听背景音乐播放进度更新事件
-    bgAudioManager.onTimeUpdate(() => {
-      if(this.data.max == ''){
-        this.setData({
-          max: bgAudioManager.duration
-        })
-      }
-    })
+    // bgAudioManager.onTimeUpdate(() => {
+    //   if(this.data.max == ''){
+    //     this.setData({
+    //       max: bgAudioManager.duration
+    //     })
+    //   }
+    // })
   },
   moved: function(){},
   detached: function(){},
@@ -140,9 +136,9 @@ Component({
         value++;
         that.setData({
           value: value,
-          duration: that.timesToMinutesAndTimes(that.data.max - value),
+          duration: that.timesToMinutesAndTimes(that.data.bgAudio.len - value),
         })
-        if (value >= that.data.max) { //归0时回到60
+        if (value >= that.data.bgAudio.len) { //归0时回到60
           console.log('初始化数据')
           that.setData({
             value: 0,
@@ -182,7 +178,7 @@ Component({
           }else{
             // bgAudioManager.seek(this.data.value)
             this.setData({
-              duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
+              duration: this.timesToMinutesAndTimes(this.data.bgAudio.len - this.data.value),
             })
           }
           // 开始倒计时
@@ -200,7 +196,7 @@ Component({
         }else{
           // bgAudioManager.seek(this.data.value)
           this.setData({
-            duration: this.timesToMinutesAndTimes(this.data.max - this.data.value),
+            duration: this.timesToMinutesAndTimes(this.data.bgAudio.len - this.data.value),
           })
         }
         // 开始倒计时
@@ -222,7 +218,7 @@ Component({
       // bgAudioManager.seek(value)
       that.setData({
         value: value,
-        duration: that.timesToMinutesAndTimes(that.data.max - value),
+        duration: that.timesToMinutesAndTimes(that.data.bgAudio.len - value),
       })
     },
 
