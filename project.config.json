@@ -87,10 +87,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "课程详情",
 					"pathName": "pages/course/coursedetail",
-					"query": "id=1349926100895182848",
+					"query": "id=1349965627789586432",
 					"scene": null
 				},
 				{

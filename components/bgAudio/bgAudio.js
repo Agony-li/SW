@@ -28,7 +28,7 @@ Component({
     //   title: '冰与火之歌', // 标题
     //   singer: 'Ramin Djawadi' // 作者
     // }, // 音频属性
-    // max: this.data.bgAudio.len, // 后台返回的音频时长 s
+    max: 0, // 后台返回的音频时长 s
     interval: '',
     isPlay: 0, // 播放状态 0:未播放 1:已播放
     duration: '00:00', // 时长 s(秒) 
@@ -135,6 +135,7 @@ Component({
         var value = that.data.value;
         value++;
         that.setData({
+          max: that.data.bgAudio.len,
           value: value,
           duration: that.timesToMinutesAndTimes(that.data.bgAudio.len - value),
         })
