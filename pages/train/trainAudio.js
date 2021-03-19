@@ -182,9 +182,10 @@ Page({
   // 音频自动播放完
   endAutoPlay(){
     console.log('音频自动播放完')
-    this.setData({
-      isClickEndBtn: true
-    })
+    // this.setData({
+    //   isClickEndBtn: true
+    // })
+    this.finishTrainAudio()
   },
 
   // 不在作息时间内播放弹窗
@@ -198,9 +199,9 @@ Page({
 
   // 完成任务接口
   async finishTrainAudio(){
-    if(!this.data.isClickEndBtn){
-      return
-    }
+    // if(!this.data.isClickEndBtn){
+    //   return
+    // }
     let data = await util.httpRequestWithPromise('/rest/ryqtask/done?id='+this.data.trainAudio.id,'GET','',wx.getStorageSync('key'));
     console.log('完成任务接口', data)
     if(data.data.message == 200){

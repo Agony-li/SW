@@ -435,6 +435,18 @@
 		</view>
 		<view class="dialog_btn" bindtap="cancelDialog">知道了</view>
 	</view>
+	<!-- 课程停用弹窗 -->
+	<view class="dialog" wx:if="{{dialogType==2}}">
+		<view class="title">{{dialog.title}}</view>
+		<view class="dialog_content_image">
+			<image class="{{dialog.type == 'redbag'?'redbag':''}}" src="{{dialog.img}}"></image>
+		</view>
+		<view class="dialog_des">{{dialog.des}}</view>
+		<view class="dialog_double_single_btn">
+			<view wx:if="{{dialog.type == 'redbag'}}" bindtap="getBag">{{dialog.btn2}}</view>
+			<view wx:if="{{dialog.type == 'stopPlan'}}" bindtap="payReOpen">{{dialog.btn2}}</view>
+		</view>
+	</view>
 	<!-- 通用弹窗 -->
 	<view class="dialog" wx:else>
 		<view class="title">{{dialog.title}}</view>

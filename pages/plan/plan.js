@@ -168,7 +168,7 @@ Page({
           }
           this.setData({
             dialog,
-            dialogType: 3, 
+            dialogType: 2, 
             isShowDialog: true
           })
         }
@@ -619,9 +619,11 @@ Page({
 
   // 取消弹窗
   cancelDialog(){
-    this.setData({
-      isShowDialog: false
-    })
+    if(this.data.dialogType != 2){
+      this.setData({
+        isShowDialog: false
+      })
+    }
   },
 
   async goToTest () {

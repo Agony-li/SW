@@ -9,7 +9,7 @@
     <rich-text nodes="{{trainAudio.content}}"></rich-text>
   </view>
 </view>
-<view class="btn {{isClickEndBtn?'canfinish':'nofinish'}}" bindtap="finishTrainAudio">完成任务</view>
+<!-- <view class="btn {{isClickEndBtn?'canfinish':'nofinish'}}" bindtap="finishTrainAudio">完成任务</view> -->
 <view class="btn leave" bindtap="planjia">我想请假</view>
 <!-- 推荐阅读 -->
 <view class="course" wx:if="{{courseList.length > 0}}">

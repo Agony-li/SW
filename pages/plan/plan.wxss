@@ -599,6 +599,14 @@
   margin-top: 37rpx;
   border-top: 1rpx solid #C1C1C1;
 }
+.dialog_double_single_btn {
+  height: 100rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  border-top: 1rpx solid #C1C1C1;
+  color: #36BC96;
+}
 .dialog_double_btn view {
   width: 50%;
   height: 100rpx;
