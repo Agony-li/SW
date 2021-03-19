@@ -154,6 +154,14 @@ Page({
     }
   },
 
+  // 跳转到课程详情
+  gotoCourseDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../../pages/course/coursedetail?id='+id,
+    })
+  },
+
   // 运动图片识别接口
   async sportRecognition(){
     let img1 = this.data.fileList[0].local
