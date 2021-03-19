@@ -100,6 +100,9 @@ Page({
     if(!this.data.isClickEndBtn){
       return
     }
+    wx.showLoading({
+      title: '识别中',
+    })
     if(this.data.taskType == 3){
       this.sportRecognition()
     }else if(this.data.taskType == 1){
@@ -115,6 +118,7 @@ Page({
     let fileId2 = this.data.fileList[1].id
     let data = await util.httpRequestWithPromise(`/rest/ryqtask/imgupsleep?id=${this.data.trainAudio.id}&dtype=${this.data.checkRadio}&img1=${img1}&fileId1=${fileId1}&img2=${img2}&fileId2=${fileId2}`, 'GET', '', wx.getStorageSync('key'));
     console.log('运动图片识别接口', data);
+    wx.hideLoading()
     let message = data.data.message
     if(message == '200' || message == '613') {
       // 显示完成按钮
@@ -158,6 +162,7 @@ Page({
     let fileId2 = this.data.fileList[1].id
     let data = await util.httpRequestWithPromise(`/rest/ryqtask/imgupsport?id=${this.data.trainAudio.id}&dtype=${this.data.checkRadio}&img1=${img1}&fileId1=${fileId1}&img2=${img2}&fileId2=${fileId2}`, 'GET', '', wx.getStorageSync('key'));
     console.log('运动图片识别接口', data);
+    wx.hideLoading()
     if(data.data.message == '200') {
       // 显示完成按钮
       this.setData({
