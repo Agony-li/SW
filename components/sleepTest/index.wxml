@@ -3,7 +3,7 @@
 <view class="containers">
 	<block wx:if="{{!isShowResult}}">
 		<view class="part_title {{lbList.length > 0?'marginBottom':''}}">
-			失眠严重程度（{{testInfo.total==7?'1':testInfo.total==14?'2':'3'}}/3）
+			{{testInfo.total==7?'失眠严重程度':testInfo.total==14?'失眠原因排查':'抑郁、焦虑自评'}}（{{testInfo.total==7?'1':testInfo.total==14?'2':'3'}}/3）
 		</view>
 		<view class="progress-content" hidden="{{lbList.length > 0}}">
 			<progress class="mini-progress" percent="{{finishP}}" activeColor="#36BC96" backgroundColor="#FFF" border-radius="8" />

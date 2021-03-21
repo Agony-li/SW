@@ -108,3 +108,7 @@
   font-size: 25rpx;
   color: #333333;
 }
+.needLearn {
+  background: rgba(54, 188, 150, 0.2) !important;
+  color: #36BC96 !important;
+}

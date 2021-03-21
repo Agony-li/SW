@@ -120,6 +120,13 @@
 					"pathName": "pages/train/trainAudio",
 					"query": "tasktype=5&plantitle=优眠计划",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程列表",
+					"pathName": "pages/course/courselist",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
