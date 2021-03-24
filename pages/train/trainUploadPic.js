@@ -245,7 +245,7 @@ Page({
       let btn1 = '取消'
       let btn2 = {type: 1, txt: '确定'}
       if(message == 603){
-        des = '从第四周开始可以每周没项训练请假一次，当前周不能请假'
+        des = '从第四周开始可以每周每项训练请假一次，当前周不能请假'
       }else if(message == 606){
         des = '您本周已经请假过一次了，不能再请假。'
       }else if(message == 200){
