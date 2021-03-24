@@ -155,7 +155,6 @@ Page({
           let reopenAmount = data.data.data
           // 红包弹窗信息
           let des = ''
-          let btn1 = '稍后'
           let btn2 = '支付（'+reopenAmount+'.00元）'
           des = '由于您本周的任务未完成，您的训练计划已经暂停，请缴纳重启费用后，再次开始训练。'
           let dialog = {
@@ -163,7 +162,6 @@ Page({
             type: 'stopPlan',
             img: '../../images/stop_plan.png',
             des: des,
-            btn1,
             btn2
           }
           this.setData({

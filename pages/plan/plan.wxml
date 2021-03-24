@@ -448,7 +448,7 @@
 		</view>
 	</view>
 	<!-- 通用弹窗 -->
-	<view class="dialog" wx:else>
+	<view class="dialog" wx:if="{{dialogType==3}}">
 		<view class="title">{{dialog.title}}</view>
 		<view class="dialog_content_image">
 			<image class="{{dialog.type == 'redbag'?'redbag':''}}" src="{{dialog.img}}"></image>
